@@ -144,60 +144,70 @@
             background: #fff;
         }
 
-        /* --- Menu Items --- */
+        /* --- Menu Grid: two columns --- */
+        #menu-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        @media (max-width: 800px) {
+            #menu-container {
+                grid-template-columns: 1fr;
+            }
+            .page-section { padding: 20px; margin-bottom: 60px; }
+        }
+
+        /* --- Menu Items (card inside grid) --- */
         .menu-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            border-bottom: 1px dashed #d4af37;
-            padding-bottom: 20px;
+            align-items: flex-start;
+            justify-content: space-between;
+            background: #fff;
+            border-radius: 6px;
+            padding: 14px 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.04);
+            min-height: 86px;
         }
 
-        .menu-thumb {
-            width: 80px; height: 80px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-right: 20px;
-            border: 2px solid var(--accent-gold);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .item-details { flex-grow: 1; }
+        .item-details { flex: 1; margin-right: 12px; }
         
         .item-header {
             display: flex; justify-content: space-between;
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem; font-weight: bold; color: #222;
+            font-size: 1rem; font-weight: bold; color: #222;
         }
         
         .item-cat {
-            font-size: 0.75rem;
+            font-size: 0.70rem;
             color: #888;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
 
-        .item-desc { color: #555; font-size: 0.9rem; font-style: italic; margin-top: 4px; }
+        .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
         .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
 
         /* --- Qty Buttons --- */
         .qty-controls {
-            display: flex; align-items: center;
-            background: #eee; border-radius: 30px; padding: 3px;
-            margin-left: 15px;
+            display: flex; align-items: center; flex-direction: column;
+            background: #eee; border-radius: 30px; padding: 6px;
+            min-width: 84px;
             border: 1px solid #ccc;
         }
         .qty-btn {
-            width: 32px; height: 32px;
+            width: 34px; height: 34px;
             border-radius: 50%; border: none;
             background: var(--primary-red); color: white;
-            font-weight: bold; cursor: pointer; font-size: 1.2rem;
+            font-weight: bold; cursor: pointer; font-size: 1.1rem;
             display: flex; align-items: center; justify-content: center;
             transition: background 0.2s;
         }
         .qty-btn:hover { background: #b30000; }
-        .qty-display { width: 30px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; }
+        .qty-display { width: 36px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; padding: 6px 0; }
 
         /* --- Sticky Footer --- */
         .sticky-bar {
@@ -294,7 +304,7 @@
         </address>
         
         <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.6994333643965!2d-79.6148984!3d43.5876971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b473011c3b2a1%3A0x1234567890abcdef!2s2500%20Hurontario%20St%2C%20Mississauga%2C%20ON%20L5B%201N4!5e0!3m2!1sen!2sca" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.6994333643965!2d-79.6148984!3d43.5876971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b473011c3b2a1%3A0x1234567890[...]
             width="100%" height="400" style="border:0; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" 
             allowfullscreen="" loading="lazy">
         </iframe>
@@ -466,11 +476,11 @@
 
         // --- Family Dinners ---
         { id: 'D2', name: 'Dinner for 2', price: 36.95, cat: 'Family Dinner', desc: '2 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Chicken Wings (6pc), Sweet & Sour Chicken Balls (6pc)' },
-        { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner', desc: '3 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Beef Mix Vegetables, Chicken Wings (8pc), Sweet & Sour Chicken Balls (8pc)' },
-        { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner', desc: '4 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Chicken Balls' },
-        { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner', desc: '5 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps' },
-        { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner', desc: '6 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps' },
-        { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner', desc: '8 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps, General Tao Chicken (L), House Special Noodles (L)' },
+        { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner', desc: '3 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Beef Mix Vegetables, Chicken Wings (8pc), Sweet & Sour Chicken [...]' },
+        { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner', desc: '4 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Ch[...]' },
+        { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner', desc: '5 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Ch[...]' },
+        { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner', desc: '6 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chick[...]' },
+        { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner', desc: '8 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chic[...]' },
 
         // --- Daily Specials ---
         { id: 'L1', name: 'Chicken/Beef Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
@@ -488,28 +498,8 @@
         { id: 'L13', name: 'Beef With Mushroom On Rice', price: 11.50, cat: 'Lunch Special' }
     ];
 
-    // --- IMAGE MAPPER ---
-    // Assigns a category image to items so they look good
-    const catImages = {
-        'Soup': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200',
-        'Appetizer': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200',
-        'Sweet & Sour': 'https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?w=200',
-        'Chop Suey': 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=200',
-        'Curry': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=200',
-        'Diced Veg': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200',
-        'Noodles': 'https://images.unsplash.com/photo-1585032226651-759b368d72b7?w=200',
-        'Szechuan': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200',
-        'Rice': 'https://images.unsplash.com/photo-1603133872878-684f108fd118?w=200',
-        'Chef Specials': 'https://images.unsplash.com/photo-1585937421612-70a008356f36?w=200',
-        'Combos': 'https://images.unsplash.com/photo-1547592180-85f173990554?w=200',
-        'Family Dinner': 'https://images.unsplash.com/photo-1547592180-85f173990554?w=200',
-        'Lunch Special': 'https://images.unsplash.com/photo-1623653387945-2fd25214f8fc?w=200'
-    };
-
-    // Add images to data
-    const menuItems = rawItems.map(item => {
-        return { ...item, image: catImages[item.cat] || catImages['Appetizer'] };
-    });
+    // Create menuItems from rawItems without external images
+    const menuItems = rawItems.map(item => ({ ...item }));
 
     let cart = {};
 
@@ -530,7 +520,6 @@
             const div = document.createElement('div');
             div.className = 'menu-item';
             div.innerHTML = `
-                <img src="${item.image}" class="menu-thumb" loading="lazy">
                 <div class="item-details">
                     <div class="item-cat">${item.cat}</div>
                     <div class="item-header">
@@ -567,8 +556,9 @@
         if (cart[id] > 50) cart[id] = 50;
         
         const isSearching = document.getElementById('searchBar').value.length > 0;
-        renderMenu(isSearching ? undefined : menuItems);
+        // when searching, re-run the filter so the current filtered list is shown; otherwise render full menu
         if(isSearching) filterMenu();
+        else renderMenu();
     }
 
     function updateTotal() {
