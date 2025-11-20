@@ -25,11 +25,12 @@
             background-color: #000000; 
             background-image: url("backgroundL.jpg");
             
-            /* UPDATED: Made smaller (25%) to fit the new narrower gap */
+            /* Image size 25% centered */
             background-size: 25% auto; 
             
             background-repeat: no-repeat;
-            background-position: center top 180px; /* Moves image down so it sits in the gap */
+            /* Adjusted vertical position to account for new spacing */
+            background-position: center top 200px; 
             background-attachment: fixed;
         }
 
@@ -66,6 +67,8 @@
         header {
             padding: 60px 20px;
             text-align: center;
+            /* ADDED: More separation between header and page body */
+            margin-bottom: 60px; 
         }
 
         .header-title-box {
@@ -114,45 +117,41 @@
         }
 
         /* --- SPECIAL STYLING FOR THE SPLIT ORDER PAGE --- */
-        /* Only applies on larger screens (tablets/laptops) */
         @media (min-width: 900px) {
             #order.page-section {
-                background: transparent; /* Make main background invisible */
-                box-shadow: none;        /* Remove shadow */
-                border: none;            /* Remove border */
-                max-width: 1200px;       /* Make container wider */
+                background: transparent; 
+                box-shadow: none;        
+                border: none;            
+                max-width: 1200px;       
                 padding: 0;
-                text-align: center;      /* Center align everything inside */
+                text-align: center;      
             }
             
             #order h2 {
-                /* Title styling */
                 display: inline-block;
                 background: rgba(255, 252, 245, 0.95);
                 padding: 10px 60px;
                 border-radius: 4px;
                 border: 1px solid var(--accent-gold);
-                margin-bottom: 20px; /* Space between Title and Search Box */
+                margin-bottom: 20px; 
             }
 
             .search-box {
-                /* Center the search box under the title */
                 display: block;
                 max-width: 500px;
-                margin: 0 auto 40px auto !important; /* Auto margins center it */
+                margin: 0 auto 40px auto !important; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             }
 
             #menu-container {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                /* UPDATED: Gap reduced from 40% to 20% */
                 column-gap: 20%; 
                 row-gap: 20px;
             }
         }
 
-        /* Mobile Styling (Reverts to normal stack) */
+        /* Mobile Styling */
         @media (max-width: 899px) {
             #menu-container {
                 grid-template-columns: 1fr;
@@ -160,6 +159,7 @@
             }
             .page-section { padding: 20px; margin-bottom: 60px; }
             body { background-size: cover; background-position: center; }
+            header { margin-bottom: 30px; }
         }
 
         @keyframes fadeIn {
@@ -188,12 +188,32 @@
             background: #fff;
         }
 
+        /* --- New Category Header Style --- */
+        .menu-cat-header {
+            grid-column: 1 / -1; /* Spans both columns */
+            text-align: center;
+            margin: 50px 0 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-cat-header span {
+            background: var(--primary-red);
+            color: #fff;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border: 1px solid var(--accent-gold);
+        }
+
         /* --- Menu Items --- */
         .menu-item {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            /* Ensure items are opaque white so text is readable */
             background: #fff; 
             border-radius: 6px;
             padding: 14px 16px;
@@ -279,6 +299,7 @@
             text-decoration: none; padding: 15px; font-size: 1.4rem;
             font-weight: bold; border-radius: 5px; margin: 25px 0;
             box-shadow: 0 4px 10px rgba(139,0,0,0.3);
+            text-align: center;
         }
         .call-btn:hover { background: #a50000; }
     </style>
@@ -334,6 +355,11 @@
             Mississauga, ON L5B 1N4
         </address>
         
+        <!-- ADDED: Clickable Phone Link -->
+        <a href="tel:9055550123" class="call-btn" style="max-width: 300px; margin: 0 auto 30px auto;">
+            📞 Call To Order: (905) 555-0123
+        </a>
+
         <iframe 
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.6994333643965!2d-79.6148984!3d43.5876971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b473011c3b2a1%3A0x1234567890abcdef!2s2500%20Hurontario%20St%2C%20Mississauga%2C%20ON%20L5B%201N4!5e0!3m2!1sen!2sca"
             width="100%" height="400" style="border:0; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" 
@@ -545,27 +571,46 @@
     function renderMenu(itemsToRender = menuItems) {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
-        itemsToRender.forEach(item => {
-            const qty = cart[item.id] || 0;
-            const div = document.createElement('div');
-            div.className = 'menu-item';
-            div.innerHTML = `
-                <div class="item-details">
-                    <div class="item-cat">${item.cat}</div>
-                    <div class="item-header">
-                        <span>${item.id}. ${item.name}</span>
-                        <span class="item-price">$${item.price.toFixed(2)}</span>
-                    </div>
-                    <div class="item-desc">${item.desc || ''}</div>
-                </div>
-                <div class="qty-controls">
-                    <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
-                    <div class="qty-display">${qty}</div>
-                    <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
-                </div>
-            `;
-            container.appendChild(div);
+        
+        // Get all unique categories from the menu items (using a Set to remove duplicates)
+        const allCategories = [...new Set(menuItems.map(item => item.cat))];
+        
+        // Loop through each category and render items if they match the current search/filter
+        allCategories.forEach(cat => {
+            const catItems = itemsToRender.filter(i => i.cat === cat);
+            
+            if(catItems.length > 0) {
+                // Add Category Header (Spans across the middle)
+                const header = document.createElement('div');
+                header.className = 'menu-cat-header';
+                header.innerHTML = `<span>${cat}</span>`;
+                container.appendChild(header);
+                
+                // Add items for this category
+                catItems.forEach(item => {
+                    const qty = cart[item.id] || 0;
+                    const div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.innerHTML = `
+                        <div class="item-details">
+                            <div class="item-cat">${item.cat}</div>
+                            <div class="item-header">
+                                <span>${item.id}. ${item.name}</span>
+                                <span class="item-price">$${item.price.toFixed(2)}</span>
+                            </div>
+                            <div class="item-desc">${item.desc || ''}</div>
+                        </div>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                            <div class="qty-display">${qty}</div>
+                            <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                        </div>
+                    `;
+                    container.appendChild(div);
+                });
+            }
         });
+        
         updateTotal();
     }
 
