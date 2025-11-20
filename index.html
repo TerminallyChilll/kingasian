@@ -24,9 +24,16 @@
             /* --- BACKGROUND SETTINGS --- */
             background-color: #000000; 
             background-image: url("backgroundL.jpg");
-            background-size: contain; 
+            
+            /* CHANGED: 'cover' makes it fill the screen without stretching/distorting */
+            background-size: cover; 
+            
             background-repeat: no-repeat;
-            background-position: center center;
+            
+            /* OPTIONAL: 'center top' usually looks better for restaurant photos 
+               so the top of the image (tables/lights) doesn't get cut off */
+            background-position: center top; 
+            
             background-attachment: fixed;
         }
 
