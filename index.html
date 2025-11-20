@@ -25,11 +25,11 @@
             background-color: #000000; 
             background-image: url("backgroundL.jpg");
             
-            /* Image takes up 50% of width in the center */
-            background-size: 60% auto; 
+            /* UPDATED: Made smaller (25%) to fit the new narrower gap */
+            background-size: 25% auto; 
             
             background-repeat: no-repeat;
-            background-position: center top 120px; /* Moves image down slightly so header doesn't cover it */
+            background-position: center top 180px; /* Moves image down so it sits in the gap */
             background-attachment: fixed;
         }
 
@@ -120,32 +120,34 @@
                 background: transparent; /* Make main background invisible */
                 box-shadow: none;        /* Remove shadow */
                 border: none;            /* Remove border */
-                max-width: 1200px;       /* Make container wider to fit gap */
+                max-width: 1200px;       /* Make container wider */
                 padding: 0;
-                text-align: center;      /* Center the title/search bar */
+                text-align: center;      /* Center align everything inside */
             }
             
             #order h2 {
-                /* Give the Title a box so it's readable */
+                /* Title styling */
                 display: inline-block;
                 background: rgba(255, 252, 245, 0.95);
-                padding: 10px 40px;
+                padding: 10px 60px;
                 border-radius: 4px;
                 border: 1px solid var(--accent-gold);
+                margin-bottom: 20px; /* Space between Title and Search Box */
             }
 
             .search-box {
-                /* Make search bar float nicely in the middle */
+                /* Center the search box under the title */
+                display: block;
                 max-width: 500px;
-                margin: 0 auto 40px auto !important;
+                margin: 0 auto 40px auto !important; /* Auto margins center it */
                 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             }
 
             #menu-container {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                /* THIS CREATES THE GAP IN THE MIDDLE FOR THE PHOTO */
-                column-gap: 40%; 
+                /* UPDATED: Gap reduced from 40% to 20% */
+                column-gap: 20%; 
                 row-gap: 20px;
             }
         }
@@ -195,7 +197,7 @@
             background: #fff; 
             border-radius: 6px;
             padding: 14px 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* Slightly stronger shadow */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             border: 1px solid rgba(0,0,0,0.04);
             min-height: 86px;
             text-align: left;
