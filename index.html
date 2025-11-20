@@ -20,15 +20,14 @@
             color: var(--text-dark);
             margin: 0;
             padding: 0;
-            /* THE BACKGROUND IMAGE */
-            /* This is a high-quality image of traditional red lanterns */
+            /* BACKGROUND IMAGE: Red Lanterns */
             background: url('https://images.unsplash.com/photo-1537255267214-08131e855d6e?q=80&w=1920') no-repeat center center fixed; 
             background-size: cover;
         }
 
         /* --- Navigation --- */
         nav {
-            background-color: rgba(139, 0, 0, 0.95); /* Semi-transparent Red */
+            background-color: rgba(139, 0, 0, 0.95);
             text-align: center;
             padding: 15px 0;
             border-bottom: 4px solid var(--accent-gold);
@@ -91,23 +90,15 @@
 
         /* --- The Floating Content Cards --- */
         .page-section {
-            display: none; /* Hidden by default */
+            display: none;
             max-width: 850px;
-            margin: 0 auto 100px auto; /* Center it */
-            background: rgba(255, 255, 255, 0.96); /* Nearly opaque white */
+            margin: 0 auto 100px auto;
+            background: rgba(255, 255, 255, 0.96);
             padding: 40px;
             border-radius: 8px;
             box-shadow: var(--floating-shadow);
             border: 1px solid var(--accent-gold);
             position: relative;
-        }
-
-        /* Decorative corners for the card */
-        .page-section::before {
-            content: '';
-            position: absolute; top: 10px; left: 10px; right: 10px; bottom: 10px;
-            border: 2px double var(--accent-gold);
-            pointer-events: none;
         }
 
         .page-section.active { 
@@ -128,8 +119,6 @@
             border-bottom: 2px solid #eee;
             padding-bottom: 15px;
             margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
         }
 
         /* --- Search Bar --- */
@@ -142,8 +131,6 @@
             margin-bottom: 25px;
             box-sizing: border-box;
             background: #fff;
-            position: relative;
-            z-index: 2;
         }
 
         /* --- Menu Items --- */
@@ -153,8 +140,6 @@
             margin-bottom: 20px;
             border-bottom: 1px dashed #d4af37;
             padding-bottom: 20px;
-            position: relative;
-            z-index: 2;
         }
 
         .menu-thumb {
@@ -338,24 +323,51 @@
 </div>
 
 <script>
-    // --- REAL MENU DATA ---
+    // --- REAL MENU DATA (Extracted from King Asian Online Menu) ---
     const menuItems = [
-        { id: 'A1', name: 'Crispy Spring Rolls (4)', price: 5.99, cat: 'Appetizer', image: 'https://images.unsplash.com/photo-1548505276-67133f4f962c?w=200' },
-        { id: 'A2', name: 'Deep Fried Wontons', price: 6.50, cat: 'Appetizer', image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c423c?w=200' },
-        { id: 'A3', name: 'Crispy Chicken Wings', price: 12.99, cat: 'Appetizer', image: 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?w=200' },
-        { id: 'S1', name: 'Wonton Soup', price: 5.95, cat: 'Soup', image: 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
-        { id: 'S2', name: 'Hot & Sour Soup', price: 5.95, cat: 'Soup', image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=200' },
-        { id: 'C1', name: 'General Tao Chicken', price: 14.99, cat: 'Chicken', image: 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
-        { id: 'C2', name: 'Sweet & Sour Chicken Balls', price: 13.50, cat: 'Chicken', image: 'https://images.unsplash.com/photo-1598133894008-61f7fdb8cc3a?w=200' },
-        { id: 'C3', name: 'Lemon Chicken', price: 13.99, cat: 'Chicken', image: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=200' },
-        { id: 'B1', name: 'Beef with Broccoli', price: 14.50, cat: 'Beef', image: 'https://images.unsplash.com/photo-1567529684892-09290a1b2d05?w=200' },
-        { id: 'B2', name: 'Szechuan Beef (Spicy)', price: 14.99, cat: 'Beef', image: 'https://images.unsplash.com/photo-1534939561126-85543e90f7ba?w=200' },
-        { id: 'P1', name: 'Sweet & Sour Pork', price: 13.50, cat: 'Pork', image: 'https://images.unsplash.com/photo-1548505276-67133f4f962c?w=200' },
-        { id: 'P2', name: 'Honey Garlic Spare Ribs', price: 14.50, cat: 'Pork', image: 'https://images.unsplash.com/photo-1544025162-d76690b67f14?w=200' },
-        { id: 'R1', name: 'Chicken Fried Rice', price: 10.99, cat: 'Rice', image: 'https://images.unsplash.com/photo-1603133872878-684f108fd118?w=200' },
-        { id: 'R2', name: 'Shrimp Fried Rice', price: 12.99, cat: 'Rice', image: 'https://images.unsplash.com/photo-1552611052-33e04de081de?w=200' },
-        { id: 'N1', name: 'Cantonese Chow Mein', price: 15.50, cat: 'Noodles', image: 'https://images.unsplash.com/photo-1585032226651-759b368d72b7?w=200' },
-        { id: 'N2', name: 'Singapore Vermicelli', price: 13.99, cat: 'Noodles', image: 'https://images.unsplash.com/photo-1626804475297-411d8b6b52ee?w=200' }
+        { 'id': 'A1', 'name': 'Crispy Spring Roll', 'price': 2.25, 'cat': 'Appetizer', 'desc': 'Homemade with fresh vegetables.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A2', 'name': 'Egg Roll', 'price': 2.25, 'cat': 'Appetizer', 'desc': 'Crisp, golden-brown egg roll.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A3', 'name': 'Crispy Chicken Wings', 'price': 15.5, 'cat': 'Appetizer', 'desc': 'Juicy wings fried to perfection.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A4', 'name': 'Hot Garlic Chicken Wings', 'price': 16.5, 'cat': 'Appetizer', 'desc': 'Tossed in spicy garlic sauce.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A5', 'name': 'Fried Wontons', 'price': 10.5, 'cat': 'Appetizer', 'desc': 'Crispy golden wontons.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A6', 'name': 'Fried Dumplings (12)', 'price': 15.95, 'cat': 'Appetizer', 'desc': 'Pan-fried pork dumplings.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A7', 'name': 'BBQ Sliced Pork', 'price': 17.5, 'cat': 'Appetizer', 'desc': 'Traditional BBQ pork slices.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'A8', 'name': 'BBQ Spare Ribs', 'price': 21.95, 'cat': 'Appetizer', 'desc': 'Long, fall-off-the-bone ribs.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
+        { 'id': 'S1', 'name': 'Wonton Soup', 'price': 5.95, 'cat': 'Soup', 'desc': 'Handmade wontons in broth.', 'image': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
+        { 'id': 'S2', 'name': 'Hot & Sour Soup', 'price': 5.95, 'cat': 'Soup', 'desc': 'Spicy and tangy with tofu.', 'image': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
+        { 'id': 'S3', 'name': 'Chicken Corn Soup', 'price': 5.5, 'cat': 'Soup', 'desc': 'Creamy sweet corn broth.', 'image': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
+        { 'id': 'S4', 'name': 'Wonton Noodle Soup', 'price': 7.5, 'cat': 'Soup', 'desc': 'Wontons and noodles in broth.', 'image': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
+        { 'id': 'C1', 'name': 'General Tao Chicken', 'price': 17.5, 'cat': 'Chicken', 'desc': 'Spicy, sweet, and crispy.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C2', 'name': 'Sweet & Sour Chicken Balls', 'price': 16.95, 'cat': 'Chicken', 'desc': 'Classic breaded chicken.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C3', 'name': 'Lemon Chicken', 'price': 16.5, 'cat': 'Chicken', 'desc': 'Breaded breast with lemon sauce.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C4', 'name': 'Kung Po Chicken', 'price': 17.5, 'cat': 'Chicken', 'desc': 'Peanuts, chili, and vegetables.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C5', 'name': 'Chicken with Broccoli', 'price': 16.5, 'cat': 'Chicken', 'desc': 'Stir-fried in garlic sauce.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C6', 'name': 'Sesame Chicken', 'price': 17.5, 'cat': 'Chicken', 'desc': 'Crispy chicken with sesame seeds.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C7', 'name': 'Chili Chicken', 'price': 17.95, 'cat': 'Chicken', 'desc': 'Indian-style spicy dry chicken.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'C8', 'name': 'Manchurian Chicken', 'price': 17.95, 'cat': 'Chicken', 'desc': 'Spicy Hakka style.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
+        { 'id': 'B1', 'name': 'Beef with Broccoli', 'price': 16.5, 'cat': 'Beef', 'desc': 'Tender beef with fresh broccoli.', 'image': 'https://images.unsplash.com/photo-1534939561126-85543e90f7ba?w=200' },
+        { 'id': 'B2', 'name': 'Szechuan Beef', 'price': 16.95, 'cat': 'Beef', 'desc': 'Spicy crispy beef strips.', 'image': 'https://images.unsplash.com/photo-1534939561126-85543e90f7ba?w=200' },
+        { 'id': 'B3', 'name': 'Black Pepper Beef', 'price': 17.5, 'cat': 'Beef', 'desc': 'Peppery sauce with onions.', 'image': 'https://images.unsplash.com/photo-1534939561126-85543e90f7ba?w=200' },
+        { 'id': 'B4', 'name': 'Beef with Mixed Veg', 'price': 16.5, 'cat': 'Beef', 'desc': 'Stir-fried with garden greens.', 'image': 'https://images.unsplash.com/photo-1534939561126-85543e90f7ba?w=200' },
+        { 'id': 'P1', 'name': 'Sweet & Sour Pork', 'price': 16.95, 'cat': 'Pork', 'desc': 'Cantonese style with pineapple.', 'image': 'https://images.unsplash.com/photo-1544025162-d76690b67f14?w=200' },
+        { 'id': 'P2', 'name': 'Honey Garlic Spare Ribs', 'price': 15.95, 'cat': 'Pork', 'desc': 'Sticky and sweet short ribs.', 'image': 'https://images.unsplash.com/photo-1544025162-d76690b67f14?w=200' },
+        { 'id': 'SF1', 'name': 'Shrimp with Lobster Sauce', 'price': 18.5, 'cat': 'Seafood', 'desc': 'Minced pork and egg sauce.', 'image': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=200' },
+        { 'id': 'SF2', 'name': 'Salt & Pepper Squid', 'price': 18.95, 'cat': 'Seafood', 'desc': 'Spicy and crispy squid.', 'image': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=200' },
+        { 'id': 'SF3', 'name': 'Breaded Jumbo Shrimp', 'price': 17.95, 'cat': 'Seafood', 'desc': 'Served with lemon wedge.', 'image': 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=200' },
+        { 'id': 'R1', 'name': 'Chicken Fried Rice', 'price': 12.95, 'cat': 'Rice', 'desc': 'Wok-fried with egg and soy.', 'image': 'https://images.unsplash.com/photo-1603133872878-684f108fd118?w=200' },
+        { 'id': 'R2', 'name': 'Shrimp Fried Rice', 'price': 15.5, 'cat': 'Rice', 'desc': 'With baby shrimp and peas.', 'image': 'https://images.unsplash.com/photo-1603133872878-684f108fd118?w=200' },
+        { 'id': 'R3', 'name': 'House Special Fried Rice', 'price': 15.95, 'cat': 'Rice', 'desc': 'Chicken, beef, pork, and shrimp.', 'image': 'https://images.unsplash.com/photo-1603133872878-684f108fd118?w=200' },
+        { 'id': 'R4', 'name': 'Plain Steamed Rice', 'price': 2.95, 'cat': 'Rice', 'desc': 'Jasmine rice.', 'image': 'https://images.unsplash.com/photo-1603133872878-684f108fd118?w=200' },
+        { 'id': 'N1', 'name': 'Cantonese Chow Mein', 'price': 18.5, 'cat': 'Noodles', 'desc': 'Crispy noodles with meats/veg.', 'image': 'https://images.unsplash.com/photo-1585032226651-759b368d72b7?w=200' },
+        { 'id': 'N2', 'name': 'Singapore Vermicelli', 'price': 15.95, 'cat': 'Noodles', 'desc': 'Curry rice noodles with shrimp.', 'image': 'https://images.unsplash.com/photo-1585032226651-759b368d72b7?w=200' },
+        { 'id': 'N3', 'name': 'Shanghai Noodles', 'price': 15.5, 'cat': 'Noodles', 'desc': 'Thick udon-style noodles.', 'image': 'https://images.unsplash.com/photo-1585032226651-759b368d72b7?w=200' },
+        { 'id': 'N4', 'name': 'Pad Thai', 'price': 15.95, 'cat': 'Noodles', 'desc': 'Thai style rice noodles.', 'image': 'https://images.unsplash.com/photo-1585032226651-759b368d72b7?w=200' },
+        { 'id': 'V1', 'name': 'Stir-Fried Mixed Veg', 'price': 13.95, 'cat': 'Vegetarian', 'desc': 'Broccoli, bok choy, carrots.', 'image': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200' },
+        { 'id': 'V2', 'name': 'Ma-Po Tofu', 'price': 14.95, 'cat': 'Vegetarian', 'desc': 'Spicy soft tofu.', 'image': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200' },
+        { 'id': 'V3', 'name': 'General Tao Tofu', 'price': 14.5, 'cat': 'Vegetarian', 'desc': 'Fried tofu in spicy sauce.', 'image': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200' },
+        { 'id': 'D2', 'name': 'Dinner for Two', 'price': 48.95, 'cat': 'Family Dinner', 'desc': 'Egg Rolls, Chicken Chop Suey, Wings, S&S Chicken Balls, Fried Rice.', 'image': 'https://images.unsplash.com/photo-1547592180-85f173990554?w=200' },
+        { 'id': 'D3', 'name': 'Dinner for Three', 'price': 65.95, 'cat': 'Family Dinner', 'desc': 'Adds Beef w/ Veg to the Dinner for Two.', 'image': 'https://images.unsplash.com/photo-1547592180-85f173990554?w=200' },
+        { 'id': 'D4', 'name': 'Dinner for Four', 'price': 89.95, 'cat': 'Family Dinner', 'desc': 'Large portions of all items + Beef Veg.', 'image': 'https://images.unsplash.com/photo-1547592180-85f173990554?w=200' }
     ];
 
     let cart = {};
@@ -384,6 +396,7 @@
                         <span>${item.id}. ${item.name}</span>
                         <span class="item-price">$${item.price.toFixed(2)}</span>
                     </div>
+                    <div class="item-desc">${item.desc}</div>
                 </div>
                 <div class="qty-controls">
                     <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
