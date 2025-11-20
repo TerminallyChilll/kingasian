@@ -883,7 +883,8 @@
     if (galleryContainer) {
         galleryContainer.addEventListener('mousedown', (e) => {
             isDown = true;
-            startX = e.pageX - galleryContainer.offsetLeft;
+            const rect = galleryContainer.getBoundingClientRect();
+            startX = e.clientX - rect.left;
             startSlideIndex = currentSlide;
         });
 
@@ -894,7 +895,8 @@
         galleryContainer.addEventListener('mouseup', (e) => {
             if (!isDown) return;
             isDown = false;
-            const x = e.pageX - galleryContainer.offsetLeft;
+            const rect = galleryContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
             const walk = x - startX;
             
             // Threshold for swipe (50px)
@@ -944,23 +946,33 @@
             }
             
             autoAdvanceInterval = setInterval(() => {
-                if (document.getElementById('home').classList.contains('active')) {
-                    changeSlide(1);
-                }
+                changeSlide(1);
             }, 5000);
         }
 
-        // Start auto-advance
+        function stopAutoAdvance() {
+            if (autoAdvanceInterval) {
+                clearInterval(autoAdvanceInterval);
+                autoAdvanceInterval = null;
+            }
+        }
+
+        // Start auto-advance initially (home page is active by default)
         startAutoAdvance();
 
         // Clean up interval when navigating away from home page
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                const targetPage = link.getAttribute('onclick').match(/'([^']+)'/)[1];
-                if (targetPage !== 'home' && autoAdvanceInterval) {
-                    clearInterval(autoAdvanceInterval);
-                    autoAdvanceInterval = null;
-                } else if (targetPage === 'home') {
+                const onclickAttr = link.getAttribute('onclick');
+                if (!onclickAttr) return;
+                
+                const match = onclickAttr.match(/'([^']+)'/);
+                if (!match) return;
+                
+                const targetPage = match[1];
+                if (targetPage !== 'home') {
+                    stopAutoAdvance();
+                } else {
                     startAutoAdvance();
                 }
             });
