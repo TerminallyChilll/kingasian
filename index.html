@@ -10,33 +10,39 @@
         /* --- CSS STYLES --- */
         :root {
             --primary-red: #8B0000;       /* Deep Traditional Red */
-            --accent-gold: #D4AF37;       /* Metallic Gold */
+            --accent-gold: #F4C430;       /* Bright Gold (adjusted for black bg) */
+            --bg-paper: #fffcf5;          /* Light Rice Paper for text boxes */
             --text-dark: #2c2c2c;
-            --floating-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-  body {
-    font-family: 'Lato', sans-serif;
-    color: var(--text-dark);
-    margin: 0;
-    padding: 0;
-
-    /* BACKGROUND IMAGE: Red Lanterns */
-    background: url("backgroundL.jpg") no-repeat center center fixed;
-    background-size: cover;
- }
-
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            
+            /* --- BACKGROUND SETTINGS --- */
+            background-color: #000000; /* Black to match the photo edges */
+            background-image: url("backgroundL.jpg");
+            
+            /* "contain" = Zoom out to see the whole image. 
+               The black color above fills the rest. */
+            background-size: contain; 
+            
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+        }
 
         /* --- Navigation --- */
         nav {
-            background-color: rgba(139, 0, 0, 0.95);
+            background-color: rgba(50, 0, 0, 0.9); /* Darker transparent red */
             text-align: center;
             padding: 15px 0;
-            border-bottom: 4px solid var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             backdrop-filter: blur(5px);
         }
 
@@ -65,11 +71,12 @@
 
         .header-title-box {
             display: inline-block;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid var(--accent-gold);
+            /* Dark glass effect */
+            background: rgba(0, 0, 0, 0.6); 
+            border: 1px solid var(--accent-gold);
             padding: 30px 50px;
             border-radius: 4px;
-            backdrop-filter: blur(3px);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); /* Gold glow */
         }
 
         h1 {
@@ -77,12 +84,12 @@
             color: var(--accent-gold);
             margin: 0; 
             font-size: 3.5rem;
-            text-shadow: 2px 2px 4px black;
+            text-shadow: 2px 2px 10px black;
             letter-spacing: 2px;
         }
 
         .subtitle { 
-            color: white; 
+            color: #f0f0f0; 
             margin-top: 10px; 
             font-size: 1.1rem; 
             text-transform: uppercase; 
@@ -95,21 +102,24 @@
             display: none;
             max-width: 850px;
             margin: 0 auto 100px auto;
-            background: rgba(255, 255, 255, 0.96);
+            
+            /* Light background so text is readable */
+            background: rgba(255, 252, 245, 0.97); 
+            
             padding: 40px;
             border-radius: 8px;
-            box-shadow: var(--floating-shadow);
+            box-shadow: 0 0 50px rgba(0,0,0,0.8); /* Heavy shadow to lift off black bg */
             border: 1px solid var(--accent-gold);
             position: relative;
         }
 
         .page-section.active { 
             display: block; 
-            animation: fadeIn 0.5s ease-in-out;
+            animation: fadeIn 0.6s ease-in-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -193,12 +203,12 @@
         /* --- Sticky Footer --- */
         .sticky-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #1a1a1a; color: white;
+            background: #111; color: white;
             padding: 15px 20px;
             display: flex; justify-content: space-between; align-items: center;
-            border-top: 4px solid var(--accent-gold);
+            border-top: 3px solid var(--accent-gold);
             box-sizing: border-box; z-index: 999;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.7);
         }
         .total-amount { font-size: 1.5rem; font-weight: bold; color: var(--accent-gold); }
         .btn-order {
@@ -208,19 +218,19 @@
             border-radius: 4px; font-size: 1rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
-        .btn-order:hover { background-color: #f0c44b; transform: translateY(-2px); }
+        .btn-order:hover { background-color: #fff; }
 
         /* --- Modal --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2000;
+            background: rgba(0,0,0,0.9); z-index: 2000;
             justify-content: center; align-items: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(4px);
         }
         .modal-box {
             background: #fff; padding: 30px; width: 90%; max-width: 550px; max-height: 85vh;
             overflow-y: auto; border: 4px double var(--primary-red); text-align: center;
-            border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 8px; box-shadow: 0 0 40px rgba(255,255,255,0.1);
         }
         .order-list-table { width: 100%; text-align: left; margin: 20px 0; border-collapse: collapse; }
         .order-list-table th { border-bottom: 2px solid #eee; padding: 8px; color: #666; font-size: 0.9rem; text-transform: uppercase; }
@@ -257,7 +267,7 @@
         <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
         <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
-             style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin: 25px 0; border-radius: 4px;">
+             style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
         
         <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
         
@@ -325,7 +335,7 @@
 </div>
 
 <script>
-    // --- REAL MENU DATA (Extracted from King Asian Online Menu) ---
+    // --- REAL MENU DATA ---
     const menuItems = [
         { 'id': 'A1', 'name': 'Crispy Spring Roll', 'price': 2.25, 'cat': 'Appetizer', 'desc': 'Homemade with fresh vegetables.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
         { 'id': 'A2', 'name': 'Egg Roll', 'price': 2.25, 'cat': 'Appetizer', 'desc': 'Crisp, golden-brown egg roll.', 'image': 'https://images.unsplash.com/photo-1626015441073-1c0c2b236049?w=200' },
@@ -340,7 +350,7 @@
         { 'id': 'S3', 'name': 'Chicken Corn Soup', 'price': 5.5, 'cat': 'Soup', 'desc': 'Creamy sweet corn broth.', 'image': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
         { 'id': 'S4', 'name': 'Wonton Noodle Soup', 'price': 7.5, 'cat': 'Soup', 'desc': 'Wontons and noodles in broth.', 'image': 'https://images.unsplash.com/photo-1547592166-23acbe34001b?w=200' },
         { 'id': 'C1', 'name': 'General Tao Chicken', 'price': 17.5, 'cat': 'Chicken', 'desc': 'Spicy, sweet, and crispy.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
-        { 'id': 'C2', 'name': 'Sweet & Sour Chicken Balls', 'price': 16.95, 'cat': 'Chicken', 'desc': 'Classic breaded chicken.', 'image': 'https://www.freepik.com/pikaso/explore/N3cM86D9QR' },
+        { 'id': 'C2', 'name': 'Sweet & Sour Chicken Balls', 'price': 16.95, 'cat': 'Chicken', 'desc': 'Classic breaded chicken.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
         { 'id': 'C3', 'name': 'Lemon Chicken', 'price': 16.5, 'cat': 'Chicken', 'desc': 'Breaded breast with lemon sauce.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
         { 'id': 'C4', 'name': 'Kung Po Chicken', 'price': 17.5, 'cat': 'Chicken', 'desc': 'Peanuts, chili, and vegetables.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
         { 'id': 'C5', 'name': 'Chicken with Broccoli', 'price': 16.5, 'cat': 'Chicken', 'desc': 'Stir-fried in garlic sauce.', 'image': 'https://images.unsplash.com/photo-1617622141675-d227d6d0410b?w=200' },
