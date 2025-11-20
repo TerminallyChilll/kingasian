@@ -102,11 +102,16 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.8);
             border: 1px solid var(--accent-gold);
             position: relative;
+            
+            /* UPDATED: Add transition for the fade effect */
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
         }
 
         .page-section.active { 
             display: block; 
-            animation: fadeIn 0.6s ease-in-out;
+            /* We remove the animation keyframe here so it doesn't conflict with our JS fade */
+            /* animation: fadeIn 0.6s ease-in-out; */
         }
 
         /* --- PHOTO GALLERY STYLES --- */
@@ -203,11 +208,6 @@
             .page-section { padding: 20px; margin-bottom: 60px; }
             body { background-size: cover; background-position: center; }
             header { margin-bottom: 30px; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
@@ -675,20 +675,15 @@
 
     // --- PHOTO GALLERY LOGIC ---
     let hasInitPhotos = false;
+    let isPhotoAnimating = false; // Prevents clicking while fading
     
     function getPhotoFilename(cat, name) {
-        // Same logic as Python script: 
-        // 1. Clean Category
         let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
-        
-        // 2. Clean Name
         let cleanName = name;
-        cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); // remove (bracket) stuff
-        cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, ''); // remove 'with'
-        cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, ''); // remove spaces/special chars
-        
+        cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
+        cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
+        cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
         if(cleanName.length > 15) cleanName = cleanName.substring(0, 15);
-        
         return `${cleanCat}_${cleanName}.jpg`;
     }
 
@@ -696,22 +691,44 @@
         if(hasInitPhotos) return;
         const categories = [...new Set(menuItems.map(item => item.cat))];
         const nav = document.getElementById('photo-categories');
+        const photoSection = document.getElementById('photos');
         
-        // Create Buttons
         categories.forEach((cat, index) => {
             const btn = document.createElement('button');
             btn.className = 'photo-cat-btn';
             if(index === 0) btn.classList.add('active');
             btn.innerText = cat;
+            
+            // CLICK EVENT WITH FADE ANIMATION
             btn.onclick = () => {
+                // Prevent double clicks during animation
+                if (isPhotoAnimating) return;
+                isPhotoAnimating = true;
+
+                // Update active button immediately
                 document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                renderPhotoGrid(cat);
+                
+                // 1. FADE OUT (1 second)
+                photoSection.style.opacity = '0';
+                
+                // 2. WAIT (1 second)
+                setTimeout(() => {
+                    // Swap content while invisible
+                    renderPhotoGrid(cat);
+                    
+                    // 3. FADE IN (1 second)
+                    photoSection.style.opacity = '1';
+                    
+                    // Unlock after fade-in completes
+                    setTimeout(() => {
+                        isPhotoAnimating = false;
+                    }, 1000);
+                }, 1000);
             };
             nav.appendChild(btn);
         });
 
-        // Render first category by default
         if(categories.length > 0) renderPhotoGrid(categories[0]);
         hasInitPhotos = true;
     }
@@ -720,7 +737,6 @@
         const grid = document.getElementById('photo-grid');
         grid.innerHTML = '';
         const items = menuItems.filter(i => i.cat === cat);
-        
         items.forEach(item => {
             const filename = getPhotoFilename(item.cat, item.name);
             const card = document.createElement('div');
