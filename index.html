@@ -22,7 +22,7 @@
             padding: 0;
             background-color: #000000; 
             background-image: url("backgroundL.jpg");
-            background-size: 30% auto; 
+            background-size: 25% auto; 
             background-repeat: no-repeat;
             background-position: center top 100px; 
             background-attachment: fixed;
@@ -103,15 +103,13 @@
             border: 1px solid var(--accent-gold);
             position: relative;
             
-            /* UPDATED: Add transition for the fade effect */
+            /* Transition for the fade effect */
             transition: opacity 1s ease-in-out;
             opacity: 1;
         }
 
         .page-section.active { 
             display: block; 
-            /* We remove the animation keyframe here so it doesn't conflict with our JS fade */
-            /* animation: fadeIn 0.6s ease-in-out; */
         }
 
         /* --- PHOTO GALLERY STYLES --- */
@@ -571,7 +569,6 @@
         if(pageId === 'order') bar.style.display = 'flex';
         else bar.style.display = 'none';
         
-        // If entering Photos page, init gallery if empty
         if(pageId === 'photos') initPhotos();
         
         window.scrollTo(0,0);
@@ -675,15 +672,17 @@
 
     // --- PHOTO GALLERY LOGIC ---
     let hasInitPhotos = false;
-    let isPhotoAnimating = false; // Prevents clicking while fading
+    let isPhotoAnimating = false; 
     
     function getPhotoFilename(cat, name) {
+        // NEW LOGIC: Full names, no truncation
         let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
         let cleanName = name;
         cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
         cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
         cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
-        if(cleanName.length > 15) cleanName = cleanName.substring(0, 15);
+        // Removed 15 char truncation
+        
         return `${cleanCat}_${cleanName}.jpg`;
     }
 
@@ -699,28 +698,17 @@
             if(index === 0) btn.classList.add('active');
             btn.innerText = cat;
             
-            // CLICK EVENT WITH FADE ANIMATION
             btn.onclick = () => {
-                // Prevent double clicks during animation
                 if (isPhotoAnimating) return;
                 isPhotoAnimating = true;
 
-                // Update active button immediately
                 document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
-                // 1. FADE OUT (1 second)
                 photoSection.style.opacity = '0';
-                
-                // 2. WAIT (1 second)
                 setTimeout(() => {
-                    // Swap content while invisible
                     renderPhotoGrid(cat);
-                    
-                    // 3. FADE IN (1 second)
                     photoSection.style.opacity = '1';
-                    
-                    // Unlock after fade-in completes
                     setTimeout(() => {
                         isPhotoAnimating = false;
                     }, 1000);
@@ -742,7 +730,7 @@
             const card = document.createElement('div');
             card.className = 'photo-card';
             card.innerHTML = `
-                <img src="${filename}" alt="${item.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+                <img src="${filename}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='comingsoon.jpg'">
                 <span>${item.name}</span>
             `;
             grid.appendChild(card);
