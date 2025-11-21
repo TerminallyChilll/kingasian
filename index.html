@@ -8,10 +8,15 @@
   <title>King Asian Restaurant | Best Chinese Food in Cooksville, Mississauga</title>
 
   <meta name="description" content="King Asian Restaurant in Cooksville, Mississauga serves authentic Chinese food with fast takeout and delivery. Enjoy Szechuan, Cantonese, fried rice, noodles, wonton soup, and lunch specials at 2500 Hurontario St.">
-  <meta name="keywords" content="Chinese food Cooksville, Chinese restaurant Mississauga, King Asian Restaurant, Chinese takeout, Chinese delivery, Szechuan, Cantonese, fried rice, noodles, wonton soup, 2500 Hurontario St">
+  <meta name="keywords" content="Chinese food Cooksville, Chinese restaurant Mississauga, King Asian Restaurant, Chinese takeout, Chinese delivery, Szechuan, Cantonese, fried rice, noodles, wonton soup, 2500 Hurontario St, dim sum, General Tao chicken, beef broccoli, authentic Asian cuisine">
   <meta name="author" content="King Asian Restaurant">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#8B0000">
   <link rel="canonical" href="https://kingasian.com/">
+  
+  <!-- Future multilingual support preparation -->
+  <!-- <link rel="alternate" hreflang="en-ca" href="https://kingasian.com/en/" /> -->
+  <!-- <link rel="alternate" hreflang="zh-cn" href="https://kingasian.com/zh/" /> -->
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="restaurant">
@@ -28,9 +33,20 @@
   <meta name="twitter:title" content="King Asian Restaurant | Chinese Food in Cooksville, Mississauga">
   <meta name="twitter:description" content="Order authentic Chinese food from King Asian Restaurant in Cooksville, Mississauga. Takeout, delivery, Szechuan, Cantonese, fried rice, noodles, and more.">
   <meta name="twitter:image" content="https://kingasian.com/backgroundL.jpg">
+  
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self';">
+
+  <!-- Performance: Preconnect to external resources -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 
   <!-- Local Business / Restaurant Structured Data -->
   <script type="application/ld+json">
@@ -51,379 +67,103 @@
     "image": "https://kingasian.com/backgroundL.jpg",
     "priceRange": "$$",
     "telephone": "+1-905-555-0123",
-    "menu": "https://kingasian.com/#menu"
+    "menu": "https://kingasian.com/#menu",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "11:00",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "23:00"
+      }
+    ],
+    "paymentAccepted": ["Cash", "Debit Card"],
+    "currenciesAccepted": "CAD",
+    "acceptsReservations": "False"
   }
   </script>
 
-  <style>
-    /* --- CSS STYLES --- */
-    :root {
-        --primary-red: #8B0000;       
-        --accent-gold: #F4C430;       
-        --bg-paper: #fffcf5;          
-        --text-dark: #2c2c2c;
-    }
 
-    body {
-        font-family: 'Lato', sans-serif;
-        color: var(--text-dark);
-        margin: 0; padding: 0;
-        background-color: #000000; 
-        /* Restored your original background logic, added placeholder URL */
-        background-image: url("https://images.unsplash.com/photo-1515669097368-22e68427d71a?q=80&w=1920");
-        background-size: 25% auto; 
-        background-repeat: no-repeat;
-        background-position: center top 100px; 
-        background-attachment: fixed;
-        -webkit-font-smoothing: antialiased;
-        padding-bottom: 80px; /* Space for sticky footer */
-    }
-
-    /* --- Navigation --- */
-    nav {
-        background-color: rgba(50, 0, 0, 0.95);
-        text-align: center;
-        padding: 15px 0;
-        border-bottom: 2px solid var(--accent-gold);
-        position: sticky; top: 0; z-index: 1000;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-    nav a {
-        color: #fff; text-decoration: none; margin: 0 15px;
-        font-family: 'Playfair Display', serif; font-size: 1.1rem;
-        text-transform: uppercase; letter-spacing: 1px;
-        transition: color 0.3s; display: inline-block; cursor: pointer;
-        user-select: none;
-    }
-    nav a:hover, nav a.active {
-        color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold);
-    }
-
-    /* --- Header --- */
-    header { padding: 60px 20px; text-align: center; margin-bottom: 40px; }
-    .header-title-box {
-        display: inline-block; background: rgba(0, 0, 0, 0.7); 
-        border: 1px solid var(--accent-gold); padding: 30px 50px;
-        border-radius: 4px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
-        position: relative;
-    }
-    h1 {
-        font-family: 'Playfair Display', serif; color: var(--accent-gold);
-        margin: 0; font-size: 3.5rem; text-shadow: 3px 3px 0px #000; letter-spacing: 2px;
-        line-height: 1;
-    }
-    .subtitle { 
-        color: #f0f0f0; margin-top: 12px; font-size: 1.1rem; 
-        text-transform: uppercase; letter-spacing: 3px; font-weight: 300;
-        text-shadow: 1px 1px 2px black;
-    }
-
-    .header-order-btn {
-        background-color: var(--primary-red);
-        color: white;
-        border: 2px solid var(--accent-gold);
-        padding: 12px 30px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-top: 25px;
-        cursor: pointer;
-        border-radius: 50px;
-        animation: pulse 2s infinite;
-        box-shadow: 0 0 15px rgba(244, 196, 48, 0.4);
-        transition: transform 0.2s;
-    }
-    .header-order-btn:active { transform: scale(0.95); }
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(244, 196, 48, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0); }
-    }
-
-    /* --- Page Sections --- */
-    .page-section {
-        display: none; max-width: 850px; margin: 0 auto 60px auto;
-        background: rgba(255, 252, 245, 0.97); padding: 40px;
-        border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.8);
-        border: 1px solid var(--accent-gold); position: relative;
-        animation: fadeIn 0.5s ease;
-    }
-    .page-section.active { display: block; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-    /* --- SEARCH BAR --- */
-    .search-container {
-        display: flex; width: 100%; max-width: 600px; margin: 0 auto 25px auto;
-    }
-    .search-box {
-        flex-grow: 1; padding: 15px; font-size: 1rem;
-        border: 1px solid #ccc; border-radius: 4px 0 0 4px;
-        border-right: none; outline: none;
-    }
-    .search-btn {
-        background: var(--primary-red); color: white; border: none;
-        padding: 0 25px; font-weight: bold; cursor: pointer;
-        border-radius: 0 4px 4px 0; font-family: 'Playfair Display', serif;
-        font-size: 1rem;
-    }
-
-    /* --- Menu Styles --- */
-    @media (min-width: 900px) {
-        #order.page-section {
-            background: transparent; box-shadow: none; border: none;            
-            max-width: 1200px; padding: 0; text-align: center;      
-        }
-        #order h2 {
-            display: inline-block; background: rgba(255, 252, 245, 0.95);
-            padding: 10px 60px; border-radius: 4px;
-            border: 1px solid var(--accent-gold); margin-bottom: 20px; 
-        }
-        #menu-container {
-            display: grid; grid-template-columns: 1fr 1fr;
-            column-gap: 100px; row-gap: 20px;
-            text-align: left;
-        }
-    }
-
-    h2 {
-        color: var(--primary-red); font-family: 'Playfair Display', serif;
-        text-align: center; font-size: 2.2rem; border-bottom: 2px solid #eee;
-        padding-bottom: 15px; margin-bottom: 25px;
-    }
-
-    .menu-cat-header {
-        grid-column: 1 / -1; text-align: center;
-        margin: 40px 0 20px 0; position: relative; z-index: 2;
-    }
-    .menu-cat-header span {
-        background: var(--primary-red); color: #fff;
-        padding: 8px 25px; border-radius: 20px;
-        font-family: 'Playfair Display', serif; font-size: 1.2rem;
-        letter-spacing: 1px; border: 1px solid var(--accent-gold);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    .menu-item {
-        display: flex; align-items: flex-start;
-        justify-content: space-between; background: #fff; 
-        border-radius: 6px; padding: 14px 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        border: 1px solid rgba(0,0,0,0.04); min-height: 86px; text-align: left;
-    }
-    .item-details { flex: 1; margin-right: 10px; }
-    .item-header {
-        display: flex; justify-content: space-between;
-        font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: bold; color: #222;
-    }
-    .item-cat-label {
-        font-size: 0.70rem; color: #888; text-transform: uppercase; 
-        letter-spacing: 1px; margin-bottom: 6px;
-    }
-    .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
-    .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
-
-    .qty-controls {
-        display: flex; align-items: center; flex-direction: column;
-        background: #eee; border-radius: 30px; padding: 4px;
-        min-width: 40px; border: 1px solid #ccc;
-    }
-    .qty-btn {
-        width: 32px; height: 32px; border-radius: 50%; border: none;
-        background: var(--primary-red); color: white;
-        font-weight: bold; cursor: pointer; font-size: 1.2rem;
-        display: flex; align-items: center; justify-content: center;
-        transition: background 0.2s; user-select: none;
-    }
-    .qty-btn:active { background: #500000; transform: scale(0.9); }
-    .qty-display { width: 30px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; padding: 5px 0; }
-
-    /* --- Photos & Reviews --- */
-    .review-card {
-        background: #fff; border-left: 4px solid var(--accent-gold);
-        padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        font-style: italic; color: #555;
-    }
-    .review-author {
-        display: block; text-align: right; font-weight: bold;
-        font-style: normal; margin-top: 10px; color: #222;
-    }
-
-    .photo-nav {
-        display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-        margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ccc;
-    }
-    .photo-cat-btn {
-        background: #eee; border: 1px solid #ccc; padding: 8px 16px;
-        cursor: pointer; font-family: 'Playfair Display', serif;
-        text-transform: uppercase; font-size: 0.9rem; border-radius: 20px;
-        transition: all 0.3s;
-    }
-    .photo-cat-btn:hover, .photo-cat-btn.active {
-        background: var(--primary-red); color: white; border-color: var(--primary-red);
-    }
-    #photo-grid {
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;
-    }
-    .photo-card {
-        background: #fff; padding: 8px; border-radius: 4px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee;
-    }
-    .photo-card img {
-        width: 100%; height: 120px; object-fit: cover; border-radius: 4px;
-        margin-bottom: 8px; background-color: #f0f0f0;
-    }
-
-    /* --- Footer & Modal --- */
-    .sticky-bar {
-        position: fixed; bottom: 0; left: 0; width: 100%;
-        background: #111; color: white; padding: 15px 20px;
-        display: flex; justify-content: space-between; align-items: center;
-        border-top: 3px solid var(--accent-gold); z-index: 2000;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.5); box-sizing: border-box;
-    }
-    .total-amount { font-size: 1.5rem; font-weight: bold; color: var(--accent-gold); }
-    .btn-order {
-        background-color: var(--accent-gold); color: #222;
-        border: none; padding: 12px 25px; font-weight: bold; 
-        text-transform: uppercase; cursor: pointer; border-radius: 4px;
-    }
-    
-    .modal-overlay {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.9); z-index: 3000;
-        justify-content: center; align-items: center; backdrop-filter: blur(4px);
-    }
-    .modal-box {
-        background: #fff; padding: 30px; width: 90%; max-width: 550px; max-height: 85vh;
-        overflow-y: auto; border: 4px double var(--primary-red); text-align: center;
-        border-radius: 8px; position: relative;
-    }
-    .close-modal-x {
-        position: absolute; top: 10px; right: 15px;
-        font-size: 2rem; color: #aaa; cursor: pointer;
-        font-weight: bold; line-height: 1;
-    }
-    .close-modal-x:hover { color: var(--primary-red); }
-    .order-list-table { width: 100%; text-align: left; margin: 20px 0; border-collapse: collapse; }
-    .order-list-table th { border-bottom: 2px solid #eee; padding: 8px; color: #666; font-size: 0.9rem; text-transform: uppercase; }
-    .order-list-table td { border-bottom: 1px solid #eee; padding: 12px 8px; font-size: 1rem; }
-    .call-btn {
-        display: block; background: var(--primary-red); color: white;
-        text-decoration: none; padding: 15px; font-size: 1.4rem;
-        font-weight: bold; border-radius: 5px; margin: 25px 0;
-        box-shadow: 0 4px 10px rgba(139,0,0,0.3); text-align: center;
-    }
-
-    /* --- MOBILE OPTIMIZATION --- */
-    @media (max-width: 899px) {
-        body { 
-            /* 'cover' zooms the image to fill the whole screen height/width */
-            background-size: cover; 
-            background-position: center center;
-            /* 'scroll' works better on phones than 'fixed' (stops jittering) */
-            background-attachment: scroll; 
-        }
-        
-        header { padding: 40px 10px; margin-bottom: 20px; }
-        
-        .header-title-box { 
-            padding: 20px 15px; 
-            width: 90%; 
-            box-sizing: border-box; 
-        }
-        
-        h1 { font-size: 2.2rem; } /* Smaller Title for phone screens */
-        .subtitle { font-size: 0.9rem; letter-spacing: 1px; }
-        
-        /* Stack Nav */
-        nav { padding: 10px 0; }
-        nav a { margin: 5px 10px; font-size: 0.9rem; display:inline-block; }
-
-        .page-section { 
-            padding: 20px; 
-            width: 92%; /* Slightly wider on mobile */
-            box-sizing: border-box; 
-            margin-bottom: 80px; 
-        }
-        
-        #menu-container { grid-template-columns: 1fr; gap: 15px; }
-        
-        /* Sticky bar tweaks */
-        .sticky-bar { padding: 10px 15px; }
-        .btn-order { font-size: 0.9rem; padding: 10px 15px; }
-        
-        /* Adjust Search Bar for Mobile */
-        .search-container { flex-direction: row; max-width: 100%; }
-        .search-box { font-size: 16px; } /* Prevents iPhone zooming in on input */
-    }
-  </style>
 </head>
 <body>
 
-<nav>
-    <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
-    <a onclick="showPage('order')" id="nav-order">Order Menu</a>
-    <a onclick="showPage('photos')" id="nav-photos">Photos</a>
-    <a onclick="showPage('about')" id="nav-about">About</a>
+<nav role="navigation" aria-label="Main navigation">
+    <button class="nav-link active" id="nav-home" onclick="showPage('home')" aria-label="Navigate to Home">Home</button>
+    <button class="nav-link" id="nav-order" onclick="showPage('order')" aria-label="Navigate to Order Menu">Order Menu</button>
+    <button class="nav-link" id="nav-photos" onclick="showPage('photos')" aria-label="Navigate to Photos">Photos</button>
+    <button class="nav-link" id="nav-about" onclick="showPage('about')" aria-label="Navigate to About">About</button>
 </nav>
 
 <header>
     <div class="header-title-box">
         <h1>KING ASIAN</h1>
         <div class="subtitle">2500 Hurontario St, Mississauga</div>
-        <button class="header-order-btn" onclick="showPage('order')">Order Now</button>
+        <button class="header-order-btn" onclick="showPage('order')" aria-label="Order food now">Order Now</button>
     </div>
 </header>
 
+<main>
+
 <!-- HOME -->
-<div id="home" class="page-section active">
+<section id="home" class="page-section active">
     <h2>Welcome to Our Table</h2>
     <div style="text-align: center; font-size: 1.2rem; line-height: 1.8; color: #444;">
         <p><strong>Authentic. Warm. Traditional.</strong></p>
         <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
         <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
+             alt="Traditional Chinese food being prepared with care"
+             width="800"
+             height="533"
+             loading="eager"
              style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
         
         <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
         
         <div style="margin-top: 30px;">
-            <button class="btn-order" onclick="showPage('order')">View Menu & Order</button>
+            <button class="content-btn" onclick="showPage('order')">View Menu & Order</button>
         </div>
     </div>
-</div>
+</section>
 
 <!-- ORDER PAGE -->
-<div id="order" class="page-section">
+<section id="order" class="page-section">
     <h2>Our Menu</h2>
     
     <div class="search-container">
-        <input type="text" id="searchBar" class="search-box" 
+        <input type="text" 
+               id="searchBar" 
+               class="search-box" 
                placeholder="Search for 'Chicken', 'Rice', 'Soup'..." 
-               onkeyup="triggerSearch()"
-               enterkeyhint="search">
-        <button class="search-btn" onclick="triggerSearch()">Search</button>
+               enterkeyhint="search"
+               aria-label="Search menu items">
+        <button id="clearSearchBtn" class="clear-search-btn" aria-label="Clear search">&times;</button>
+        <button class="search-btn" onclick="triggerSearch()" aria-label="Search menu">Search</button>
     </div>
 
     <div id="menu-container">
         <!-- JS will insert menu items here -->
     </div>
-</div>
+</section>
 
 <!-- PHOTOS PAGE -->
-<div id="photos" class="page-section">
+<section id="photos" class="page-section">
     <h2>Our Gallery</h2>
-    <div class="photo-nav" id="photo-categories">
+    <div class="photo-nav" id="photo-categories" role="group" aria-label="Photo category filter">
         <!-- JS will insert buttons here -->
     </div>
-    <div id="photo-grid">
+    <div id="photo-grid" role="region" aria-label="Photo gallery">
         <!-- JS will insert photos here -->
     </div>
-</div>
+</section>
 
 <!-- ABOUT PAGE -->
-<div id="about" class="page-section">
+<section id="about" class="page-section">
     <h2>About & Reviews</h2>
     
     <div style="text-align: center; font-size: 1.1rem; line-height: 1.6; margin-bottom:40px;">
@@ -436,25 +176,30 @@
         <div class="review-card">"Absolutely the best Wonton Soup in Mississauga. The broth is rich and the dumplings are huge!" <span class="review-author">- Sarah J.</span></div>
         <div class="review-card">"Fast delivery and the General Tao Chicken was perfectly crispy." <span class="review-author">- Mike T.</span></div>
         <div style="text-align: center;">
-            <a href="#" style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
+            <a href="https://www.google.com/search?q=king+asian+restaurant+mississauga+reviews" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
         </div>
     </div>
-</div>
+</section>
+
+</main>
 
 <!-- STICKY FOOTER -->
-<div class="sticky-bar">
+<footer class="sticky-bar" role="contentinfo">
     <div>
         <div style="font-size:0.8rem; text-transform: uppercase; letter-spacing: 1px;">Total (Cash/Pickup)</div>
-        <div class="total-amount">$<span id="footer-total">0.00</span></div>
+        <div class="total-amount" aria-live="polite" aria-atomic="true">$<span id="footer-total">0.00</span></div>
     </div>
-    <button class="btn-order" onclick="openCheckout()">Review Order</button>
-</div>
+    <button class="btn-order" onclick="openCheckout()" aria-label="Review your order">Review Order</button>
+</footer>
 
 <!-- MODAL -->
-<div class="modal-overlay" id="checkout-modal">
+<div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box">
-        <span class="close-modal-x" onclick="closeCheckout()">&times;</span>
-        <h2 style="font-size:1.8rem; margin-bottom:10px;">Your Order</h2>
+        <button class="close-modal-x" onclick="closeCheckout()" aria-label="Close order review">&times;</button>
+        <h2 id="modal-title" style="font-size:1.8rem; margin-bottom:10px;">Your Order</h2>
         <p style="font-size:0.9rem; color:#666;">Note: This is a list to read over the phone.</p>
         
         <table class="order-list-table">
@@ -466,237 +211,13 @@
             Total: $<span id="modal-total">0.00</span>
         </div>
         
-        <a href="tel:9055550123" class="call-btn">📞 Call to Order</a>
+        <a href="tel:+19055550123" class="call-btn">📞 Call to Order</a>
         <p style="font-size:0.85rem;">We accept Cash & Debit on Pickup.</p>
     </div>
 </div>
 
-<script>
-    // --- DATA ---
-    const menuData = [
-        {
-            category: "Appetizers & Soup",
-            items: [
-                { id: 1, name: "Crispy Spring Rolls (2)", desc: "Vegetable filling, golden fried", price: 3.95 },
-                { id: 2, name: "Wonton Soup", desc: "Pork dumplings in chicken broth", price: 5.95 },
-                { id: 3, name: "Hot & Sour Soup", desc: "Tofu, bamboo shoots, egg, spicy", price: 6.50 },
-                { id: 4, name: "BBQ Pork Slices", desc: "Honey glazed roasted pork", price: 9.95 }
-            ]
-        },
-        {
-            category: "Chef's Specials",
-            items: [
-                { id: 5, name: "General Tao Chicken", desc: "Breaded chicken, spicy sweet sauce", price: 13.95 },
-                { id: 6, name: "Lemon Chicken", desc: "Crispy breast meat, lemon sauce", price: 13.50 },
-                { id: 7, name: "Beef with Broccoli", desc: "Tender beef slices, garlic sauce", price: 14.50 },
-                { id: 8, name: "Szechuan Shrimp", desc: "Spicy chili paste, onions, peppers", price: 16.95 }
-            ]
-        },
-        {
-            category: "Rice & Noodles",
-            items: [
-                { id: 9, name: "Chicken Fried Rice", desc: "Wok tossed with egg and peas", price: 10.50 },
-                { id: 10, name: "Cantonese Chow Mein", desc: "Crispy noodles, mixed meats & veg", price: 15.50 },
-                { id: 11, name: "Shanghai Noodles", desc: "Thick noodles, cabbage, pork", price: 12.95 },
-                { id: 12, name: "Steamed Rice", desc: "Jasmine scented", price: 2.50 }
-            ]
-        }
-    ];
-
-    const photosData = [
-        { url: "https://images.unsplash.com/photo-1626804475297-411dbe917bfd?w=400", cat: "Dishes", label: "Fried Rice" },
-        { url: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=400", cat: "Dishes", label: "General Tao" },
-        { url: "https://images.unsplash.com/photo-1541696432-82c6da8ce6d2?w=400", cat: "Interior", label: "Dining Room" },
-        { url: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400", cat: "Dishes", label: "Noodles" },
-        { url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400", cat: "Dishes", label: "Dim Sum" }
-    ];
-
-    // --- STATE ---
-    let cart = {}; // { itemId: quantity }
-
-    // --- INIT ---
-    window.onload = function() {
-        renderMenu(menuData);
-        renderPhotos("All");
-        renderPhotoNav();
-    };
-
-    // --- NAVIGATION ---
-    function showPage(pageId) {
-        // Hide all sections
-        document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
-        
-        // Show target
-        document.getElementById(pageId).classList.add('active');
-        document.getElementById('nav-' + pageId).classList.add('active');
-        
-        // Scroll top
-        window.scrollTo(0,0);
-    }
-
-    // --- MENU LOGIC ---
-    function renderMenu(data) {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = '';
-
-        data.forEach(cat => {
-            // Create Header
-            const header = document.createElement('div');
-            header.className = 'menu-cat-header';
-            header.innerHTML = `<span>${cat.category}</span>`;
-            container.appendChild(header);
-
-            // Create Items
-            cat.items.forEach(item => {
-                const qty = cart[item.id] || 0;
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'menu-item';
-                itemDiv.innerHTML = `
-                    <div class="item-details">
-                        <div class="item-cat-label">${cat.category}</div>
-                        <div class="item-header">
-                            <span>${item.name}</span>
-                            <span class="item-price">$${item.price.toFixed(2)}</span>
-                        </div>
-                        <div class="item-desc">${item.desc}</div>
-                    </div>
-                    <div class="qty-controls">
-                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
-                        <div class="qty-display" id="qty-${item.id}">${qty}</div>
-                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
-                    </div>
-                `;
-                container.appendChild(itemDiv);
-            });
-        });
-    }
-
-    function updateQty(id, change) {
-        if (!cart[id]) cart[id] = 0;
-        cart[id] += change;
-        if (cart[id] < 0) cart[id] = 0;
-        
-        // Update UI number
-        const display = document.getElementById(`qty-${id}`);
-        if(display) display.innerText = cart[id];
-        
-        calculateTotal();
-    }
-
-    function calculateTotal() {
-        let total = 0;
-        menuData.forEach(cat => {
-            cat.items.forEach(item => {
-                if (cart[item.id]) {
-                    total += item.price * cart[item.id];
-                }
-            });
-        });
-        document.getElementById('footer-total').innerText = total.toFixed(2);
-    }
-
-    // --- SEARCH ---
-    function triggerSearch() {
-        const query = document.getElementById('searchBar').value.toLowerCase();
-        if(!query) {
-            renderMenu(menuData);
-            return;
-        }
-
-        // Filter logic
-        const filteredData = menuData.map(cat => {
-            const matchingItems = cat.items.filter(item => 
-                item.name.toLowerCase().includes(query) || 
-                item.desc.toLowerCase().includes(query)
-            );
-            if(matchingItems.length > 0) {
-                return { category: cat.category, items: matchingItems };
-            }
-            return null;
-        }).filter(item => item !== null);
-
-        renderMenu(filteredData);
-    }
-
-    // --- PHOTOS ---
-    function renderPhotoNav() {
-        const container = document.getElementById('photo-categories');
-        const cats = ["All", "Dishes", "Interior"];
-        
-        cats.forEach(c => {
-            const btn = document.createElement('button');
-            btn.className = 'photo-cat-btn ' + (c === 'All' ? 'active' : '');
-            btn.innerText = c;
-            btn.onclick = function() {
-                document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderPhotos(c);
-            }
-            container.appendChild(btn);
-        });
-    }
-
-    function renderPhotos(filter) {
-        const grid = document.getElementById('photo-grid');
-        grid.innerHTML = '';
-        
-        photosData.forEach(p => {
-            if(filter === "All" || p.cat === filter) {
-                const card = document.createElement('div');
-                card.className = 'photo-card';
-                card.innerHTML = `<img src="${p.url}"><span>${p.label}</span>`;
-                grid.appendChild(card);
-            }
-        });
-    }
-
-    // --- MODAL / CHECKOUT ---
-    function openCheckout() {
-        const modal = document.getElementById('checkout-modal');
-        const listBody = document.getElementById('modal-cart-items');
-        listBody.innerHTML = '';
-        let total = 0;
-        let hasItems = false;
-
-        menuData.forEach(cat => {
-            cat.items.forEach(item => {
-                const q = cart[item.id];
-                if (q > 0) {
-                    hasItems = true;
-                    const lineTotal = q * item.price;
-                    total += lineTotal;
-                    listBody.innerHTML += `
-                        <tr>
-                            <td>${item.name}</td>
-                            <td>x${q}</td>
-                            <td>$${lineTotal.toFixed(2)}</td>
-                        </tr>
-                    `;
-                }
-            });
-        });
-
-        if(!hasItems) {
-            listBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:20px;">Your cart is empty</td></tr>`;
-        }
-
-        document.getElementById('modal-total').innerText = total.toFixed(2);
-        modal.style.display = 'flex';
-    }
-
-    function closeCheckout() {
-        document.getElementById('checkout-modal').style.display = 'none';
-    }
-
-    // Close modal if clicking outside box
-    window.onclick = function(event) {
-        const modal = document.getElementById('checkout-modal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
+<!-- External JavaScript -->
+<script src="script.js" defer></script>
 
 </body>
 </html>
