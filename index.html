@@ -68,12 +68,12 @@
         font-family: 'Lato', sans-serif;
         color: var(--text-dark);
         margin: 0; padding: 0;
-        background-color: #000000; 
-        /* Restored your original background logic, added placeholder URL */
-        background-image: url("https://images.unsplash.com/photo-1515669097368-22e68427d71a?q=80&w=1920");
-        background-size: 25% auto; 
+        background-color: #1a1a1a; 
+        /* I added a placeholder background so you can see it working. Replace with your backgroundL.jpg */
+        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("https://images.unsplash.com/photo-1515669097368-22e68427d71a?q=80&w=1920");
+        background-size: cover; 
         background-repeat: no-repeat;
-        background-position: center top 100px; 
+        background-position: center; 
         background-attachment: fixed;
         -webkit-font-smoothing: antialiased;
         padding-bottom: 80px; /* Space for sticky footer */
@@ -174,14 +174,9 @@
             background: transparent; box-shadow: none; border: none;            
             max-width: 1200px; padding: 0; text-align: center;      
         }
-        #order h2 {
-            display: inline-block; background: rgba(255, 252, 245, 0.95);
-            padding: 10px 60px; border-radius: 4px;
-            border: 1px solid var(--accent-gold); margin-bottom: 20px; 
-        }
         #menu-container {
             display: grid; grid-template-columns: 1fr 1fr;
-            column-gap: 100px; row-gap: 20px;
+            column-gap: 60px; row-gap: 20px;
             text-align: left;
         }
     }
@@ -225,7 +220,7 @@
 
     .qty-controls {
         display: flex; align-items: center; flex-direction: column;
-        background: #eee; border-radius: 30px; padding: 4px;
+        background: #f9f9f9; border-radius: 30px; padding: 4px;
         min-width: 40px; border: 1px solid #ccc;
     }
     .qty-btn {
@@ -315,47 +310,16 @@
         box-shadow: 0 4px 10px rgba(139,0,0,0.3); text-align: center;
     }
 
-    /* --- MOBILE OPTIMIZATION --- */
+    /* --- MOBILE --- */
     @media (max-width: 899px) {
-        body { 
-            /* 'cover' zooms the image to fill the whole screen height/width */
-            background-size: cover; 
-            background-position: center center;
-            /* 'scroll' works better on phones than 'fixed' (stops jittering) */
-            background-attachment: scroll; 
-        }
-        
+        body { background-attachment: scroll; }
         header { padding: 40px 10px; margin-bottom: 20px; }
-        
-        .header-title-box { 
-            padding: 20px 15px; 
-            width: 90%; 
-            box-sizing: border-box; 
-        }
-        
-        h1 { font-size: 2.2rem; } /* Smaller Title for phone screens */
-        .subtitle { font-size: 0.9rem; letter-spacing: 1px; }
-        
-        /* Stack Nav */
-        nav { padding: 10px 0; }
+        .header-title-box { padding: 20px 15px; width: 90%; box-sizing: border-box; }
+        h1 { font-size: 2.2rem; }
         nav a { margin: 5px 10px; font-size: 0.9rem; display:inline-block; }
-
-        .page-section { 
-            padding: 20px; 
-            width: 92%; /* Slightly wider on mobile */
-            box-sizing: border-box; 
-            margin-bottom: 80px; 
-        }
-        
+        .page-section { padding: 20px; width: 92%; box-sizing: border-box; }
         #menu-container { grid-template-columns: 1fr; gap: 15px; }
-        
-        /* Sticky bar tweaks */
-        .sticky-bar { padding: 10px 15px; }
-        .btn-order { font-size: 0.9rem; padding: 10px 15px; }
-        
-        /* Adjust Search Bar for Mobile */
         .search-container { flex-direction: row; max-width: 100%; }
-        .search-box { font-size: 16px; } /* Prevents iPhone zooming in on input */
     }
   </style>
 </head>
