@@ -1,0 +1,89 @@
+[
+  {
+    "category": "Appetizers & Soup",
+    "items": [
+      {
+        "id": 1,
+        "name": "Crispy Spring Rolls (2)",
+        "desc": "Vegetable filling, golden fried",
+        "price": 3.95
+      },
+      {
+        "id": 2,
+        "name": "Wonton Soup",
+        "desc": "Pork dumplings in chicken broth",
+        "price": 5.95
+      },
+      {
+        "id": 3,
+        "name": "Hot & Sour Soup",
+        "desc": "Tofu, bamboo shoots, egg, spicy",
+        "price": 6.50
+      },
+      {
+        "id": 4,
+        "name": "BBQ Pork Slices",
+        "desc": "Honey glazed roasted pork",
+        "price": 9.95
+      }
+    ]
+  },
+  {
+    "category": "Chef's Specials",
+    "items": [
+      {
+        "id": 5,
+        "name": "General Tao Chicken",
+        "desc": "Breaded chicken, spicy sweet sauce",
+        "price": 13.95
+      },
+      {
+        "id": 6,
+        "name": "Lemon Chicken",
+        "desc": "Crispy breast meat, lemon sauce",
+        "price": 13.50
+      },
+      {
+        "id": 7,
+        "name": "Beef with Broccoli",
+        "desc": "Tender beef slices, garlic sauce",
+        "price": 14.50
+      },
+      {
+        "id": 8,
+        "name": "Szechuan Shrimp",
+        "desc": "Spicy chili paste, onions, peppers",
+        "price": 16.95
+      }
+    ]
+  },
+  {
+    "category": "Rice & Noodles",
+    "items": [
+      {
+        "id": 9,
+        "name": "Chicken Fried Rice",
+        "desc": "Wok tossed with egg and peas",
+        "price": 10.50
+      },
+      {
+        "id": 10,
+        "name": "Cantonese Chow Mein",
+        "desc": "Crispy noodles, mixed meats & veg",
+        "price": 15.50
+      },
+      {
+        "id": 11,
+        "name": "Shanghai Noodles",
+        "desc": "Thick noodles, cabbage, pork",
+        "price": 12.95
+      },
+      {
+        "id": 12,
+        "name": "Steamed Rice",
+        "desc": "Jasmine scented",
+        "price": 2.50
+      }
+    ]
+  }
+]
