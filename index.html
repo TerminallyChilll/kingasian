@@ -1,354 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- --- SEO SETTINGS --- -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>King Asian Restaurant | Best Chinese Food in Cooksville, Mississauga</title>
-
-  <meta name="description" content="King Asian Restaurant in Cooksville, Mississauga serves authentic Chinese food with fast takeout and delivery. Enjoy Szechuan, Cantonese, fried rice, noodles, wonton soup, and lunch specials at 2500 Hurontario St.">
-  <meta name="keywords" content="Chinese food Cooksville, Chinese restaurant Mississauga, King Asian Restaurant, Chinese takeout, Chinese delivery, Szechuan, Cantonese, fried rice, noodles, wonton soup, 2500 Hurontario St">
-  <meta name="author" content="King Asian Restaurant">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://kingasian.com/">
-
-  <!-- Open Graph / Social Sharing -->
-  <meta property="og:type" content="restaurant">
-  <meta property="og:title" content="King Asian Restaurant | Best Chinese Food in Cooksville, Mississauga">
-  <meta property="og:description" content="Authentic Chinese food in Cooksville, Mississauga. Order Szechuan, Cantonese, fried rice, noodles, and lunch specials for pickup or delivery.">
-  <meta property="og:image" content="https://kingasian.com/backgroundL.jpg">
-  <meta property="og:image:alt" content="King Asian Restaurant Chinese food in Cooksville, Mississauga">
-  <meta property="og:url" content="https://kingasian.com/">
-  <meta property="og:site_name" content="King Asian Restaurant">
-  <meta property="og:locale" content="en_CA">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="King Asian Restaurant | Chinese Food in Cooksville, Mississauga">
-  <meta name="twitter:description" content="Order authentic Chinese food from King Asian Restaurant in Cooksville, Mississauga. Takeout, delivery, Szechuan, Cantonese, fried rice, noodles, and more.">
-  <meta name="twitter:image" content="https://kingasian.com/backgroundL.jpg">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
-
-  <!-- Local Business / Restaurant Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "King Asian Restaurant",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "2500 Hurontario St",
-      "addressLocality": "Mississauga",
-      "addressRegion": "ON",
-      "postalCode": "L5B 1N4",
-      "addressCountry": "CA"
-    },
-    "servesCuisine": ["Chinese", "Szechuan", "Cantonese"],
-    "url": "https://kingasian.com/",
-    "image": "https://kingasian.com/backgroundL.jpg",
-    "priceRange": "$$",
-    "telephone": "+1-905-555-0123",
-    "menu": "https://kingasian.com/#menu"
-  }
-  </script>
-
-  <style>
-    /* --- CSS STYLES --- */
-    :root {
-        --primary-red: #8B0000;       
-        --accent-gold: #F4C430;       
-        --bg-paper: #fffcf5;          
-        --text-dark: #2c2c2c;
-    }
-
-    body {
-        font-family: 'Lato', sans-serif;
-        color: var(--text-dark);
-        margin: 0; padding: 0;
-        background-color: #1a1a1a; 
-        /* I added a placeholder background so you can see it working. Replace with your backgroundL.jpg */
-        background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url("https://images.unsplash.com/photo-1515669097368-22e68427d71a?q=80&w=1920");
-        background-size: cover; 
-        background-repeat: no-repeat;
-        background-position: center; 
-        background-attachment: fixed;
-        -webkit-font-smoothing: antialiased;
-        padding-bottom: 80px; /* Space for sticky footer */
-    }
-
-    /* --- Navigation --- */
-    nav {
-        background-color: rgba(50, 0, 0, 0.95);
-        text-align: center;
-        padding: 15px 0;
-        border-bottom: 2px solid var(--accent-gold);
-        position: sticky; top: 0; z-index: 1000;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-    nav a {
-        color: #fff; text-decoration: none; margin: 0 15px;
-        font-family: 'Playfair Display', serif; font-size: 1.1rem;
-        text-transform: uppercase; letter-spacing: 1px;
-        transition: color 0.3s; display: inline-block; cursor: pointer;
-        user-select: none;
-    }
-    nav a:hover, nav a.active {
-        color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold);
-    }
-
-    /* --- Header --- */
-    header { padding: 60px 20px; text-align: center; margin-bottom: 40px; }
-    .header-title-box {
-        display: inline-block; background: rgba(0, 0, 0, 0.7); 
-        border: 1px solid var(--accent-gold); padding: 30px 50px;
-        border-radius: 4px; box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
-        position: relative;
-    }
-    h1 {
-        font-family: 'Playfair Display', serif; color: var(--accent-gold);
-        margin: 0; font-size: 3.5rem; text-shadow: 3px 3px 0px #000; letter-spacing: 2px;
-        line-height: 1;
-    }
-    .subtitle { 
-        color: #f0f0f0; margin-top: 12px; font-size: 1.1rem; 
-        text-transform: uppercase; letter-spacing: 3px; font-weight: 300;
-        text-shadow: 1px 1px 2px black;
-    }
-
-    .header-order-btn {
-        background-color: var(--primary-red);
-        color: white;
-        border: 2px solid var(--accent-gold);
-        padding: 12px 30px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        margin-top: 25px;
-        cursor: pointer;
-        border-radius: 50px;
-        animation: pulse 2s infinite;
-        box-shadow: 0 0 15px rgba(244, 196, 48, 0.4);
-        transition: transform 0.2s;
-    }
-    .header-order-btn:active { transform: scale(0.95); }
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(244, 196, 48, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0); }
-    }
-
-    /* --- Page Sections --- */
-    .page-section {
-        display: none; max-width: 850px; margin: 0 auto 60px auto;
-        background: rgba(255, 252, 245, 0.97); padding: 40px;
-        border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.8);
-        border: 1px solid var(--accent-gold); position: relative;
-        animation: fadeIn 0.5s ease;
-    }
-    .page-section.active { display: block; }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-    /* --- SEARCH BAR --- */
-    .search-container {
-        display: flex; width: 100%; max-width: 600px; margin: 0 auto 25px auto;
-    }
-    .search-box {
-        flex-grow: 1; padding: 15px; font-size: 1rem;
-        border: 1px solid #ccc; border-radius: 4px 0 0 4px;
-        border-right: none; outline: none;
-    }
-    .search-btn {
-        background: var(--primary-red); color: white; border: none;
-        padding: 0 25px; font-weight: bold; cursor: pointer;
-        border-radius: 0 4px 4px 0; font-family: 'Playfair Display', serif;
-        font-size: 1rem;
-    }
-
-    /* --- Menu Styles --- */
-    @media (min-width: 900px) {
-        #order.page-section {
-            background: transparent; box-shadow: none; border: none;            
-            max-width: 1200px; padding: 0; text-align: center;      
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King Asian Restaurant | Mississauga</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --primary-red: #8B0000;       /* Deep Traditional Red */
+            --accent-gold: #F4C430;       /* Bright Gold */
+            --bg-paper: #fffcf5;          /* Light Rice Paper */
+            --text-dark: #2c2c2c;
         }
-        #menu-container {
-            display: grid; grid-template-columns: 1fr 1fr;
-            column-gap: 60px; row-gap: 20px;
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            
+            /* --- BACKGROUND SETTINGS --- */
+            background-color: #000000; 
+            background-image: url("backgroundL.jpg");
+            
+            /* Image size 25% centered */
+            background-size: 30% auto; 
+            
+            background-repeat: no-repeat;
+            
+            /* UPDATED: Changed from 200px to 100px to raise it up */
+            background-position: center top 100px; 
+            
+            background-attachment: fixed;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background-color: rgba(50, 0, 0, 0.9);
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 2px solid var(--accent-gold);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            display: inline-block;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent-gold);
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 60px; 
+        }
+
+        .header-title-box {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.6); 
+            border: 1px solid var(--accent-gold);
+            padding: 30px 50px;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+            margin: 0; 
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 10px black;
+            letter-spacing: 2px;
+        }
+
+        .subtitle { 
+            color: #f0f0f0; 
+            margin-top: 10px; 
+            font-size: 1.1rem; 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            font-weight: 300;
+        }
+
+        /* --- Content Cards (Standard) --- */
+        .page-section {
+            display: none;
+            max-width: 850px;
+            margin: 0 auto 100px auto;
+            background: rgba(255, 252, 245, 0.97); 
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 1px solid var(--accent-gold);
+            position: relative;
+        }
+
+        .page-section.active { 
+            display: block; 
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        /* --- SPECIAL STYLING FOR THE SPLIT ORDER PAGE --- */
+        @media (min-width: 900px) {
+            #order.page-section {
+                background: transparent; 
+                box-shadow: none;        
+                border: none;            
+                max-width: 1200px;       
+                padding: 0;
+                text-align: center;      
+            }
+            
+            #order h2 {
+                display: inline-block;
+                background: rgba(255, 252, 245, 0.95);
+                padding: 10px 60px;
+                border-radius: 4px;
+                border: 1px solid var(--accent-gold);
+                margin-bottom: 20px; 
+            }
+
+            .search-box {
+                display: block;
+                max-width: 500px;
+                margin: 0 auto 40px auto !important; 
+                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            }
+
+            #menu-container {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 20%; 
+                row-gap: 20px;
+            }
+        }
+
+        /* Mobile Styling */
+        @media (max-width: 899px) {
+            #menu-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .page-section { padding: 20px; margin-bottom: 60px; }
+            body { background-size: cover; background-position: center; }
+            header { margin-bottom: 30px; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary-red);
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 2.2rem;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+            background: #fff;
+        }
+
+        /* --- New Category Header Style --- */
+        .menu-cat-header {
+            grid-column: 1 / -1; /* Spans both columns */
+            text-align: center;
+            margin: 50px 0 20px 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .menu-cat-header span {
+            background: var(--primary-red);
+            color: #fff;
+            padding: 8px 25px;
+            border-radius: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            border: 1px solid var(--accent-gold);
+        }
+
+        /* --- Menu Items --- */
+        .menu-item {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background: #fff; 
+            border-radius: 6px;
+            padding: 14px 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.04);
+            min-height: 86px;
             text-align: left;
         }
-    }
 
-    h2 {
-        color: var(--primary-red); font-family: 'Playfair Display', serif;
-        text-align: center; font-size: 2.2rem; border-bottom: 2px solid #eee;
-        padding-bottom: 15px; margin-bottom: 25px;
-    }
+        .item-details { flex: 1; margin-right: 12px; }
+        
+        .item-header {
+            display: flex; justify-content: space-between;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem; font-weight: bold; color: #222;
+        }
+        
+        .item-cat {
+            font-size: 0.70rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
 
-    .menu-cat-header {
-        grid-column: 1 / -1; text-align: center;
-        margin: 40px 0 20px 0; position: relative; z-index: 2;
-    }
-    .menu-cat-header span {
-        background: var(--primary-red); color: #fff;
-        padding: 8px 25px; border-radius: 20px;
-        font-family: 'Playfair Display', serif; font-size: 1.2rem;
-        letter-spacing: 1px; border: 1px solid var(--accent-gold);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
+        .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
+        .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
 
-    .menu-item {
-        display: flex; align-items: flex-start;
-        justify-content: space-between; background: #fff; 
-        border-radius: 6px; padding: 14px 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        border: 1px solid rgba(0,0,0,0.04); min-height: 86px; text-align: left;
-    }
-    .item-details { flex: 1; margin-right: 10px; }
-    .item-header {
-        display: flex; justify-content: space-between;
-        font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: bold; color: #222;
-    }
-    .item-cat-label {
-        font-size: 0.70rem; color: #888; text-transform: uppercase; 
-        letter-spacing: 1px; margin-bottom: 6px;
-    }
-    .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
-    .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
+        /* --- Qty Buttons --- */
+        .qty-controls {
+            display: flex; align-items: center; flex-direction: column;
+            background: #eee; border-radius: 30px; padding: 6px;
+            min-width: 84px;
+            border: 1px solid #ccc;
+        }
+        .qty-btn {
+            width: 34px; height: 34px;
+            border-radius: 50%; border: none;
+            background: var(--primary-red); color: white;
+            font-weight: bold; cursor: pointer; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: background 0.2s;
+        }
+        .qty-btn:hover { background: #b30000; }
+        .qty-display { width: 36px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; padding: 6px 0; }
 
-    .qty-controls {
-        display: flex; align-items: center; flex-direction: column;
-        background: #f9f9f9; border-radius: 30px; padding: 4px;
-        min-width: 40px; border: 1px solid #ccc;
-    }
-    .qty-btn {
-        width: 32px; height: 32px; border-radius: 50%; border: none;
-        background: var(--primary-red); color: white;
-        font-weight: bold; cursor: pointer; font-size: 1.2rem;
-        display: flex; align-items: center; justify-content: center;
-        transition: background 0.2s; user-select: none;
-    }
-    .qty-btn:active { background: #500000; transform: scale(0.9); }
-    .qty-display { width: 30px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; padding: 5px 0; }
+        /* --- Sticky Footer --- */
+        .sticky-bar {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #111; color: white;
+            padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-top: 3px solid var(--accent-gold);
+            box-sizing: border-box; z-index: 999;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.7);
+        }
+        .total-amount { font-size: 1.5rem; font-weight: bold; color: var(--accent-gold); }
+        .btn-order {
+            background-color: var(--accent-gold); color: #222;
+            border: none; padding: 12px 25px;
+            font-weight: bold; text-transform: uppercase; cursor: pointer;
+            border-radius: 4px; font-size: 1rem;
+        }
+        .btn-order:hover { background-color: #fff; }
 
-    /* --- Photos & Reviews --- */
-    .review-card {
-        background: #fff; border-left: 4px solid var(--accent-gold);
-        padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        font-style: italic; color: #555;
-    }
-    .review-author {
-        display: block; text-align: right; font-weight: bold;
-        font-style: normal; margin-top: 10px; color: #222;
-    }
+        /* --- Modal --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 2000;
+            justify-content: center; align-items: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-box {
+            background: #fff; padding: 30px; width: 90%; max-width: 550px; max-height: 85vh;
+            overflow-y: auto; border: 4px double var(--primary-red); text-align: center;
+            border-radius: 8px; box-shadow: 0 0 40px rgba(255,255,255,0.1);
+        }
+        .order-list-table { width: 100%; text-align: left; margin: 20px 0; border-collapse: collapse; }
+        .order-list-table th { border-bottom: 2px solid #eee; padding: 8px; color: #666; font-size: 0.9rem; text-transform: uppercase; }
+        .order-list-table td { border-bottom: 1px solid #eee; padding: 12px 8px; font-size: 1rem; }
+        .call-btn {
+            display: block; background: var(--primary-red); color: white;
+            text-decoration: none; padding: 15px; font-size: 1.4rem;
+            font-weight: bold; border-radius: 5px; margin: 25px 0;
+            box-shadow: 0 4px 10px rgba(139,0,0,0.3);
+            text-align: center;
+        }
+        .call-btn:hover { background: #a50000; }
 
-    .photo-nav {
-        display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-        margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ccc;
-    }
-    .photo-cat-btn {
-        background: #eee; border: 1px solid #ccc; padding: 8px 16px;
-        cursor: pointer; font-family: 'Playfair Display', serif;
-        text-transform: uppercase; font-size: 0.9rem; border-radius: 20px;
-        transition: all 0.3s;
-    }
-    .photo-cat-btn:hover, .photo-cat-btn.active {
-        background: var(--primary-red); color: white; border-color: var(--primary-red);
-    }
-    #photo-grid {
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;
-    }
-    .photo-card {
-        background: #fff; padding: 8px; border-radius: 4px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee;
-    }
-    .photo-card img {
-        width: 100%; height: 120px; object-fit: cover; border-radius: 4px;
-        margin-bottom: 8px; background-color: #f0f0f0;
-    }
+        /* --- Photo Gallery (Swipe Style) --- */
+        .photo-gallery {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 4px solid var(--accent-gold);
+        }
 
-    /* --- Footer & Modal --- */
-    .sticky-bar {
-        position: fixed; bottom: 0; left: 0; width: 100%;
-        background: #111; color: white; padding: 15px 20px;
-        display: flex; justify-content: space-between; align-items: center;
-        border-top: 3px solid var(--accent-gold); z-index: 2000;
-        box-shadow: 0 -5px 20px rgba(0,0,0,0.5); box-sizing: border-box;
-    }
-    .total-amount { font-size: 1.5rem; font-weight: bold; color: var(--accent-gold); }
-    .btn-order {
-        background-color: var(--accent-gold); color: #222;
-        border: none; padding: 12px 25px; font-weight: bold; 
-        text-transform: uppercase; cursor: pointer; border-radius: 4px;
-    }
-    
-    .modal-overlay {
-        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.9); z-index: 3000;
-        justify-content: center; align-items: center; backdrop-filter: blur(4px);
-    }
-    .modal-box {
-        background: #fff; padding: 30px; width: 90%; max-width: 550px; max-height: 85vh;
-        overflow-y: auto; border: 4px double var(--primary-red); text-align: center;
-        border-radius: 8px; position: relative;
-    }
-    .close-modal-x {
-        position: absolute; top: 10px; right: 15px;
-        font-size: 2rem; color: #aaa; cursor: pointer;
-        font-weight: bold; line-height: 1;
-    }
-    .close-modal-x:hover { color: var(--primary-red); }
-    .order-list-table { width: 100%; text-align: left; margin: 20px 0; border-collapse: collapse; }
-    .order-list-table th { border-bottom: 2px solid #eee; padding: 8px; color: #666; font-size: 0.9rem; text-transform: uppercase; }
-    .order-list-table td { border-bottom: 1px solid #eee; padding: 12px 8px; font-size: 1rem; }
-    .call-btn {
-        display: block; background: var(--primary-red); color: white;
-        text-decoration: none; padding: 15px; font-size: 1.4rem;
-        font-weight: bold; border-radius: 5px; margin: 25px 0;
-        box-shadow: 0 4px 10px rgba(139,0,0,0.3); text-align: center;
-    }
+        .gallery-container {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            cursor: grab;
+        }
 
-    /* --- MOBILE --- */
-    @media (max-width: 899px) {
-        body { background-attachment: scroll; }
-        header { padding: 40px 10px; margin-bottom: 20px; }
-        .header-title-box { padding: 20px 15px; width: 90%; box-sizing: border-box; }
-        h1 { font-size: 2.2rem; }
-        nav a { margin: 5px 10px; font-size: 0.9rem; display:inline-block; }
-        .page-section { padding: 20px; width: 92%; box-sizing: border-box; }
-        #menu-container { grid-template-columns: 1fr; gap: 15px; }
-        .search-container { flex-direction: row; max-width: 100%; }
-    }
-  </style>
+        .gallery-container:active {
+            cursor: grabbing;
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .gallery-slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px 15px 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        /* Gallery Navigation Dots */
+        .gallery-dots {
+            text-align: center;
+            padding: 15px 0;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .gallery-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            margin: 0 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid rgba(255,255,255,0.8);
+        }
+
+        .gallery-dot.active {
+            background: var(--accent-gold);
+            border-color: var(--accent-gold);
+            transform: scale(1.3);
+        }
+
+        /* Gallery Navigation Arrows */
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: var(--accent-gold);
+            border: 2px solid var(--accent-gold);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            z-index: 10;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(139,0,0,0.8);
+            color: white;
+        }
+
+        .gallery-arrow.left {
+            left: 15px;
+        }
+
+        .gallery-arrow.right {
+            right: 15px;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-slide img {
+                height: 300px;
+            }
+            
+            .gallery-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <nav>
-    <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
-    <a onclick="showPage('order')" id="nav-order">Order Menu</a>
-    <a onclick="showPage('photos')" id="nav-photos">Photos</a>
-    <a onclick="showPage('about')" id="nav-about">About</a>
+    <a href="#" onclick="showPage('home')" class="nav-link">Home</a>
+    <a href="#" onclick="showPage('order')" class="nav-link">Order Menu</a>
+    <a href="#" onclick="showPage('location')" class="nav-link">Location</a>
 </nav>
 
 <header>
     <div class="header-title-box">
         <h1>KING ASIAN</h1>
         <div class="subtitle">2500 Hurontario St, Mississauga</div>
-        <button class="header-order-btn" onclick="showPage('order')">Order Now</button>
     </div>
 </header>
 
-<!-- HOME -->
+<!-- HOME PAGE -->
 <div id="home" class="page-section active">
     <h2>Welcome to Our Table</h2>
     <div style="text-align: center; font-size: 1.2rem; line-height: 1.8; color: #444;">
         <p><strong>Authentic. Warm. Traditional.</strong></p>
         <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
-        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
-             style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
+        <!-- Swipe Photo Gallery -->
+        <div class="photo-gallery" id="photoGallery">
+            <div class="gallery-arrow left" onclick="changeSlide(-1)">‹</div>
+            <div class="gallery-arrow right" onclick="changeSlide(1)">›</div>
+            
+            <div class="gallery-container" id="galleryContainer">
+                <div class="gallery-slide">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" alt="Delicious Chinese Dumplings">
+                    <div class="gallery-caption">Handmade Dumplings</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&q=80" alt="Stir-fried Noodles">
+                    <div class="gallery-caption">Fresh Stir-Fried Noodles</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?w=800&q=80" alt="General Tao Chicken">
+                    <div class="gallery-caption">Signature General Tao Chicken</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80" alt="Fried Rice">
+                    <div class="gallery-caption">Classic Fried Rice</div>
+                </div>
+                <div class="gallery-slide">
+                    <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800&q=80" alt="Spring Rolls">
+                    <div class="gallery-caption">Crispy Spring Rolls</div>
+                </div>
+            </div>
+            
+            <div class="gallery-dots" id="galleryDots"></div>
+        </div>
         
         <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
         
@@ -361,304 +494,496 @@
 <!-- ORDER PAGE -->
 <div id="order" class="page-section">
     <h2>Our Menu</h2>
+    <input type="text" id="searchBar" class="search-box" placeholder="🔍 Search for 'Chicken', 'Rice', 'Soup'..." onkeyup="filterMenu()">
     
-    <div class="search-container">
-        <input type="text" id="searchBar" class="search-box" 
-               placeholder="Search for 'Chicken', 'Rice', 'Soup'..." 
-               onkeyup="triggerSearch()"
-               enterkeyhint="search">
-        <button class="search-btn" onclick="triggerSearch()">Search</button>
-    </div>
+    <div id="menu-container"></div>
+</div>
 
-    <div id="menu-container">
-        <!-- JS will insert menu items here -->
+<!-- LOCATION PAGE -->
+<div id="location" class="page-section">
+    <h2>Visit Us</h2>
+    <div style="text-align: center; font-size: 1.1rem;">
+        <address style="font-style: normal; line-height: 1.6; margin-bottom: 20px;">
+            <strong>King Asian Restaurant</strong><br>
+            2500 Hurontario St<br>
+            Mississauga, ON L5B 1N4
+        </address>
+        
+        <a href="tel:9055550123" class="call-btn" style="max-width: 300px; margin: 0 auto 30px auto;">
+            📞 Call To Order: (905) 555-0123
+        </a>
+
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.6994333643965!2d-79.6148984!3d43.5876971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b473011c3b2a1%3A0x1234567890abcdef!2s2500%20Hurontario%20St%2C%20Mississauga%2C%20ON%20L5B%201N4!5e0!3m2!1sen!2sca"
+            width="100%" height="400" style="border:0; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" 
+            allowfullscreen="" loading="lazy">
+        </iframe>
+        
+        <br><br>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=2500+Hurontario+St+Mississauga+ON+L5B+1N4" target="_blank" class="btn-order" style="text-decoration:none; display: inline-block;">
+            Get Directions
+        </a>
     </div>
 </div>
 
-<!-- PHOTOS PAGE -->
-<div id="photos" class="page-section">
-    <h2>Our Gallery</h2>
-    <div class="photo-nav" id="photo-categories">
-        <!-- JS will insert buttons here -->
-    </div>
-    <div id="photo-grid">
-        <!-- JS will insert photos here -->
-    </div>
-</div>
-
-<!-- ABOUT PAGE -->
-<div id="about" class="page-section">
-    <h2>About & Reviews</h2>
-    
-    <div style="text-align: center; font-size: 1.1rem; line-height: 1.6; margin-bottom:40px;">
-        <h3 style="color:var(--primary-red);">Our Story</h3>
-        <p>Located in the heart of Mississauga, King Asian Restaurant is a family-owned gem dedicated to preserving the authentic tastes of Szechuan and Cantonese cooking. For over a decade, we have used the freshest ingredients to bring you comfort in every bite.</p>
-    </div>
-
-    <div style="margin-bottom: 40px;">
-        <h3 style="text-align:center; color:var(--primary-red);">Customer Reviews</h3>
-        <div class="review-card">"Absolutely the best Wonton Soup in Mississauga. The broth is rich and the dumplings are huge!" <span class="review-author">- Sarah J.</span></div>
-        <div class="review-card">"Fast delivery and the General Tao Chicken was perfectly crispy." <span class="review-author">- Mike T.</span></div>
-        <div style="text-align: center;">
-            <a href="#" style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
-        </div>
-    </div>
-</div>
-
-<!-- STICKY FOOTER -->
-<div class="sticky-bar">
+<!-- FOOTER & MODAL -->
+<div id="order-bar" class="sticky-bar" style="display: none;">
     <div>
-        <div style="font-size:0.8rem; text-transform: uppercase; letter-spacing: 1px;">Total (Cash/Pickup)</div>
-        <div class="total-amount">$<span id="footer-total">0.00</span></div>
+        <span style="font-size:0.8rem; color:#aaa; text-transform: uppercase;">Total Estimate</span><br>
+        <span class="total-amount" id="grand-total">$0.00</span>
     </div>
-    <button class="btn-order" onclick="openCheckout()">Review Order</button>
+    <button class="btn-order" onclick="openModal()">Review Order</button>
 </div>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="checkout-modal">
+<div id="orderModal" class="modal-overlay">
     <div class="modal-box">
-        <span class="close-modal-x" onclick="closeCheckout()">&times;</span>
-        <h2 style="font-size:1.8rem; margin-bottom:10px;">Your Order</h2>
-        <p style="font-size:0.9rem; color:#666;">Note: This is a list to read over the phone.</p>
+        <h3 style="color:var(--primary-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top:0;">Your Order</h3>
+        <p style="color:#666; font-style: italic;">Please read this list when calling us.</p>
         
-        <table class="order-list-table">
-            <thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead>
-            <tbody id="modal-cart-items"></tbody>
-        </table>
-
-        <div style="text-align:right; font-size:1.3rem; font-weight:bold; margin-top:15px; color:var(--primary-red);">
-            Total: $<span id="modal-total">0.00</span>
+        <div id="modal-list"></div>
+        
+        <div style="text-align:right; font-weight:bold; font-size:1.4rem; margin-top:20px; border-top: 2px solid var(--accent-gold); padding-top:10px;">
+            Total: <span id="modal-total-display" style="color:var(--primary-red);">$0.00</span>
         </div>
+
+        <a href="tel:9055550123" class="call-btn">📞 Call (905) 555-0123</a>
         
-        <a href="tel:9055550123" class="call-btn">📞 Call to Order</a>
-        <p style="font-size:0.85rem;">We accept Cash & Debit on Pickup.</p>
+        <button onclick="closeModal()" style="background:transparent; border: 1px solid #aaa; padding:10px 20px; cursor: pointer; color: #666;">Close Window</button>
     </div>
 </div>
 
 <script>
-    // --- DATA ---
-    const menuData = [
-        {
-            category: "Appetizers & Soup",
-            items: [
-                { id: 1, name: "Crispy Spring Rolls (2)", desc: "Vegetable filling, golden fried", price: 3.95 },
-                { id: 2, name: "Wonton Soup", desc: "Pork dumplings in chicken broth", price: 5.95 },
-                { id: 3, name: "Hot & Sour Soup", desc: "Tofu, bamboo shoots, egg, spicy", price: 6.50 },
-                { id: 4, name: "BBQ Pork Slices", desc: "Honey glazed roasted pork", price: 9.95 }
-            ]
-        },
-        {
-            category: "Chef's Specials",
-            items: [
-                { id: 5, name: "General Tao Chicken", desc: "Breaded chicken, spicy sweet sauce", price: 13.95 },
-                { id: 6, name: "Lemon Chicken", desc: "Crispy breast meat, lemon sauce", price: 13.50 },
-                { id: 7, name: "Beef with Broccoli", desc: "Tender beef slices, garlic sauce", price: 14.50 },
-                { id: 8, name: "Szechuan Shrimp", desc: "Spicy chili paste, onions, peppers", price: 16.95 }
-            ]
-        },
-        {
-            category: "Rice & Noodles",
-            items: [
-                { id: 9, name: "Chicken Fried Rice", desc: "Wok tossed with egg and peas", price: 10.50 },
-                { id: 10, name: "Cantonese Chow Mein", desc: "Crispy noodles, mixed meats & veg", price: 15.50 },
-                { id: 11, name: "Shanghai Noodles", desc: "Thick noodles, cabbage, pork", price: 12.95 },
-                { id: 12, name: "Steamed Rice", desc: "Jasmine scented", price: 2.50 }
-            ]
-        }
+    // --- RAW MENU DATA ---
+    const rawItems = [
+        // --- Soups ---
+        { id: '1', name: 'Wonton Soup', price: 5.25, cat: 'Soup' },
+        { id: '2', name: 'Wonton Noodle Soup', price: 7.50, cat: 'Soup' },
+        { id: '3', name: 'Hot and Sour Soup', price: 5.25, cat: 'Soup' },
+        { id: '4', name: 'Egg Drop & Mushroom Soup', price: 5.25, cat: 'Soup' },
+        { id: '5', name: 'Beef Vietnam Noodle Soup', price: 7.50, cat: 'Soup' },
+        { id: '6a', name: 'Egg Noodle Soup with Chicken', price: 7.50, cat: 'Soup' },
+        { id: '6B', name: 'Egg Noodle Soup with Vegetable', price: 7.50, cat: 'Soup' },
+        { id: '7', name: 'Chicken Corn Soup', price: 5.25, cat: 'Soup' },
+
+        // --- Appetizers ---
+        { id: '10', name: 'Egg Roll', price: 2.20, cat: 'Appetizer' },
+        { id: '11', name: 'Delicious Spring Roll', price: 1.95, cat: 'Appetizer' },
+        { id: '11(1)', name: '3 Spring Rolls', price: 4.95, cat: 'Appetizer' },
+        { id: '11(2)', name: 'Small Spring Roll', price: 1.00, cat: 'Appetizer' },
+        { id: '11(3)', name: '3 Small Spring Rolls', price: 1.95, cat: 'Appetizer' },
+        { id: '12', name: 'BBQ Sliced Pork', price: 15.95, cat: 'Appetizer' },
+        { id: '13', name: 'BBQ Spareribs (Long)', price: 18.95, cat: 'Appetizer' },
+        { id: '14', name: 'Crispy Chicken Wings', price: 13.50, cat: 'Appetizer' },
+        { id: '15', name: 'Hot Garlic Chicken Wings', price: 14.50, cat: 'Appetizer' },
+        { id: '16', name: 'Crispy Fried Wonton', price: 9.50, cat: 'Appetizer' },
+        { id: '17', name: 'Breaded Jumbo Shrimps', price: 15.50, cat: 'Appetizer' },
+        { id: '18', name: 'Fried Dumplings (12)', price: 12.50, cat: 'Appetizer' },
+        { id: '19A', name: 'French Fries (Large)', price: 5.95, cat: 'Appetizer' },
+        { id: '19B', name: 'Torpedo Shrimp (10)', price: 11.95, cat: 'Appetizer' },
+        { id: '19D', name: 'Spicy Peanut Butter Pork Dumpling (8)', price: 8.95, cat: 'Appetizer' },
+        { id: '19E', name: 'Crispy Cheese Wonton (12)', price: 12.95, cat: 'Appetizer', desc: 'Cheese and crab meat' },
+        { id: '19F', name: 'Coconut Butterfly Shrimps (10)', price: 12.95, cat: 'Appetizer' },
+        { id: '19G', name: 'Sesame Balls (5)', price: 5.95, cat: 'Appetizer' },
+
+        // --- Sweet & Sour ---
+        { id: '20', name: 'Sweet and Sour Spareribs', price: 12.50, cat: 'Sweet & Sour' },
+        { id: '21', name: 'Sweet and Sour Pork', price: 14.50, cat: 'Sweet & Sour' },
+        { id: '22', name: 'Sweet and Sour Chicken Balls', price: 15.95, cat: 'Sweet & Sour' },
+        { id: '23', name: 'Sweet and Sour Breaded Shrimp', price: 15.95, cat: 'Sweet & Sour' },
+        { id: '24', name: 'Honey Garlic Spareribs', price: 13.95, cat: 'Sweet & Sour' },
+        { id: '25', name: 'Honey Garlic Chicken Balls', price: 15.95, cat: 'Sweet & Sour' },
+        { id: '26', name: 'Honey Garlic Chicken Wings', price: 14.95, cat: 'Sweet & Sour' },
+        { id: '27', name: 'Sweet and Sour Chicken', price: 14.50, cat: 'Sweet & Sour' },
+        { id: '28', name: 'Honey Garlic Chicken', price: 14.50, cat: 'Sweet & Sour' },
+
+        // --- Chop Suey ---
+        { id: '30', name: 'Chicken Chop Suey', price: 12.50, cat: 'Chop Suey', desc: 'Bean Sprouts' },
+        { id: '31', name: 'Beef Chop Suey', price: 12.50, cat: 'Chop Suey', desc: 'Bean Sprouts' },
+        { id: '32', name: 'BBQ Pork Chop Suey', price: 12.50, cat: 'Chop Suey', desc: 'Bean Sprouts' },
+        { id: '33', name: 'Shrimp Chop Suey', price: 13.95, cat: 'Chop Suey', desc: 'Bean Sprouts' },
+        { id: '34', name: 'Vegetable Chop Suey', price: 11.95, cat: 'Chop Suey', desc: 'Bean Sprouts' },
+
+        // --- Curry ---
+        { id: '40', name: 'Curry Chicken', price: 14.50, cat: 'Curry', desc: 'Tender meat in curry sauce with vegetable' },
+        { id: '41', name: 'Curry Beef', price: 14.50, cat: 'Curry', desc: 'Tender meat in curry sauce with vegetable' },
+        { id: '42', name: 'Curry Shrimp', price: 15.50, cat: 'Curry', desc: 'Tender meat in curry sauce with vegetable' },
+        { id: '43', name: 'Mixed Vegetables with Curry', price: 12.95, cat: 'Curry' },
+
+        // --- Diced Veg / Cashews ---
+        { id: '50', name: 'Stir Fried Mixed Vege with Cashew', price: 13.95, cat: 'Diced Veg' },
+        { id: '51', name: 'Chicken with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
+        { id: '52', name: 'Beef with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
+        { id: '53', name: 'Pork with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
+        { id: '54', name: 'Shrimp with Diced Vegetables & Cashews', price: 16.50, cat: 'Diced Veg' },
+
+        // --- Noodles (Egg Noodle & Lo Mein) ---
+        { id: '60', name: 'Cantonese Chow Mein', price: 14.95, cat: 'Noodles', desc: 'Soft or crispy noodle with shrimps, chicken, pork, beef & fresh vegetables' },
+        { id: '61', name: 'Szechuan Noodles', price: 13.95, cat: 'Noodles', desc: 'Thick noodle with tender slices of chicken in spicy chili paste' },
+        { id: '62', name: 'Pad Thai', price: 14.95, cat: 'Noodles', desc: 'Chicken, shrimps, peanut, spicy' },
+        { id: '63', name: 'Singapore Rice Noodles', price: 14.95, cat: 'Noodles', desc: 'Rice vermicelli w. Shrimp, Chicken, bean sprouts & Carrots tossed in aromatic curry paste' },
+        { id: '64', name: 'Shanghai Noodles', price: 14.50, cat: 'Noodles', desc: 'Beef & Shrimps tossed cabbage with thick shanghai noodle' },
+        { id: '65', name: 'Chicken or Beef Lo Mein', price: 13.95, cat: 'Noodles', desc: 'Delicious egg Noodle w. Chicken or beef and vegetables' },
+        { id: '66', name: 'Shrimp Lo Mein', price: 15.50, cat: 'Noodles', desc: 'Egg noodles stir fried w. shrimps, broccoli, vegetables' },
+        { id: '67', name: 'Vegetable Lo Mein', price: 12.50, cat: 'Noodles' },
+        { id: '68', name: 'Vegetable Szechuan Noodles', price: 12.50, cat: 'Noodles', desc: 'Spicy' },
+        { id: '69', name: 'Chow Mein with Bean Sprouts', price: 10.95, cat: 'Noodles' },
+        { id: '70', name: 'Beef Ho Fan', price: 15.50, cat: 'Noodles', desc: 'Rice Noodle, Stir Fried, Onion In A Black Bean Garlic Sauce' },
+        { id: '71', name: 'Beef Ho Fan with Soya', price: 14.95, cat: 'Noodles' },
+        { id: '72', name: 'House Special Noodle', price: 14.95, cat: 'Noodles', desc: 'Thick noodle w. shrimps, chicken, beef, stir fried w. real butter and black pepper' },
+
+        // --- Spicy Szechuan ---
+        { id: '78', name: 'Black Pepper Beef', price: 14.95, cat: 'Szechuan' },
+        { id: '79', name: 'Orange Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '80', name: 'Spicy Peanut Chicken', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '81', name: 'Kung Po Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Diced chicken or beef with vege. Tossed with roasted peanuts. Spicy.' },
+        { id: '82', name: 'General Tao Chicken', price: 14.50, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '83', name: 'Crispy Ginger Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '84', name: 'Crispy Ginger Shrimp', price: 15.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '85', name: 'Chili Chicken', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '86', name: 'Szechuan Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '87', name: 'Sesame Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '88', name: 'Mandarin Chicken', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
+        { id: '89', name: 'Ma-Po Tofu', price: 12.95, cat: 'Szechuan', desc: 'Fresh tofu with pork meat in the special sauce. Spicy.' },
+        
+        // --- Rice ---
+        { id: '119', name: 'House Special Fried Rice', price: 13.95, cat: 'Rice', desc: 'Shrimps, chicken, pork, and beef' },
+        { id: '120', name: 'Chicken Fried Rice', price: 10.95, cat: 'Rice' },
+        { id: '121', name: 'Beef Fried Rice', price: 10.95, cat: 'Rice' },
+        { id: '122', name: 'BBQ Pork Fried Rice', price: 10.95, cat: 'Rice' },
+        { id: '123', name: 'Shrimp Fried Rice', price: 12.95, cat: 'Rice' },
+        { id: '124', name: 'Mushroom Fried Rice', price: 10.50, cat: 'Rice' },
+        { id: '125', name: 'Vegetable Fried Rice', price: 10.50, cat: 'Rice', desc: 'Contain egg' },
+        { id: '126', name: 'Plain Fried Rice', price: 9.50, cat: 'Rice', desc: 'With peas and carrot' },
+        { id: '127', name: 'Young Chow Fried Rice', price: 13.95, cat: 'Rice' },
+        { id: '128', name: 'Szechuan Fried Rice', price: 11.50, cat: 'Rice', desc: 'Spicy. Pork/Chicken/Beef. (Shrimp +$2.00)' },
+        { id: '129S', name: 'Plain Steamed Rice (Small)', price: 2.95, cat: 'Rice' },
+        { id: '129L', name: 'Plain Steamed Rice (Large)', price: 6.95, cat: 'Rice' },
+
+        // --- Chef Specials (Cantonese Best Dishes) ---
+        { id: '130', name: 'Lemon Chicken', price: 13.95, cat: 'Chef Specials' },
+        { id: '131', name: 'Chicken Soo Guy', price: 13.95, cat: 'Chef Specials' },
+        { id: '132', name: 'Egg Foo Young (Chicken/Pork/Beef)', price: 15.95, cat: 'Chef Specials' },
+        { id: '132S', name: 'Egg Foo Young (Shrimps)', price: 16.95, cat: 'Chef Specials' },
+        { id: '133', name: 'Chicken with Broccoli', price: 14.95, cat: 'Chef Specials' },
+        { id: '134', name: 'Beef with Broccoli', price: 14.95, cat: 'Chef Specials' },
+        { id: '135', name: 'Chicken with Black Bean Sauce', price: 14.95, cat: 'Chef Specials' },
+        { id: '136', name: 'Beef with Black Bean Sauce', price: 14.95, cat: 'Chef Specials' },
+        { id: '137', name: 'Chicken or Beef with Peppers & Mushroom', price: 14.95, cat: 'Chef Specials' },
+        { id: '138', name: 'Chicken or Beef with Snow Peas', price: 15.95, cat: 'Chef Specials' },
+        { id: '139', name: 'Almond Guys Pan', price: 14.95, cat: 'Chef Specials' },
+        { id: '140', name: 'Tai Dop Way', price: 15.95, cat: 'Chef Specials' },
+        { id: '141', name: 'Chicken with Mixed Vegetable', price: 14.50, cat: 'Chef Specials' },
+        { id: '142', name: 'Beef with Mixed Vegetable', price: 14.50, cat: 'Chef Specials' },
+        { id: '143', name: 'Spareribs with Black Bean Sauce', price: 13.95, cat: 'Chef Specials' },
+        { id: '144', name: 'Sizzling Satay Beef', price: 14.95, cat: 'Chef Specials' },
+        { id: '145', name: 'Deep Fried Spicy Pork Chop', price: 13.50, cat: 'Chef Specials' },
+        { id: '146', name: 'Teriyaki Chicken', price: 14.95, cat: 'Chef Specials' },
+
+        // --- Special Combo Meals ---
+        { id: 'A1', name: 'Combo A1', price: 12.50, cat: 'Combos', desc: 'Egg Roll, Chicken Balls (4), Chop Suey, Fried Rice' },
+        { id: 'A2', name: 'Combo A2', price: 12.50, cat: 'Combos', desc: 'Egg Roll, Chicken Wings (4), Chop Suey, Fried Rice' },
+        { id: 'A3', name: 'Combo A3', price: 12.50, cat: 'Combos', desc: 'Egg Roll, Diced Beef Mix Veg, Chop Suey, Fried Rice' },
+
+        // --- Family Dinners ---
+        { id: 'D2', name: 'Dinner for 2', price: 36.95, cat: 'Family Dinner', desc: '2 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Chicken Wings (6pc), Sweet & Sour Chicken Balls (6pc)' },
+        { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner', desc: '3 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Beef Mix Vegetables, Chicken Wings (8pc), Sweet & Sour Chicken Balls (8pc)' },
+        { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner', desc: '4 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Chicken Balls' },
+        { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner', desc: '5 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps' },
+        { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner', desc: '6 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps' },
+        { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner', desc: '8 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps, General Tao Chicken (L), House Special Noodles (L)' },
+
+        // --- Daily Specials ---
+        { id: 'L1', name: 'Chicken/Beef Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L2', name: 'Tofu Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L3', name: 'Beef Ho Fan Soya Sauce', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L4', name: 'Cantonese Chow Mein (Special)', price: 12.95, cat: 'Lunch Special' },
+        { id: 'L5', name: 'Pad Thai Noodle (Special)', price: 12.50, cat: 'Lunch Special' },
+        { id: 'L6', name: 'Szechuan Noodle with Chicken', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L7', name: 'General Tao Chicken/Beef On Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L8', name: 'Curry Chicken/Beef On Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L9', name: 'Szechuan Beef/Chicken On Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L10', name: 'Beef/Chicken Black Bean Sauce on Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L11', name: 'Sweet & Sour Pork On Rice', price: 11.50, cat: 'Lunch Special' },
+        { id: 'L12', name: 'Chicken Ball Chop Suey Fried Rice Egg Roll', price: 12.50, cat: 'Lunch Special' },
+        { id: 'L13', name: 'Beef With Mushroom On Rice', price: 11.50, cat: 'Lunch Special' }
     ];
 
-    const photosData = [
-        { url: "https://images.unsplash.com/photo-1626804475297-411dbe917bfd?w=400", cat: "Dishes", label: "Fried Rice" },
-        { url: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=400", cat: "Dishes", label: "General Tao" },
-        { url: "https://images.unsplash.com/photo-1541696432-82c6da8ce6d2?w=400", cat: "Interior", label: "Dining Room" },
-        { url: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400", cat: "Dishes", label: "Noodles" },
-        { url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400", cat: "Dishes", label: "Dim Sum" }
-    ];
+    const menuItems = rawItems.map(item => ({ ...item }));
 
-    // --- STATE ---
-    let cart = {}; // { itemId: quantity }
+    let cart = {};
 
-    // --- INIT ---
-    window.onload = function() {
-        renderMenu(menuData);
-        renderPhotos("All");
-        renderPhotoNav();
-    };
-
-    // --- NAVIGATION ---
     function showPage(pageId) {
-        // Hide all sections
-        document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('nav a').forEach(el => el.classList.remove('active'));
-        
-        // Show target
+        document.querySelectorAll('.page-section').forEach(div => div.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
-        document.getElementById('nav-' + pageId).classList.add('active');
-        
-        // Scroll top
+        const bar = document.getElementById('order-bar');
+        if(pageId === 'order') bar.style.display = 'flex';
+        else bar.style.display = 'none';
         window.scrollTo(0,0);
     }
 
-    // --- MENU LOGIC ---
-    function renderMenu(data) {
+    function renderMenu(itemsToRender = menuItems) {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
-
-        data.forEach(cat => {
-            // Create Header
-            const header = document.createElement('div');
-            header.className = 'menu-cat-header';
-            header.innerHTML = `<span>${cat.category}</span>`;
-            container.appendChild(header);
-
-            // Create Items
-            cat.items.forEach(item => {
-                const qty = cart[item.id] || 0;
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'menu-item';
-                itemDiv.innerHTML = `
-                    <div class="item-details">
-                        <div class="item-cat-label">${cat.category}</div>
-                        <div class="item-header">
-                            <span>${item.name}</span>
-                            <span class="item-price">$${item.price.toFixed(2)}</span>
+        
+        // Get all unique categories from the menu items (using a Set to remove duplicates)
+        const allCategories = [...new Set(menuItems.map(item => item.cat))];
+        
+        // Loop through each category and render items if they match the current search/filter
+        allCategories.forEach(cat => {
+            const catItems = itemsToRender.filter(i => i.cat === cat);
+            
+            if(catItems.length > 0) {
+                // Add Category Header (Spans across the middle)
+                const header = document.createElement('div');
+                header.className = 'menu-cat-header';
+                header.innerHTML = `<span>${cat}</span>`;
+                container.appendChild(header);
+                
+                // Add items for this category
+                catItems.forEach(item => {
+                    const qty = cart[item.id] || 0;
+                    const div = document.createElement('div');
+                    div.className = 'menu-item';
+                    div.innerHTML = `
+                        <div class="item-details">
+                            <div class="item-cat">${item.cat}</div>
+                            <div class="item-header">
+                                <span>${item.id}. ${item.name}</span>
+                                <span class="item-price">$${item.price.toFixed(2)}</span>
+                            </div>
+                            <div class="item-desc">${item.desc || ''}</div>
                         </div>
-                        <div class="item-desc">${item.desc}</div>
-                    </div>
-                    <div class="qty-controls">
-                        <button class="qty-btn" onclick="updateQty(${item.id}, 1)">+</button>
-                        <div class="qty-display" id="qty-${item.id}">${qty}</div>
-                        <button class="qty-btn" onclick="updateQty(${item.id}, -1)">-</button>
-                    </div>
-                `;
-                container.appendChild(itemDiv);
-            });
-        });
-    }
-
-    function updateQty(id, change) {
-        if (!cart[id]) cart[id] = 0;
-        cart[id] += change;
-        if (cart[id] < 0) cart[id] = 0;
-        
-        // Update UI number
-        const display = document.getElementById(`qty-${id}`);
-        if(display) display.innerText = cart[id];
-        
-        calculateTotal();
-    }
-
-    function calculateTotal() {
-        let total = 0;
-        menuData.forEach(cat => {
-            cat.items.forEach(item => {
-                if (cart[item.id]) {
-                    total += item.price * cart[item.id];
-                }
-            });
-        });
-        document.getElementById('footer-total').innerText = total.toFixed(2);
-    }
-
-    // --- SEARCH ---
-    function triggerSearch() {
-        const query = document.getElementById('searchBar').value.toLowerCase();
-        if(!query) {
-            renderMenu(menuData);
-            return;
-        }
-
-        // Filter logic
-        const filteredData = menuData.map(cat => {
-            const matchingItems = cat.items.filter(item => 
-                item.name.toLowerCase().includes(query) || 
-                item.desc.toLowerCase().includes(query)
-            );
-            if(matchingItems.length > 0) {
-                return { category: cat.category, items: matchingItems };
-            }
-            return null;
-        }).filter(item => item !== null);
-
-        renderMenu(filteredData);
-    }
-
-    // --- PHOTOS ---
-    function renderPhotoNav() {
-        const container = document.getElementById('photo-categories');
-        const cats = ["All", "Dishes", "Interior"];
-        
-        cats.forEach(c => {
-            const btn = document.createElement('button');
-            btn.className = 'photo-cat-btn ' + (c === 'All' ? 'active' : '');
-            btn.innerText = c;
-            btn.onclick = function() {
-                document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderPhotos(c);
-            }
-            container.appendChild(btn);
-        });
-    }
-
-    function renderPhotos(filter) {
-        const grid = document.getElementById('photo-grid');
-        grid.innerHTML = '';
-        
-        photosData.forEach(p => {
-            if(filter === "All" || p.cat === filter) {
-                const card = document.createElement('div');
-                card.className = 'photo-card';
-                card.innerHTML = `<img src="${p.url}"><span>${p.label}</span>`;
-                grid.appendChild(card);
-            }
-        });
-    }
-
-    // --- MODAL / CHECKOUT ---
-    function openCheckout() {
-        const modal = document.getElementById('checkout-modal');
-        const listBody = document.getElementById('modal-cart-items');
-        listBody.innerHTML = '';
-        let total = 0;
-        let hasItems = false;
-
-        menuData.forEach(cat => {
-            cat.items.forEach(item => {
-                const q = cart[item.id];
-                if (q > 0) {
-                    hasItems = true;
-                    const lineTotal = q * item.price;
-                    total += lineTotal;
-                    listBody.innerHTML += `
-                        <tr>
-                            <td>${item.name}</td>
-                            <td>x${q}</td>
-                            <td>$${lineTotal.toFixed(2)}</td>
-                        </tr>
+                        <div class="qty-controls">
+                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                            <div class="qty-display">${qty}</div>
+                            <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                        </div>
                     `;
+                    container.appendChild(div);
+                });
+            }
+        });
+        
+        updateTotal();
+    }
+
+    function filterMenu() {
+        const term = document.getElementById('searchBar').value.toLowerCase();
+        const filtered = menuItems.filter(item => 
+            item.name.toLowerCase().includes(term) || 
+            item.id.toLowerCase().includes(term) ||
+            item.cat.toLowerCase().includes(term)
+        );
+        renderMenu(filtered);
+    }
+
+    function changeQty(id, delta) {
+        if (!cart[id]) cart[id] = 0;
+        cart[id] += delta;
+        if (cart[id] < 0) cart[id] = 0;
+        if (cart[id] > 50) cart[id] = 50;
+        
+        const isSearching = document.getElementById('searchBar').value.length > 0;
+        if(isSearching) filterMenu();
+        else renderMenu();
+    }
+
+    function updateTotal() {
+        let total = 0;
+        menuItems.forEach(item => {
+            if(cart[item.id]) total += cart[item.id] * item.price;
+        });
+        document.getElementById('grand-total').innerText = '$' + total.toFixed(2);
+    }
+
+    function openModal() {
+        const listDiv = document.getElementById('modal-list');
+        const modalTotal = document.getElementById('modal-total-display');
+        let html = '<table class="order-list-table"><tr><th>Code</th><th>Item</th><th>Qty</th><th>Price</th></tr>';
+        let total = 0;
+        let count = 0;
+        menuItems.forEach(item => {
+            if(cart[item.id] > 0) {
+                count++;
+                const linePrice = cart[item.id] * item.price;
+                total += linePrice;
+                html += `<tr>
+                    <td style="color:var(--primary-red); font-weight:bold;">${item.id}</td>
+                    <td>${item.name}</td>
+                    <td><b>${cart[item.id]}</b></td>
+                    <td>$${linePrice.toFixed(2)}</td>
+                </tr>`;
+            }
+        });
+        html += '</table>';
+        if(count === 0) html = '<p style="padding:20px;">No items selected yet.</p>';
+        listDiv.innerHTML = html;
+        modalTotal.innerText = '$' + total.toFixed(2);
+        document.getElementById('orderModal').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
+
+    // Init
+    renderMenu();
+    showPage('home');
+
+    // ===== PHOTO GALLERY SWIPE FUNCTIONALITY =====
+    let currentSlide = 0;
+    let slides = [];
+    let isDown = false;
+    let startX = 0;
+    let startSlideIndex = 0;
+    let autoAdvanceInterval = null;
+    const galleryContainer = document.getElementById('galleryContainer');
+    const galleryDotsContainer = document.getElementById('galleryDots');
+
+    function initGallery() {
+        slides = document.querySelectorAll('.gallery-slide');
+        
+        // Create dots
+        galleryDotsContainer.innerHTML = '';
+        slides.forEach((_, index) => {
+            const dot = document.createElement('span');
+            dot.className = 'gallery-dot';
+            if (index === 0) dot.classList.add('active');
+            dot.onclick = () => goToSlide(index);
+            galleryDotsContainer.appendChild(dot);
+        });
+        
+        updateSlidePosition();
+    }
+
+    function changeSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        updateSlidePosition();
+    }
+
+    function goToSlide(index) {
+        currentSlide = index;
+        updateSlidePosition();
+    }
+
+    function updateSlidePosition() {
+        if (!galleryContainer || !slides.length) return;
+        
+        requestAnimationFrame(() => {
+            galleryContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update dots
+            document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        });
+    }
+
+    // Mouse drag functionality
+    if (galleryContainer) {
+        galleryContainer.addEventListener('mousedown', (e) => {
+            isDown = true;
+            const rect = galleryContainer.getBoundingClientRect();
+            startX = e.clientX - rect.left;
+            startSlideIndex = currentSlide;
+        });
+
+        galleryContainer.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+
+        galleryContainer.addEventListener('mouseup', (e) => {
+            if (!isDown) return;
+            isDown = false;
+            const rect = galleryContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const walk = x - startX;
+            
+            // Threshold for swipe (50px)
+            if (walk < -50) {
+                changeSlide(1);
+            } else if (walk > 50) {
+                changeSlide(-1);
+            }
+        });
+
+        galleryContainer.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+        });
+
+        // Touch functionality
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        galleryContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].clientX;
+        });
+
+        galleryContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changeSlide(1); // Swipe left
+                } else {
+                    changeSlide(-1); // Swipe right
+                }
+            }
+        }
+
+        // Auto-advance slides every 5 seconds
+        function startAutoAdvance() {
+            // Clear any existing interval
+            if (autoAdvanceInterval) {
+                clearInterval(autoAdvanceInterval);
+            }
+            
+            autoAdvanceInterval = setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
+
+        function stopAutoAdvance() {
+            if (autoAdvanceInterval) {
+                clearInterval(autoAdvanceInterval);
+                autoAdvanceInterval = null;
+            }
+        }
+
+        // Start auto-advance initially (home page is active by default)
+        startAutoAdvance();
+
+        // Clean up interval when navigating away from home page
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const onclickAttr = link.getAttribute('onclick');
+                if (!onclickAttr) return;
+                
+                const match = onclickAttr.match(/'([^']+)'/);
+                if (!match) return;
+                
+                const targetPage = match[1];
+                if (targetPage !== 'home') {
+                    stopAutoAdvance();
+                } else {
+                    startAutoAdvance();
                 }
             });
         });
-
-        if(!hasItems) {
-            listBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:20px;">Your cart is empty</td></tr>`;
-        }
-
-        document.getElementById('modal-total').innerText = total.toFixed(2);
-        modal.style.display = 'flex';
     }
 
-    function closeCheckout() {
-        document.getElementById('checkout-modal').style.display = 'none';
-    }
-
-    // Close modal if clicking outside box
-    window.onclick = function(event) {
-        const modal = document.getElementById('checkout-modal');
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+    // Initialize gallery when page loads
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGallery);
+    } else {
+        initGallery();
     }
 </script>
 
