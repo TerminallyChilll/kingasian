@@ -682,16 +682,70 @@ function loadFallbackData() {
           {"id": 143, "name": "Mango Pudding", "desc": "Sweet mango dessert", "price": 4.95},
           {"id": 144, "name": "Fortune Cookies (3)", "desc": "Traditional fortune cookies", "price": 1.50}
         ]
-      }
-    ];
+// --- CONSTANTS ---
+const TEXT_CONTENT = {
+    currency: { locale: 'en-CA', currency: 'CAD' },
+    messages: { emptyCart: 'Your cart is empty' }
+};
 
+// --- STATE ---
+let cart = {}; 
+let menuData = [];
+let photosData = [];
+
+const formatCurrency = new Intl.NumberFormat(TEXT_CONTENT.currency.locale, {
+    style: 'currency', currency: TEXT_CONTENT.currency.currency
+});
+
+// --- INIT ---
+window.addEventListener('DOMContentLoaded', async function() {
+    try {
+        // Attempt to load from JSON files (Best for Live Site)
+        const menuRes = await fetch('menu-data.json');
+        if (!menuRes.ok) throw new Error("Menu file missing");
+        menuData = await menuRes.json();
+        
+        const photoRes = await fetch('gallery-data.json');
+        if (!photoRes.ok) throw new Error("Gallery file missing");
+        photosData = await photoRes.json();
+        
+        initializeSite();
+    } catch (error) {
+        console.error('Error loading JSON files:', error);
+        // Use fallback data if files are missing or JSON is bad
+        loadFallbackData();
+    }
+});
+
+function initializeSite() {
+    loadCartFromStorage();
+    renderMenu(menuData);
+    renderPhotos("All");
+    renderPhotoNav();
+    setupEventDelegation();
+}
+
+// --- FALLBACK DATA ---
+function loadFallbackData() {
+    // If JSON fetch fails, we use this data
     photosData = [
-        { url: "https://images.unsplash.com/photo-1626804475297-411dbe917bfd?w=400", cat: "Dishes", label: "Fried Rice", alt: "Fried Rice" },
-        { url: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=400", cat: "Dishes", label: "General Tao", alt: "General Tao chicken" },
-        { url: "https://images.unsplash.com/photo-1541696432-82c6da8ce6d2?w=400", cat: "Interior", label: "Dining Room", alt: "Restaurant interior" },
-        { url: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=400", cat: "Dishes", label: "Noodles", alt: "Chinese noodles" },
-        { url: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=400", cat: "Dishes", label: "Dim Sum", alt: "Steamed dim sum" }
+        { url: "comingsoon.jpg", cat: "Dishes", label: "Coming Soon", alt: "Coming Soon" },
+        { url: "comingsoon.jpg", cat: "Interior", label: "Coming Soon", alt: "Coming Soon" },
+        { url: "comingsoon.jpg", cat: "Dishes", label: "Coming Soon", alt: "Coming Soon" }
     ];
+    
+    // Note: For the menu, if the JSON fails, this list will be used.
+    // If your menu is blank, ensure menu-data.json is uploaded!
+    if (!menuData || menuData.length === 0) {
+        menuData = [
+          {
+            category: "Menu Loading Error",
+            items: [
+              { id: 999, name: "Please check menu-data.json", desc: "Could not load menu file", price: 0.00 }
+            ]
+          }
+        ];
+    }
 
     initializeSite();
 }
@@ -724,4 +778,209 @@ function setupEventDelegation() {
     if (photoNav) {
         photoNav.addEventListener('click', function(e) {
             if (e.target.classList.contains('photo-cat-btn')) {
+                document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                renderPhotos(e.target.dataset.category);
+            }
+        });
+    }
+    
+    const searchBox = document.getElementById('searchBar');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    if (searchBox) {
+        searchBox.addEventListener('input', () => { triggerSearch(); updateClearButton(); });
+        searchBox.addEventListener('keyup', (e) => { if(e.key === 'Enter') triggerSearch(); });
+    }
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            searchBox.value = ''; triggerSearch(); updateClearButton(); searchBox.focus();
+        });
+    }
+
+    window.addEventListener('click', (e) => {
+        if (e.target === document.getElementById('checkout-modal')) closeCheckout();
+    });
+}
+
+function updateClearButton() {
+    const box = document.getElementById('searchBar');
+    const btn = document.getElementById('clearSearchBtn');
+    if(box && btn) btn.classList.toggle('visible', box.value.length > 0);
+}
+
+// --- NAVIGATION ---
+function showPage(pageId) {
+    document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('nav button, nav a').forEach(el => el.classList.remove('active'));
+    const page = document.getElementById(pageId);
+    const navBtn = document.getElementById('nav-' + pageId);
+    if (page) page.classList.add('active');
+    if (navBtn) navBtn.classList.add('active');
+    window.scrollTo(0, 0);
+}
+
+// --- MENU LOGIC ---
+function renderMenu(data) {
+    const container = document.getElementById('menu-container');
+    if (!container) return;
+    
+    if (!data || data.length === 0) {
+        container.innerHTML = '<p style="text-align:center">Loading menu...</p>';
+        return;
+    }
+
+    const fragment = document.createDocumentFragment();
+
+    data.forEach(cat => {
+        const header = document.createElement('div');
+        header.className = 'menu-cat-header';
+        header.innerHTML = `<span>${cat.category}</span>`;
+        fragment.appendChild(header);
+
+        cat.items.forEach(item => {
+            const qty = cart[item.id] || 0;
+            const itemDiv = document.createElement('div');
+            itemDiv.className = `menu-item ${qty === 0 ? 'zero-quantity' : ''}`;
+            itemDiv.innerHTML = `
+                <div class="item-details">
+                    <div class="item-cat-label">${cat.category}</div>
+                    <div class="item-header"><span>${item.name}</span><span class="item-price">${formatCurrency.format(item.price)}</span></div>
+                    <div class="item-desc">${item.desc}</div>
+                </div>
+                <div class="qty-controls">
+                    <button class="qty-btn" data-item-id="${item.id}" data-change="1">+</button>
+                    <div class="qty-display" id="qty-${item.id}">${qty}</div>
+                    <button class="qty-btn" data-item-id="${item.id}" data-change="-1">-</button>
+                </div>
+            `;
+            fragment.appendChild(itemDiv);
+        });
+    });
+    
+    container.innerHTML = '';
+    container.appendChild(fragment);
+    calculateTotal();
+}
+
+function updateQty(id, change) {
+    if (!cart[id]) cart[id] = 0;
+    cart[id] += change;
+    if (cart[id] < 0) cart[id] = 0;
+    
+    const display = document.getElementById(`qty-${id}`);
+    if (display) {
+        display.innerText = cart[id];
+        const itemDiv = display.closest('.menu-item');
+        if (itemDiv) itemDiv.classList.toggle('zero-quantity', cart[id] === 0);
+    }
+    calculateTotal();
+    saveCartToStorage();
+}
+
+function calculateTotal() {
+    let total = 0;
+    if (menuData && menuData.length > 0) {
+        menuData.forEach(cat => {
+            cat.items.forEach(item => {
+                if (cart[item.id]) total += item.price * cart[item.id];
+            });
+        });
+    }
+    const totalEl = document.getElementById('footer-total');
+    if (totalEl) totalEl.innerText = total.toFixed(2);
+}
+
+// --- SEARCH ---
+function triggerSearch() {
+    const query = document.getElementById('searchBar').value.toLowerCase();
+    if (!query) { renderMenu(menuData); return; }
+
+    const filteredData = menuData.map(cat => {
+        const matching = cat.items.filter(item => 
+            item.name.toLowerCase().includes(query) || item.desc.toLowerCase().includes(query)
+        );
+        if (matching.length > 0) {
+            return { category: cat.category, items: matching.map(item => ({
+                ...item,
+                name: item.name.replace(new RegExp(`(${escapeRegex(query)})`, 'gi'), '<span class="highlight">$1</span>'),
+                desc: item.desc.replace(new RegExp(`(${escapeRegex(query)})`, 'gi'), '<span class="highlight">$1</span>')
+            }))};
+        }
+        return null;
+    }).filter(Boolean);
+
+    renderMenu(filteredData);
+}
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+// --- PHOTOS ---
+function renderPhotoNav() {
+    const container = document.getElementById('photo-categories');
+    if (!container) return;
+    container.innerHTML = '';
+    ["All", "Dishes", "Interior"].forEach(c => {
+        const btn = document.createElement('button');
+        btn.className = `photo-cat-btn ${c === 'All' ? 'active' : ''}`;
+        btn.innerText = c;
+        btn.dataset.category = c;
+        container.appendChild(btn);
+    });
+}
+
+function renderPhotos(filter) {
+    const grid = document.getElementById('photo-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    photosData.forEach(p => {
+        if (filter === "All" || p.cat === filter) {
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            card.innerHTML = `<img src="${p.url}" alt="${p.alt}" loading="lazy"><span>${p.label}</span>`;
+            grid.appendChild(card);
+        }
+    });
+}
+
+// --- MODAL ---
+function openCheckout() {
+    const modal = document.getElementById('checkout-modal');
+    const listBody = document.getElementById('modal-cart-items');
+    if (!modal || !listBody) return;
+    
+    listBody.innerHTML = '';
+    let total = 0;
+    let hasItems = false;
+
+    if (menuData && menuData.length > 0) {
+        menuData.forEach(cat => {
+            cat.items.forEach(item => {
+                if (cart[item.id] > 0) {
+                    hasItems = true;
+                    const lineTotal = cart[item.id] * item.price;
+                    total += lineTotal;
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td>${item.name}</td><td>x${cart[item.id]}</td><td>${formatCurrency.format(lineTotal)}</td>`;
+                    listBody.appendChild(row);
+                }
+            });
+        });
+    }
+
+    if (!hasItems) listBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding:20px;">${TEXT_CONTENT.messages.emptyCart}</td></tr>`;
+    
+    document.getElementById('modal-total').innerText = total.toFixed(2);
+    modal.style.display = 'flex';
+}
+
+function closeCheckout() {
+    const modal = document.getElementById('checkout-modal');
+    if (modal) modal.style.display = 'none';
+}
+
+// Global exports
+window.showPage = showPage;
+window.openCheckout = openCheckout;
+window.closeCheckout = closeCheckout;
+window.updateQty = updateQty;
+window.triggerSearch = triggerSearch;t.classList.contains('photo-cat-btn')) {
                 document.querySelectorAll('.photo-cat-btn')
