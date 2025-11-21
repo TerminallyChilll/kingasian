@@ -283,6 +283,92 @@
     </div>
 
     <!-- MAP AT THE BOTTOM -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>King Asian Restaurant | Best Chinese Food in Cooksville, Mississauga</title>
+  <meta name="description" content="Authentic Chinese food in Cooksville, Mississauga.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav role="navigation">
+    <button class="nav-link active" id="nav-home" onclick="showPage('home')">Home</button>
+    <button class="nav-link" id="nav-order" onclick="showPage('order')">Order Menu</button>
+    <button class="nav-link" id="nav-photos" onclick="showPage('photos')">Photos</button>
+    <button class="nav-link" id="nav-about" onclick="showPage('about')">About</button>
+</nav>
+
+<header>
+    <div class="header-title-box">
+        <h1>KING ASIAN</h1>
+        <div class="subtitle">2500 Hurontario St, Mississauga</div>
+        <button class="header-order-btn" onclick="showPage('order')">Order Now</button>
+    </div>
+</header>
+
+<main>
+
+<!-- HOME SECTION -->
+<section id="home" class="page-section active">
+    <h2>Welcome to Our Table</h2>
+    <div style="text-align: center; font-size: 1.2rem; line-height: 1.8; color: #444;">
+        <p><strong>Authentic. Warm. Traditional.</strong></p>
+        <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
+        
+        <!-- CORRECTED SPELLING HERE -->
+        <img src="comingsoon.jpg" 
+             alt="Delicious food coming soon"
+             style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
+        
+        <div style="margin-top: 30px;">
+            <button class="content-btn" onclick="showPage('order')">View Menu & Order</button>
+        </div>
+    </div>
+</section>
+
+<!-- ORDER SECTION -->
+<section id="order" class="page-section">
+    <h2>Our Menu</h2>
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-box" placeholder="Search for 'Chicken', 'Rice', 'Soup'...">
+        <button id="clearSearchBtn" class="clear-search-btn">&times;</button>
+        <button class="search-btn" onclick="triggerSearch()">Search</button>
+    </div>
+    <div id="menu-container">Loading menu...</div>
+</section>
+
+<!-- PHOTOS SECTION -->
+<section id="photos" class="page-section">
+    <h2>Our Gallery</h2>
+    <div class="photo-nav" id="photo-categories"></div>
+    <div id="photo-grid"></div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about" class="page-section">
+    <h2>About & Reviews</h2>
+    
+    <div style="text-align: center; font-size: 1.1rem; line-height: 1.6; margin-bottom:40px;">
+        <h3 style="color:var(--primary-red);">Our Story</h3>
+        <p>Located in the heart of Mississauga, King Asian Restaurant is a family-owned gem dedicated to preserving the authentic tastes of Szechuan and Cantonese cooking.</p>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="text-align:center; color:var(--primary-red);">Customer Reviews</h3>
+        <div class="review-card">"Absolutely the best Wonton Soup in Mississauga. The broth is rich and the dumplings are huge!" <span class="review-author">- Sarah J.</span></div>
+        <div class="review-card">"Fast delivery and the General Tao Chicken was perfectly crispy." <span class="review-author">- Mike T.</span></div>
+        <div style="text-align: center;">
+            <a href="#" style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
+        </div>
+    </div>
+
     <div style="margin-bottom: 20px;">
         <h3 style="text-align:center; color:var(--primary-red);">Find Us</h3>
         <div style="text-align: center; margin-bottom: 20px;">
@@ -297,6 +383,7 @@
         </div>
     </div>
 </section>
+
 </main>
 
 <footer class="sticky-bar">
