@@ -3,23 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- --- SEO SETTINGS --- -->
+    <meta name="description" content="King Asian Restaurant in Mississauga. Authentic Chinese Cuisine, Szechuan & Cantonese dishes. Order Wonton Soup, Dim Sum, and Spicy Chicken online. Best Chinese takeout at 2500 Hurontario St.">
+    <meta name="keywords" content="Chinese Food Mississauga, King Asian Restaurant, Chinese Takeout, Szechuan, Cantonese, Wonton Soup, 2500 Hurontario St">
+    <meta name="author" content="King Asian Restaurant">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="King Asian Restaurant | Best Chinese Food in Mississauga">
+    <meta property="og:description" content="Authentic Chinese flavors in the heart of Mississauga. Order online today!">
+    <meta property="og:image" content="backgroundL.jpg">
+
     <title>King Asian Restaurant | Mississauga</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- CSS STYLES --- */
         :root {
-            --primary-red: #8B0000;       /* Deep Traditional Red */
-            --accent-gold: #F4C430;       /* Bright Gold */
-            --bg-paper: #fffcf5;          /* Light Rice Paper */
+            --primary-red: #8B0000;       
+            --accent-gold: #F4C430;       
+            --bg-paper: #fffcf5;          
             --text-dark: #2c2c2c;
         }
 
         body {
             font-family: 'Lato', sans-serif;
             color: var(--text-dark);
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: #000000; 
             background-image: url("backgroundL.jpg");
             background-size: 25% auto; 
@@ -28,179 +40,123 @@
             background-attachment: fixed;
         }
 
+        /* --- Language Switcher --- */
+        .lang-switch {
+            position: absolute; top: 20px; right: 20px;
+            z-index: 200; display: flex; gap: 10px;
+        }
+        .lang-btn {
+            background: rgba(0,0,0,0.7); color: #fff;
+            border: 1px solid var(--accent-gold);
+            padding: 5px 10px; cursor: pointer;
+            font-size: 0.8rem; text-transform: uppercase;
+        }
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent-gold); color: #000;
+        }
+
         /* --- Navigation --- */
         nav {
             background-color: rgba(50, 0, 0, 0.9);
             text-align: center;
             padding: 15px 0;
             border-bottom: 2px solid var(--accent-gold);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             backdrop-filter: blur(5px);
         }
-
         nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            display: inline-block;
+            color: #fff; text-decoration: none; margin: 0 15px;
+            font-family: 'Playfair Display', serif; font-size: 1.1rem;
+            text-transform: uppercase; letter-spacing: 1px;
+            transition: color 0.3s; display: inline-block; cursor: pointer;
         }
-
         nav a:hover, nav a.active {
-            color: var(--accent-gold);
-            border-bottom: 2px solid var(--accent-gold);
+            color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold);
         }
 
         /* --- Header --- */
-        header {
-            padding: 60px 20px;
-            text-align: center;
-            margin-bottom: 60px; 
-        }
-
+        header { padding: 60px 20px; text-align: center; margin-bottom: 60px; }
         .header-title-box {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.6); 
-            border: 1px solid var(--accent-gold);
-            padding: 30px 50px;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            display: inline-block; background: rgba(0, 0, 0, 0.6); 
+            border: 1px solid var(--accent-gold); padding: 30px 50px;
+            border-radius: 4px; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
-
         h1 {
-            font-family: 'Playfair Display', serif;
-            color: var(--accent-gold);
-            margin: 0; 
-            font-size: 3.5rem;
-            text-shadow: 2px 2px 10px black;
-            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif; color: var(--accent-gold);
+            margin: 0; font-size: 3.5rem; text-shadow: 2px 2px 10px black; letter-spacing: 2px;
         }
-
         .subtitle { 
-            color: #f0f0f0; 
-            margin-top: 10px; 
-            font-size: 1.1rem; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            font-weight: 300;
+            color: #f0f0f0; margin-top: 10px; font-size: 1.1rem; 
+            text-transform: uppercase; letter-spacing: 3px; font-weight: 300;
         }
 
-        /* --- Standard Page Section --- */
+        /* --- Page Sections --- */
         .page-section {
-            display: none;
-            max-width: 850px;
-            margin: 0 auto 100px auto;
-            background: rgba(255, 252, 245, 0.97); 
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            border: 1px solid var(--accent-gold);
-            position: relative;
-            
-            /* Transition for the fade effect */
-            transition: opacity 1s ease-in-out;
-            opacity: 1;
+            display: none; max-width: 850px; margin: 0 auto 100px auto;
+            background: rgba(255, 252, 245, 0.97); padding: 40px;
+            border-radius: 8px; box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 1px solid var(--accent-gold); position: relative;
+            transition: opacity 0.5s ease-in-out; opacity: 1;
+        }
+        .page-section.active { display: block; }
+
+        /* --- About & Review Styles --- */
+        .review-card {
+            background: #fff; border-left: 4px solid var(--accent-gold);
+            padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-style: italic; color: #555;
+        }
+        .review-author {
+            display: block; text-align: right; font-weight: bold;
+            font-style: normal; margin-top: 10px; color: #222;
         }
 
-        .page-section.active { 
-            display: block; 
-        }
-
-        /* --- PHOTO GALLERY STYLES --- */
+        /* --- Photo Gallery --- */
         .photo-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed #ccc;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px dashed #ccc;
         }
-
         .photo-cat-btn {
-            background: #eee;
-            border: 1px solid #ccc;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            border-radius: 20px;
+            background: #eee; border: 1px solid #ccc; padding: 8px 16px;
+            cursor: pointer; font-family: 'Playfair Display', serif;
+            text-transform: uppercase; font-size: 0.9rem; border-radius: 20px;
             transition: all 0.3s;
         }
-
         .photo-cat-btn:hover, .photo-cat-btn.active {
-            background: var(--primary-red);
-            color: white;
+            background: var(--primary-red); color: white;
             border-color: var(--primary-red);
-            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
         }
-
         #photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;
         }
-
         .photo-card {
-            background: #fff;
-            padding: 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 1px solid #eee;
+            background: #fff; padding: 10px; border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; border: 1px solid #eee;
         }
-
         .photo-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            background-color: #f0f0f0; /* Placeholder color */
+            width: 100%; height: 150px; object-fit: cover; border-radius: 4px;
+            margin-bottom: 10px; background-color: #f0f0f0;
         }
 
-        .photo-card span {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #444;
-            display: block;
-        }
-
-        /* --- SPECIAL STYLING FOR ORDER PAGE --- */
+        /* --- Order Page Styles --- */
         @media (min-width: 900px) {
             #order.page-section {
-                background: transparent; 
-                box-shadow: none; border: none;            
-                max-width: 1200px; padding: 0;
-                text-align: center;      
+                background: transparent; box-shadow: none; border: none;            
+                max-width: 1200px; padding: 0; text-align: center;      
             }
             #order h2 {
-                display: inline-block;
-                background: rgba(255, 252, 245, 0.95);
-                padding: 10px 60px;
-                border-radius: 4px;
-                border: 1px solid var(--accent-gold);
-                margin-bottom: 20px; 
+                display: inline-block; background: rgba(255, 252, 245, 0.95);
+                padding: 10px 60px; border-radius: 4px;
+                border: 1px solid var(--accent-gold); margin-bottom: 20px; 
             }
             .search-box {
-                display: block; max-width: 500px;
-                margin: 0 auto 40px auto !important; 
-                box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+                display: block; max-width: 500px; margin: 0 auto 40px auto !important; 
             }
             #menu-container {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                display: grid; grid-template-columns: 1fr 1fr;
                 column-gap: 20%; row-gap: 20px;
             }
         }
-
         @media (max-width: 899px) {
             #menu-container { grid-template-columns: 1fr; gap: 15px; }
             .page-section { padding: 20px; margin-bottom: 60px; }
@@ -209,21 +165,15 @@
         }
 
         h2 {
-            color: var(--primary-red);
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-            font-size: 2.2rem;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
+            color: var(--primary-red); font-family: 'Playfair Display', serif;
+            text-align: center; font-size: 2.2rem; border-bottom: 2px solid #eee;
+            padding-bottom: 15px; margin-bottom: 25px;
         }
-
         .search-box {
             width: 100%; padding: 15px; font-size: 1rem;
-            border: 1px solid #ccc; border-radius: 4px;
-            margin-bottom: 25px; box-sizing: border-box; background: #fff;
+            border: 1px solid #ccc; border-radius: 4px; margin-bottom: 25px; 
+            box-sizing: border-box; background: #fff;
         }
-
         .menu-cat-header {
             grid-column: 1 / -1; text-align: center;
             margin: 50px 0 20px 0; position: relative; z-index: 2;
@@ -232,10 +182,8 @@
             background: var(--primary-red); color: #fff;
             padding: 8px 25px; border-radius: 20px;
             font-family: 'Playfair Display', serif; font-size: 1.3rem;
-            letter-spacing: 1px; box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            border: 1px solid var(--accent-gold);
+            letter-spacing: 1px; border: 1px solid var(--accent-gold);
         }
-
         .menu-item {
             display: flex; align-items: flex-start;
             justify-content: space-between; background: #fff; 
@@ -246,16 +194,16 @@
         .item-details { flex: 1; margin-right: 12px; }
         .item-header {
             display: flex; justify-content: space-between;
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem; font-weight: bold; color: #222;
+            font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: bold; color: #222;
         }
         .item-cat {
-            font-size: 0.70rem; color: #888;
-            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+            font-size: 0.70rem; color: #888; text-transform: uppercase; 
+            letter-spacing: 1px; margin-bottom: 6px;
         }
         .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
         .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
 
+        /* Qty Controls - Add on top, Minus on bottom */
         .qty-controls {
             display: flex; align-items: center; flex-direction: column;
             background: #eee; border-radius: 30px; padding: 6px;
@@ -273,32 +221,25 @@
 
         .sticky-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
-            background: #111; color: white;
-            padding: 15px 20px;
+            background: #111; color: white; padding: 15px 20px;
             display: flex; justify-content: space-between; align-items: center;
-            border-top: 3px solid var(--accent-gold);
-            box-sizing: border-box; z-index: 999;
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.7);
+            border-top: 3px solid var(--accent-gold); z-index: 999;
         }
         .total-amount { font-size: 1.5rem; font-weight: bold; color: var(--accent-gold); }
         .btn-order {
             background-color: var(--accent-gold); color: #222;
-            border: none; padding: 12px 25px;
-            font-weight: bold; text-transform: uppercase; cursor: pointer;
-            border-radius: 4px; font-size: 1rem;
+            border: none; padding: 12px 25px; font-weight: bold; 
+            text-transform: uppercase; cursor: pointer; border-radius: 4px;
         }
-        .btn-order:hover { background-color: #fff; }
-
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 2000;
-            justify-content: center; align-items: center;
-            backdrop-filter: blur(4px);
+            justify-content: center; align-items: center; backdrop-filter: blur(4px);
         }
         .modal-box {
             background: #fff; padding: 30px; width: 90%; max-width: 550px; max-height: 85vh;
             overflow-y: auto; border: 4px double var(--primary-red); text-align: center;
-            border-radius: 8px; box-shadow: 0 0 40px rgba(255,255,255,0.1);
+            border-radius: 8px;
         }
         .order-list-table { width: 100%; text-align: left; margin: 20px 0; border-collapse: collapse; }
         .order-list-table th { border-bottom: 2px solid #eee; padding: 8px; color: #666; font-size: 0.9rem; text-transform: uppercase; }
@@ -307,67 +248,98 @@
             display: block; background: var(--primary-red); color: white;
             text-decoration: none; padding: 15px; font-size: 1.4rem;
             font-weight: bold; border-radius: 5px; margin: 25px 0;
-            box-shadow: 0 4px 10px rgba(139,0,0,0.3);
-            text-align: center;
+            box-shadow: 0 4px 10px rgba(139,0,0,0.3); text-align: center;
         }
-        .call-btn:hover { background: #a50000; }
     </style>
 </head>
 <body>
 
+<!-- Language Switcher -->
+<div class="lang-switch">
+    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" onclick="setLanguage('fr')">FR</button>
+    <button class="lang-btn" onclick="setLanguage('zh')">中文</button>
+</div>
+
 <nav>
-    <a href="#" onclick="showPage('home')" class="nav-link">Home</a>
-    <a href="#" onclick="showPage('order')" class="nav-link">Order Menu</a>
-    <a href="#" onclick="showPage('photos')" class="nav-link">Photos</a>
-    <a href="#" onclick="showPage('location')" class="nav-link">Location</a>
+    <a onclick="showPage('home')" class="nav-link" data-i18n="nav_home">Home</a>
+    <a onclick="showPage('order')" class="nav-link" data-i18n="nav_order">Order Menu</a>
+    <a onclick="showPage('photos')" class="nav-link" data-i18n="nav_photos">Photos</a>
+    <a onclick="showPage('about')" class="nav-link" data-i18n="nav_about">About & Reviews</a>
 </nav>
 
 <header>
     <div class="header-title-box">
-        <h1>KING ASIAN</h1>
-        <div class="subtitle">2500 Hurontario St, Mississauga</div>
+        <h1 data-i18n="header_title">KING ASIAN</h1>
+        <div class="subtitle" data-i18n="header_subtitle">2500 Hurontario St, Mississauga</div>
     </div>
 </header>
 
 <!-- HOME PAGE -->
 <div id="home" class="page-section active">
-    <h2>Welcome to Our Table</h2>
+    <h2 data-i18n="home_welcome">Welcome to Our Table</h2>
     <div style="text-align: center; font-size: 1.2rem; line-height: 1.8; color: #444;">
-        <p><strong>Authentic. Warm. Traditional.</strong></p>
-        <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
+        <p><strong data-i18n="home_tagline">Authentic. Warm. Traditional.</strong></p>
+        <p data-i18n="home_desc">King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
         <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
              style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
         
-        <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
+        <p data-i18n="home_desc2">From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
         
         <div style="margin-top: 30px;">
-            <button class="btn-order" onclick="showPage('order')">View Menu & Order</button>
+            <button class="btn-order" onclick="showPage('order')" data-i18n="btn_view_menu">View Menu & Order</button>
         </div>
     </div>
 </div>
 
 <!-- ORDER PAGE -->
 <div id="order" class="page-section">
-    <h2>Our Menu</h2>
-    <input type="text" id="searchBar" class="search-box" placeholder="🔍 Search for 'Chicken', 'Rice', 'Soup'..." onkeyup="filterMenu()">
+    <h2 data-i18n="nav_order">Our Menu</h2>
+    <input type="text" id="searchBar" class="search-box" placeholder="🔍 Search..." onkeyup="filterMenu()">
     <div id="menu-container"></div>
 </div>
 
 <!-- PHOTOS PAGE -->
 <div id="photos" class="page-section">
-    <h2>Our Gallery</h2>
-    <div class="photo-nav" id="photo-categories">
-        <!-- Category buttons inserted via JS -->
-    </div>
-    <div id="photo-grid">
-        <!-- Photos inserted via JS -->
-    </div>
+    <h2 data-i18n="nav_photos">Our Gallery</h2>
+    <div class="photo-nav" id="photo-categories"></div>
+    <div id="photo-grid"></div>
 </div>
 
-<!-- LOCATION PAGE -->
-<div id="location" class="page-section">
-    <h2>Visit Us</h2>
+<!-- ABOUT & REVIEWS PAGE (Formerly Location) -->
+<div id="about" class="page-section">
+    <h2 data-i18n="nav_about">About & Reviews</h2>
+    
+    <div style="text-align: center; font-size: 1.1rem; line-height: 1.6; margin-bottom:40px;">
+        <h3 data-i18n="about_story_title" style="color:var(--primary-red);">Our Story</h3>
+        <p data-i18n="about_story_text">
+            Located in the heart of Mississauga, King Asian Restaurant is a family-owned gem dedicated to preserving the authentic tastes of Szechuan and Cantonese cooking. For over a decade, we have used the freshest ingredients to bring you comfort in every bite.
+        </p>
+    </div>
+
+    <div style="margin-bottom: 40px;">
+        <h3 style="text-align:center; color:var(--primary-red);" data-i18n="about_reviews_title">Customer Reviews</h3>
+        
+        <div class="review-card">
+            "Absolutely the best Wonton Soup in Mississauga. The broth is rich and the dumplings are huge!"
+            <span class="review-author">- Sarah J.</span>
+        </div>
+        <div class="review-card">
+            "Fast delivery and the General Tao Chicken was perfectly crispy. My go-to spot for Friday nights."
+            <span class="review-author">- Mike T.</span>
+        </div>
+        <div class="review-card">
+            "Authentic flavors and great portions. The lunch specials are an amazing deal."
+            <span class="review-author">- Emily R.</span>
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="https://www.google.com/search?q=king+asian+restaurant+mississauga+reviews" target="_blank" style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
+        </div>
+    </div>
+
+    <h3 style="text-align:center; color:var(--primary-red);" data-i18n="about_visit_title">Visit Us</h3>
     <div style="text-align: center; font-size: 1.1rem;">
         <address style="font-style: normal; line-height: 1.6; margin-bottom: 20px;">
             <strong>King Asian Restaurant</strong><br>
@@ -376,7 +348,7 @@
         </address>
         
         <a href="tel:9055550123" class="call-btn" style="max-width: 300px; margin: 0 auto 30px auto;">
-            📞 Call To Order: (905) 555-0123
+            📞 <span data-i18n="btn_call">Call To Order</span>: (905) 555-0123
         </a>
 
         <iframe 
@@ -384,9 +356,8 @@
             width="100%" height="400" style="border:0; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" 
             allowfullscreen="" loading="lazy">
         </iframe>
-        
         <br><br>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=2500+Hurontario+St+Mississauga+ON+L5B+1N4" target="_blank" class="btn-order" style="text-decoration:none; display: inline-block;">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=2500+Hurontario+St+Mississauga+ON+L5B+1N4" target="_blank" class="btn-order" style="text-decoration:none; display: inline-block;" data-i18n="btn_directions">
             Get Directions
         </a>
     </div>
@@ -395,29 +366,113 @@
 <!-- FOOTER & MODAL -->
 <div id="order-bar" class="sticky-bar" style="display: none;">
     <div>
-        <span style="font-size:0.8rem; color:#aaa; text-transform: uppercase;">Total Estimate</span><br>
+        <span style="font-size:0.8rem; color:#aaa; text-transform: uppercase;" data-i18n="footer_total">Total Estimate</span><br>
         <span class="total-amount" id="grand-total">$0.00</span>
     </div>
-    <button class="btn-order" onclick="openModal()">Review Order</button>
+    <button class="btn-order" onclick="openModal()" data-i18n="footer_review">Review Order</button>
 </div>
 
 <div id="orderModal" class="modal-overlay">
     <div class="modal-box">
-        <h3 style="color:var(--primary-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top:0;">Your Order</h3>
-        <p style="color:#666; font-style: italic;">Please read this list when calling us.</p>
+        <h3 style="color:var(--primary-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top:0;" data-i18n="modal_title">Your Order</h3>
+        <p style="color:#666; font-style: italic;" data-i18n="modal_desc">Please read this list when calling us.</p>
         <div id="modal-list"></div>
         <div style="text-align:right; font-weight:bold; font-size:1.4rem; margin-top:20px; border-top: 2px solid var(--accent-gold); padding-top:10px;">
             Total: <span id="modal-total-display" style="color:var(--primary-red);">$0.00</span>
         </div>
-        <a href="tel:9055550123" class="call-btn">📞 Call (905) 555-0123</a>
-        <button onclick="closeModal()" style="background:transparent; border: 1px solid #aaa; padding:10px 20px; cursor: pointer; color: #666;">Close Window</button>
+        <a href="tel:9055550123" class="call-btn">📞 (905) 555-0123</a>
+        <button onclick="closeModal()" style="background:transparent; border: 1px solid #aaa; padding:10px 20px; cursor: pointer; color: #666;" data-i18n="modal_close">Close Window</button>
     </div>
 </div>
 
 <script>
+    // --- LANGUAGE DICTIONARY ---
+    const translations = {
+        en: {
+            nav_home: "Home", nav_order: "Order Menu", nav_photos: "Photos", nav_about: "About & Reviews",
+            header_title: "KING ASIAN", header_subtitle: "2500 Hurontario St, Mississauga",
+            home_welcome: "Welcome to Our Table", home_tagline: "Authentic. Warm. Traditional.",
+            home_desc: "King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.",
+            home_desc2: "From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.",
+            btn_view_menu: "View Menu & Order", btn_call: "Call To Order", btn_directions: "Get Directions",
+            footer_total: "Total Estimate", footer_review: "Review Order",
+            modal_title: "Your Order", modal_desc: "Please read this list when calling us.", modal_close: "Close Window",
+            about_story_title: "Our Story", about_story_text: "Located in the heart of Mississauga, King Asian Restaurant is a family-owned gem dedicated to preserving the authentic tastes of Szechuan and Cantonese cooking.",
+            about_reviews_title: "Customer Reviews", about_visit_title: "Visit Us",
+            // Categories
+            cat_soup: "Soup", cat_appetizer: "Appetizer", cat_sweetsour: "Sweet & Sour", cat_chopsuey: "Chop Suey",
+            cat_curry: "Curry", cat_dicedveg: "Diced Veg", cat_noodles: "Noodles", cat_szechuan: "Szechuan",
+            cat_rice: "Rice", cat_chefspecials: "Chef Specials", cat_combos: "Combos", cat_familydinner: "Family Dinner", cat_lunchspecial: "Lunch Special"
+        },
+        fr: {
+            nav_home: "Accueil", nav_order: "Menu", nav_photos: "Photos", nav_about: "À Propos",
+            header_title: "KING ASIAN", header_subtitle: "2500 rue Hurontario, Mississauga",
+            home_welcome: "Bienvenue à Notre Table", home_tagline: "Authentique. Chaleureux. Traditionnel.",
+            home_desc: "King Asian sert la communauté de Mississauga avec fierté, apportant les saveurs riches de la cuisine chinoise traditionnelle à votre assiette.",
+            home_desc2: "Du rugissement du wok au pliage délicat d'une boulette, nous croyons en la cuisine avec cœur.",
+            btn_view_menu: "Voir le Menu", btn_call: "Appeler pour Commander", btn_directions: "Itinéraire",
+            footer_total: "Total Estimé", footer_review: "Voir la Commande",
+            modal_title: "Votre Commande", modal_desc: "Veuillez lire cette liste lors de votre appel.", modal_close: "Fermer",
+            about_story_title: "Notre Histoire", about_story_text: "Situé au cœur de Mississauga, le restaurant King Asian est un joyau familial dédié à la préservation des goûts authentiques de la cuisine sichuanaise et cantonaise.",
+            about_reviews_title: "Avis Clients", about_visit_title: "Visitez-nous",
+            // Categories
+            cat_soup: "Soupe", cat_appetizer: "Entrées", cat_sweetsour: "Aigre-Doux", cat_chopsuey: "Chop Suey",
+            cat_curry: "Cari", cat_dicedveg: "Légumes", cat_noodles: "Nouilles", cat_szechuan: "Szechuan",
+            cat_rice: "Riz", cat_chefspecials: "Spécial du Chef", cat_combos: "Combos", cat_familydinner: "Dîner Familial", cat_lunchspecial: "Spécial Midi"
+        },
+        zh: {
+            nav_home: "首页", nav_order: "菜单", nav_photos: "照片", nav_about: "关于我们",
+            header_title: "KING ASIAN", header_subtitle: "密西沙加 Hurontario 街 2500 号",
+            home_welcome: "欢迎光临", home_tagline: "正宗。热情。传统。",
+            home_desc: "King Asian 自豪地服务密西沙加社区，为您带来正宗传统的中国美食风味。",
+            home_desc2: "从火热的炒锅到精致的手工饺子，我们用心烹饪每一道菜。",
+            btn_view_menu: "查看菜单点餐", btn_call: "电话订购", btn_directions: "获取路线",
+            footer_total: "总计预估", footer_review: "查看订单",
+            modal_title: "您的订单", modal_desc: "请在致电时朗读此列表。", modal_close: "关闭窗口",
+            about_story_title: "我们的故事", about_story_text: "King Asian 餐厅位于密西沙加市中心，是一家致力于保留川菜和粤菜正宗风味的家庭经营餐厅。",
+            about_reviews_title: "顾客评价", about_visit_title: "联系我们",
+            // Categories
+            cat_soup: "汤类", cat_appetizer: "餐前小吃", cat_sweetsour: "酸甜类", cat_chopsuey: "杂碎",
+            cat_curry: "咖喱", cat_dicedveg: "什菜类", cat_noodles: "粉面类", cat_szechuan: "四川风味",
+            cat_rice: "炒饭类", cat_chefspecials: "厨师推荐", cat_combos: "套餐", cat_familydinner: "家庭套餐", cat_lunchspecial: "午餐特价"
+        }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        // 1. Update UI Text
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if(translations[lang][key]) el.innerText = translations[lang][key];
+        });
+        
+        // 2. Update Active Button
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
+
+        // 3. Re-render Menus to update Categories
+        const isSearching = document.getElementById('searchBar').value.length > 0;
+        if(isSearching) filterMenu(); else renderMenu();
+        
+        // 4. If on photo page, re-init to update button text
+        if(document.getElementById('photos').classList.contains('active')) {
+            document.getElementById('photo-categories').innerHTML = ''; // Clear old buttons
+            hasInitPhotos = false; // Force re-init
+            initPhotos();
+        }
+    }
+
+    function getTranslatedCat(catName) {
+        // Map English category name to Translation Key
+        const clean = catName.replace(/[^a-zA-Z]/g, '').toLowerCase();
+        const key = 'cat_' + clean;
+        return translations[currentLang][key] || catName;
+    }
+
     // --- RAW MENU DATA ---
     const rawItems = [
-        // --- Soups ---
         { id: '1', name: 'Wonton Soup', price: 5.25, cat: 'Soup' },
         { id: '2', name: 'Wonton Noodle Soup', price: 7.50, cat: 'Soup' },
         { id: '3', name: 'Hot and Sour Soup', price: 5.25, cat: 'Soup' },
@@ -426,7 +481,6 @@
         { id: '6a', name: 'Egg Noodle Soup with Chicken', price: 7.50, cat: 'Soup' },
         { id: '6B', name: 'Egg Noodle Soup with Vegetable', price: 7.50, cat: 'Soup' },
         { id: '7', name: 'Chicken Corn Soup', price: 5.25, cat: 'Soup' },
-        // --- Appetizers ---
         { id: '10', name: 'Egg Roll', price: 2.20, cat: 'Appetizer' },
         { id: '11', name: 'Delicious Spring Roll', price: 1.95, cat: 'Appetizer' },
         { id: '11(1)', name: '3 Spring Rolls', price: 4.95, cat: 'Appetizer' },
@@ -445,7 +499,6 @@
         { id: '19E', name: 'Crispy Cheese Wonton (12)', price: 12.95, cat: 'Appetizer' },
         { id: '19F', name: 'Coconut Butterfly Shrimps (10)', price: 12.95, cat: 'Appetizer' },
         { id: '19G', name: 'Sesame Balls (5)', price: 5.95, cat: 'Appetizer' },
-        // --- Sweet & Sour ---
         { id: '20', name: 'Sweet and Sour Spareribs', price: 12.50, cat: 'Sweet & Sour' },
         { id: '21', name: 'Sweet and Sour Pork', price: 14.50, cat: 'Sweet & Sour' },
         { id: '22', name: 'Sweet and Sour Chicken Balls', price: 15.95, cat: 'Sweet & Sour' },
@@ -455,24 +508,20 @@
         { id: '26', name: 'Honey Garlic Chicken Wings', price: 14.95, cat: 'Sweet & Sour' },
         { id: '27', name: 'Sweet and Sour Chicken', price: 14.50, cat: 'Sweet & Sour' },
         { id: '28', name: 'Honey Garlic Chicken', price: 14.50, cat: 'Sweet & Sour' },
-        // --- Chop Suey ---
         { id: '30', name: 'Chicken Chop Suey', price: 12.50, cat: 'Chop Suey' },
         { id: '31', name: 'Beef Chop Suey', price: 12.50, cat: 'Chop Suey' },
         { id: '32', name: 'BBQ Pork Chop Suey', price: 12.50, cat: 'Chop Suey' },
         { id: '33', name: 'Shrimp Chop Suey', price: 13.95, cat: 'Chop Suey' },
         { id: '34', name: 'Vegetable Chop Suey', price: 11.95, cat: 'Chop Suey' },
-        // --- Curry ---
         { id: '40', name: 'Curry Chicken', price: 14.50, cat: 'Curry' },
         { id: '41', name: 'Curry Beef', price: 14.50, cat: 'Curry' },
         { id: '42', name: 'Curry Shrimp', price: 15.50, cat: 'Curry' },
         { id: '43', name: 'Mixed Vegetables with Curry', price: 12.95, cat: 'Curry' },
-        // --- Diced Veg ---
         { id: '50', name: 'Stir Fried Mixed Vege with Cashew', price: 13.95, cat: 'Diced Veg' },
         { id: '51', name: 'Chicken with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
         { id: '52', name: 'Beef with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
         { id: '53', name: 'Pork with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
         { id: '54', name: 'Shrimp with Diced Vegetables & Cashews', price: 16.50, cat: 'Diced Veg' },
-        // --- Noodles ---
         { id: '60', name: 'Cantonese Chow Mein', price: 14.95, cat: 'Noodles' },
         { id: '61', name: 'Szechuan Noodles', price: 13.95, cat: 'Noodles' },
         { id: '62', name: 'Pad Thai', price: 14.95, cat: 'Noodles' },
@@ -486,7 +535,6 @@
         { id: '70', name: 'Beef Ho Fan', price: 15.50, cat: 'Noodles' },
         { id: '71', name: 'Beef Ho Fan with Soya', price: 14.95, cat: 'Noodles' },
         { id: '72', name: 'House Special Noodle', price: 14.95, cat: 'Noodles' },
-        // --- Szechuan ---
         { id: '78', name: 'Black Pepper Beef', price: 14.95, cat: 'Szechuan' },
         { id: '79', name: 'Orange Chicken or Beef', price: 14.95, cat: 'Szechuan' },
         { id: '80', name: 'Spicy Peanut Chicken', price: 14.95, cat: 'Szechuan' },
@@ -499,7 +547,6 @@
         { id: '87', name: 'Sesame Chicken or Beef', price: 14.95, cat: 'Szechuan' },
         { id: '88', name: 'Mandarin Chicken', price: 14.95, cat: 'Szechuan' },
         { id: '89', name: 'Ma-Po Tofu', price: 12.95, cat: 'Szechuan' },
-        // --- Rice ---
         { id: '119', name: 'House Special Fried Rice', price: 13.95, cat: 'Rice' },
         { id: '120', name: 'Chicken Fried Rice', price: 10.95, cat: 'Rice' },
         { id: '121', name: 'Beef Fried Rice', price: 10.95, cat: 'Rice' },
@@ -512,7 +559,6 @@
         { id: '128', name: 'Szechuan Fried Rice', price: 11.50, cat: 'Rice' },
         { id: '129S', name: 'Plain Steamed Rice (Small)', price: 2.95, cat: 'Rice' },
         { id: '129L', name: 'Plain Steamed Rice (Large)', price: 6.95, cat: 'Rice' },
-        // --- Chef Specials ---
         { id: '130', name: 'Lemon Chicken', price: 13.95, cat: 'Chef Specials' },
         { id: '131', name: 'Chicken Soo Guy', price: 13.95, cat: 'Chef Specials' },
         { id: '132', name: 'Egg Foo Young (Chicken/Pork/Beef)', price: 15.95, cat: 'Chef Specials' },
@@ -531,18 +577,15 @@
         { id: '144', name: 'Sizzling Satay Beef', price: 14.95, cat: 'Chef Specials' },
         { id: '145', name: 'Deep Fried Spicy Pork Chop', price: 13.50, cat: 'Chef Specials' },
         { id: '146', name: 'Teriyaki Chicken', price: 14.95, cat: 'Chef Specials' },
-        // --- Combos ---
         { id: 'A1', name: 'Combo A1', price: 12.50, cat: 'Combos' },
         { id: 'A2', name: 'Combo A2', price: 12.50, cat: 'Combos' },
         { id: 'A3', name: 'Combo A3', price: 12.50, cat: 'Combos' },
-        // --- Dinner ---
         { id: 'D2', name: 'Dinner for 2', price: 36.95, cat: 'Family Dinner' },
         { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner' },
         { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner' },
         { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner' },
         { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner' },
         { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner' },
-        // --- Lunch ---
         { id: 'L1', name: 'Chicken/Beef Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
         { id: 'L2', name: 'Tofu Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
         { id: 'L3', name: 'Beef Ho Fan Soya Sauce', price: 11.50, cat: 'Lunch Special' },
@@ -566,11 +609,9 @@
         document.querySelectorAll('.page-section').forEach(div => div.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         const bar = document.getElementById('order-bar');
-        if(pageId === 'order') bar.style.display = 'flex';
-        else bar.style.display = 'none';
+        if(pageId === 'order') bar.style.display = 'flex'; else bar.style.display = 'none';
         
         if(pageId === 'photos') initPhotos();
-        
         window.scrollTo(0,0);
     }
 
@@ -585,16 +626,17 @@
             if(catItems.length > 0) {
                 const header = document.createElement('div');
                 header.className = 'menu-cat-header';
-                header.innerHTML = `<span>${cat}</span>`;
+                header.innerHTML = `<span>${getTranslatedCat(cat)}</span>`;
                 container.appendChild(header);
                 
                 catItems.forEach(item => {
                     const qty = cart[item.id] || 0;
                     const div = document.createElement('div');
                     div.className = 'menu-item';
+                    // Reordered Buttons: Plus (Top), Qty, Minus (Bottom)
                     div.innerHTML = `
                         <div class="item-details">
-                            <div class="item-cat">${item.cat}</div>
+                            <div class="item-cat">${getTranslatedCat(item.cat)}</div>
                             <div class="item-header">
                                 <span>${item.id}. ${item.name}</span>
                                 <span class="item-price">$${item.price.toFixed(2)}</span>
@@ -602,9 +644,9 @@
                             <div class="item-desc">${item.desc || ''}</div>
                         </div>
                         <div class="qty-controls">
-                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
-                            <div class="qty-display">${qty}</div>
                             <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            <div class="qty-display">${qty}</div>
+                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
                         </div>
                     `;
                     container.appendChild(div);
@@ -630,15 +672,12 @@
         if (cart[id] < 0) cart[id] = 0;
         if (cart[id] > 50) cart[id] = 50;
         const isSearching = document.getElementById('searchBar').value.length > 0;
-        if(isSearching) filterMenu();
-        else renderMenu();
+        if(isSearching) filterMenu(); else renderMenu();
     }
 
     function updateTotal() {
         let total = 0;
-        menuItems.forEach(item => {
-            if(cart[item.id]) total += cart[item.id] * item.price;
-        });
+        menuItems.forEach(item => { if(cart[item.id]) total += cart[item.id] * item.price; });
         document.getElementById('grand-total').innerText = '$' + total.toFixed(2);
     }
 
@@ -673,16 +712,15 @@
     // --- PHOTO GALLERY LOGIC ---
     let hasInitPhotos = false;
     let isPhotoAnimating = false; 
-    
+    // Set this to true when you upload real photos
+    const showRealPhotos = false; 
+
     function getPhotoFilename(cat, name) {
-        // NEW LOGIC: Full names, no truncation
         let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
         let cleanName = name;
         cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
         cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
         cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
-        // Removed 15 char truncation
-        
         return `${cleanCat}_${cleanName}.jpg`;
     }
 
@@ -696,12 +734,11 @@
             const btn = document.createElement('button');
             btn.className = 'photo-cat-btn';
             if(index === 0) btn.classList.add('active');
-            btn.innerText = cat;
+            btn.innerText = getTranslatedCat(cat); // Translate category button
             
             btn.onclick = () => {
                 if (isPhotoAnimating) return;
                 isPhotoAnimating = true;
-
                 document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 
@@ -709,9 +746,7 @@
                 setTimeout(() => {
                     renderPhotoGrid(cat);
                     photoSection.style.opacity = '1';
-                    setTimeout(() => {
-                        isPhotoAnimating = false;
-                    }, 1000);
+                    setTimeout(() => { isPhotoAnimating = false; }, 1000);
                 }, 1000);
             };
             nav.appendChild(btn);
@@ -726,11 +761,12 @@
         grid.innerHTML = '';
         const items = menuItems.filter(i => i.cat === cat);
         items.forEach(item => {
-            const filename = getPhotoFilename(item.cat, item.name);
+            const realFilename = getPhotoFilename(item.cat, item.name);
+            let srcToUse = showRealPhotos ? realFilename : 'comingsoon.jpg';
             const card = document.createElement('div');
             card.className = 'photo-card';
             card.innerHTML = `
-                <img src="${filename}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='comingsoon.jpg'">
+                <img src="${srcToUse}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='comingsoon.jpg'">
                 <span>${item.name}</span>
             `;
             grid.appendChild(card);
