@@ -198,46 +198,131 @@
         <div style="text-align: center;">
             <a href="https://www.google.com/search?q=king+asian+restaurant+mississauga+reviews" 
                target="_blank" 
-               rel="noopener noreferrer"
-               style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>King Asian Restaurant | Best Chinese Food in Cooksville, Mississauga</title>
+  <meta name="description" content="Authentic Chinese food in Cooksville, Mississauga.">
+  
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav role="navigation">
+    <button class="nav-link active" id="nav-home" onclick="showPage('home')">Home</button>
+    <button class="nav-link" id="nav-order" onclick="showPage('order')">Order Menu</button>
+    <button class="nav-link" id="nav-photos" onclick="showPage('photos')">Photos</button>
+    <button class="nav-link" id="nav-about" onclick="showPage('about')">About</button>
+</nav>
+
+<header>
+    <div class="header-title-box">
+        <h1>KING ASIAN</h1>
+        <div class="subtitle">2500 Hurontario St, Mississauga</div>
+        <button class="header-order-btn" onclick="showPage('order')">Order Now</button>
+    </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section id="home" class="page-section active">
+    <h2>Welcome to Our Table</h2>
+    <div style="text-align: center; font-size: 1.2rem; line-height: 1.8; color: #444;">
+        <p><strong>Authentic. Warm. Traditional.</strong></p>
+        <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
+        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
+             alt="Traditional Chinese food"
+             style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
+        <div style="margin-top: 30px;">
+            <button class="content-btn" onclick="showPage('order')">View Menu & Order</button>
         </div>
     </div>
 </section>
 
+<!-- ORDER PAGE -->
+<section id="order" class="page-section">
+    <h2>Our Menu</h2>
+    <div class="search-container">
+        <input type="text" id="searchBar" class="search-box" placeholder="Search for 'Chicken', 'Rice', 'Soup'...">
+        <button id="clearSearchBtn" class="clear-search-btn">&times;</button>
+        <button class="search-btn" onclick="triggerSearch()">Search</button>
+    </div>
+    <div id="menu-container">Loading menu...</div>
+</section>
+
+<!-- PHOTOS PAGE -->
+<section id="photos" class="page-section">
+    <h2>Our Gallery</h2>
+    <div class="photo-nav" id="photo-categories"></div>
+    <div id="photo-grid"></div>
+</section>
+
+<!-- ABOUT PAGE (Fixed Layout) -->
+<section id="about" class="page-section">
+    <h2>About & Reviews</h2>
+    
+    <div style="text-align: center; font-size: 1.1rem; line-height: 1.6; margin-bottom:40px;">
+        <h3 style="color:var(--primary-red);">Our Story</h3>
+        <p>Located in the heart of Mississauga, King Asian Restaurant is a family-owned gem dedicated to preserving the authentic tastes of Szechuan and Cantonese cooking.</p>
+    </div>
+
+    <!-- REVIEWS FIRST -->
+    <div style="margin-bottom: 40px;">
+        <h3 style="text-align:center; color:var(--primary-red);">Customer Reviews</h3>
+        <div class="review-card">"Absolutely the best Wonton Soup in Mississauga. The broth is rich and the dumplings are huge!" <span class="review-author">- Sarah J.</span></div>
+        <div class="review-card">"Fast delivery and the General Tao Chicken was perfectly crispy." <span class="review-author">- Mike T.</span></div>
+        <div style="text-align: center;">
+            <a href="#" style="color: var(--primary-red); text-decoration: underline; font-weight: bold;">Read more on Google</a>
+        </div>
+    </div>
+
+    <!-- MAP AT THE BOTTOM -->
+    <div style="margin-bottom: 20px;">
+        <h3 style="text-align:center; color:var(--primary-red);">Find Us</h3>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <p><strong>2500 Hurontario St, Mississauga, ON L5B 1N4</strong></p>
+            <p>Phone: <a href="tel:+19055550123" style="color: var(--primary-red);">905-555-0123</a></p>
+        </div>
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.027551891596!2d-79.65619792344227!3d43.616949352109574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b473b96e7c3a5%3A0x5a4f1e5b2c8d9e7f!2s2500%20Hurontario%20St%2C%20Mississauga%2C%20ON%20L5B%201N4!5e0!3m2!1sen!2sca!4v1700000000000" 
+                width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
 </main>
 
-<!-- STICKY FOOTER -->
-<footer class="sticky-bar" role="contentinfo">
+<footer class="sticky-bar">
     <div>
-        <div style="font-size:0.8rem; text-transform: uppercase; letter-spacing: 1px;">Total (Cash/Pickup)</div>
-        <div class="total-amount" aria-live="polite" aria-atomic="true">$<span id="footer-total">0.00</span></div>
+        <div style="font-size:0.8rem; text-transform: uppercase;">Total (Cash/Pickup)</div>
+        <div class="total-amount">$<span id="footer-total">0.00</span></div>
     </div>
-    <button class="btn-order" onclick="openCheckout()" aria-label="Review your order">Review Order</button>
+    <button class="btn-order" onclick="openCheckout()">Review Order</button>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-overlay" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+<div class="modal-overlay" id="checkout-modal">
     <div class="modal-box">
-        <button class="close-modal-x" onclick="closeCheckout()" aria-label="Close order review">&times;</button>
-        <h2 id="modal-title" style="font-size:1.8rem; margin-bottom:10px;">Your Order</h2>
-        <p style="font-size:0.9rem; color:#666;">Note: This is a list to read over the phone.</p>
-        
+        <button class="close-modal-x" onclick="closeCheckout()">&times;</button>
+        <h2 style="font-size:1.8rem; margin-bottom:10px;">Your Order</h2>
+        <p style="font-size:0.9rem; color:#666;">List to read over the phone.</p>
         <table class="order-list-table">
             <thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead>
             <tbody id="modal-cart-items"></tbody>
         </table>
-
         <div style="text-align:right; font-size:1.3rem; font-weight:bold; margin-top:15px; color:var(--primary-red);">
             Total: $<span id="modal-total">0.00</span>
         </div>
-        
         <a href="tel:+19055550123" class="call-btn">📞 Call to Order</a>
-        <p style="font-size:0.85rem;">We accept Cash & Debit on Pickup.</p>
     </div>
 </div>
 
-<!-- External JavaScript -->
-<script src="script.js" defer></script>
-
+<script src="script.js"></script>
 </body>
 </html>
