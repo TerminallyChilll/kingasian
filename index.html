@@ -20,19 +20,11 @@
             color: var(--text-dark);
             margin: 0;
             padding: 0;
-            
-            /* --- BACKGROUND SETTINGS --- */
             background-color: #000000; 
             background-image: url("backgroundL.jpg");
-            
-            /* Image size 25% centered */
-            background-size: 30% auto; 
-            
+            background-size: 25% auto; 
             background-repeat: no-repeat;
-            
-            /* UPDATED: Changed from 200px to 100px to raise it up */
             background-position: center top 100px; 
-            
             background-attachment: fixed;
         }
 
@@ -99,7 +91,7 @@
             font-weight: 300;
         }
 
-        /* --- Content Cards (Standard) --- */
+        /* --- Standard Page Section --- */
         .page-section {
             display: none;
             max-width: 850px;
@@ -110,24 +102,87 @@
             box-shadow: 0 0 50px rgba(0,0,0,0.8);
             border: 1px solid var(--accent-gold);
             position: relative;
+            
+            /* UPDATED: Add transition for the fade effect */
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
         }
 
         .page-section.active { 
             display: block; 
-            animation: fadeIn 0.6s ease-in-out;
+            /* We remove the animation keyframe here so it doesn't conflict with our JS fade */
+            /* animation: fadeIn 0.6s ease-in-out; */
         }
 
-        /* --- SPECIAL STYLING FOR THE SPLIT ORDER PAGE --- */
+        /* --- PHOTO GALLERY STYLES --- */
+        .photo-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .photo-cat-btn {
+            background: #eee;
+            border: 1px solid #ccc;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .photo-cat-btn:hover, .photo-cat-btn.active {
+            background: var(--primary-red);
+            color: white;
+            border-color: var(--primary-red);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        #photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #f0f0f0; /* Placeholder color */
+        }
+
+        .photo-card span {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #444;
+            display: block;
+        }
+
+        /* --- SPECIAL STYLING FOR ORDER PAGE --- */
         @media (min-width: 900px) {
             #order.page-section {
                 background: transparent; 
-                box-shadow: none;        
-                border: none;            
-                max-width: 1200px;       
-                padding: 0;
+                box-shadow: none; border: none;            
+                max-width: 1200px; padding: 0;
                 text-align: center;      
             }
-            
             #order h2 {
                 display: inline-block;
                 background: rgba(255, 252, 245, 0.95);
@@ -136,36 +191,23 @@
                 border: 1px solid var(--accent-gold);
                 margin-bottom: 20px; 
             }
-
             .search-box {
-                display: block;
-                max-width: 500px;
+                display: block; max-width: 500px;
                 margin: 0 auto 40px auto !important; 
                 box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             }
-
             #menu-container {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
-                column-gap: 20%; 
-                row-gap: 20px;
+                column-gap: 20%; row-gap: 20px;
             }
         }
 
-        /* Mobile Styling */
         @media (max-width: 899px) {
-            #menu-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
+            #menu-container { grid-template-columns: 1fr; gap: 15px; }
             .page-section { padding: 20px; margin-bottom: 60px; }
             body { background-size: cover; background-position: center; }
             header { margin-bottom: 30px; }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
@@ -179,80 +221,50 @@
         }
 
         .search-box {
-            width: 100%;
-            padding: 15px;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 25px;
-            box-sizing: border-box;
-            background: #fff;
+            width: 100%; padding: 15px; font-size: 1rem;
+            border: 1px solid #ccc; border-radius: 4px;
+            margin-bottom: 25px; box-sizing: border-box; background: #fff;
         }
 
-        /* --- New Category Header Style --- */
         .menu-cat-header {
-            grid-column: 1 / -1; /* Spans both columns */
-            text-align: center;
-            margin: 50px 0 20px 0;
-            position: relative;
-            z-index: 2;
+            grid-column: 1 / -1; text-align: center;
+            margin: 50px 0 20px 0; position: relative; z-index: 2;
         }
-
         .menu-cat-header span {
-            background: var(--primary-red);
-            color: #fff;
-            padding: 8px 25px;
-            border-radius: 20px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            background: var(--primary-red); color: #fff;
+            padding: 8px 25px; border-radius: 20px;
+            font-family: 'Playfair Display', serif; font-size: 1.3rem;
+            letter-spacing: 1px; box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             border: 1px solid var(--accent-gold);
         }
 
-        /* --- Menu Items --- */
         .menu-item {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            background: #fff; 
-            border-radius: 6px;
-            padding: 14px 16px;
+            display: flex; align-items: flex-start;
+            justify-content: space-between; background: #fff; 
+            border-radius: 6px; padding: 14px 16px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            border: 1px solid rgba(0,0,0,0.04);
-            min-height: 86px;
-            text-align: left;
+            border: 1px solid rgba(0,0,0,0.04); min-height: 86px; text-align: left;
         }
-
         .item-details { flex: 1; margin-right: 12px; }
-        
         .item-header {
             display: flex; justify-content: space-between;
             font-family: 'Playfair Display', serif;
             font-size: 1rem; font-weight: bold; color: #222;
         }
-        
         .item-cat {
-            font-size: 0.70rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
+            font-size: 0.70rem; color: #888;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
         }
-
         .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
         .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
 
-        /* --- Qty Buttons --- */
         .qty-controls {
             display: flex; align-items: center; flex-direction: column;
             background: #eee; border-radius: 30px; padding: 6px;
-            min-width: 84px;
-            border: 1px solid #ccc;
+            min-width: 84px; border: 1px solid #ccc;
         }
         .qty-btn {
-            width: 34px; height: 34px;
-            border-radius: 50%; border: none;
+            width: 34px; height: 34px; border-radius: 50%; border: none;
             background: var(--primary-red); color: white;
             font-weight: bold; cursor: pointer; font-size: 1.1rem;
             display: flex; align-items: center; justify-content: center;
@@ -261,7 +273,6 @@
         .qty-btn:hover { background: #b30000; }
         .qty-display { width: 36px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; padding: 6px 0; }
 
-        /* --- Sticky Footer --- */
         .sticky-bar {
             position: fixed; bottom: 0; left: 0; width: 100%;
             background: #111; color: white;
@@ -280,7 +291,6 @@
         }
         .btn-order:hover { background-color: #fff; }
 
-        /* --- Modal --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.9); z-index: 2000;
@@ -303,131 +313,6 @@
             text-align: center;
         }
         .call-btn:hover { background: #a50000; }
-
-        /* --- Photo Gallery (Swipe Style) --- */
-        .photo-gallery {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            border: 4px solid var(--accent-gold);
-        }
-
-        .gallery-container {
-            display: flex;
-            transition: transform 0.4s ease-in-out;
-            cursor: grab;
-        }
-
-        .gallery-container:active {
-            cursor: grabbing;
-        }
-
-        .gallery-slide {
-            min-width: 100%;
-            position: relative;
-        }
-
-        .gallery-slide img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            display: block;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-            padding: 20px 15px 10px;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            text-align: center;
-        }
-
-        /* Gallery Navigation Dots */
-        .gallery-dots {
-            text-align: center;
-            padding: 15px 0;
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            right: 0;
-            z-index: 10;
-        }
-
-        .gallery-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.5);
-            margin: 0 6px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid rgba(255,255,255,0.8);
-        }
-
-        .gallery-dot.active {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            transform: scale(1.3);
-        }
-
-        /* Gallery Navigation Arrows */
-        .gallery-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: var(--accent-gold);
-            border: 2px solid var(--accent-gold);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.5rem;
-            font-weight: bold;
-            z-index: 10;
-            transition: all 0.3s;
-            user-select: none;
-        }
-
-        .gallery-arrow:hover {
-            background: rgba(139,0,0,0.8);
-            color: white;
-        }
-
-        .gallery-arrow.left {
-            left: 15px;
-        }
-
-        .gallery-arrow.right {
-            right: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .gallery-slide img {
-                height: 300px;
-            }
-            
-            .gallery-arrow {
-                width: 35px;
-                height: 35px;
-                font-size: 1.2rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -435,6 +320,7 @@
 <nav>
     <a href="#" onclick="showPage('home')" class="nav-link">Home</a>
     <a href="#" onclick="showPage('order')" class="nav-link">Order Menu</a>
+    <a href="#" onclick="showPage('photos')" class="nav-link">Photos</a>
     <a href="#" onclick="showPage('location')" class="nav-link">Location</a>
 </nav>
 
@@ -452,36 +338,8 @@
         <p><strong>Authentic. Warm. Traditional.</strong></p>
         <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
-        <!-- Swipe Photo Gallery -->
-        <div class="photo-gallery" id="photoGallery">
-            <div class="gallery-arrow left" onclick="changeSlide(-1)">‹</div>
-            <div class="gallery-arrow right" onclick="changeSlide(1)">›</div>
-            
-            <div class="gallery-container" id="galleryContainer">
-                <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" alt="Delicious Chinese Dumplings">
-                    <div class="gallery-caption">Handmade Dumplings</div>
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=800&q=80" alt="Stir-fried Noodles">
-                    <div class="gallery-caption">Fresh Stir-Fried Noodles</div>
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?w=800&q=80" alt="General Tao Chicken">
-                    <div class="gallery-caption">Signature General Tao Chicken</div>
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1559314809-0d155014e29e?w=800&q=80" alt="Fried Rice">
-                    <div class="gallery-caption">Classic Fried Rice</div>
-                </div>
-                <div class="gallery-slide">
-                    <img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800&q=80" alt="Spring Rolls">
-                    <div class="gallery-caption">Crispy Spring Rolls</div>
-                </div>
-            </div>
-            
-            <div class="gallery-dots" id="galleryDots"></div>
-        </div>
+        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
+             style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
         
         <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
         
@@ -495,8 +353,18 @@
 <div id="order" class="page-section">
     <h2>Our Menu</h2>
     <input type="text" id="searchBar" class="search-box" placeholder="🔍 Search for 'Chicken', 'Rice', 'Soup'..." onkeyup="filterMenu()">
-    
     <div id="menu-container"></div>
+</div>
+
+<!-- PHOTOS PAGE -->
+<div id="photos" class="page-section">
+    <h2>Our Gallery</h2>
+    <div class="photo-nav" id="photo-categories">
+        <!-- Category buttons inserted via JS -->
+    </div>
+    <div id="photo-grid">
+        <!-- Photos inserted via JS -->
+    </div>
 </div>
 
 <!-- LOCATION PAGE -->
@@ -539,15 +407,11 @@
     <div class="modal-box">
         <h3 style="color:var(--primary-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top:0;">Your Order</h3>
         <p style="color:#666; font-style: italic;">Please read this list when calling us.</p>
-        
         <div id="modal-list"></div>
-        
         <div style="text-align:right; font-weight:bold; font-size:1.4rem; margin-top:20px; border-top: 2px solid var(--accent-gold); padding-top:10px;">
             Total: <span id="modal-total-display" style="color:var(--primary-red);">$0.00</span>
         </div>
-
         <a href="tel:9055550123" class="call-btn">📞 Call (905) 555-0123</a>
-        
         <button onclick="closeModal()" style="background:transparent; border: 1px solid #aaa; padding:10px 20px; cursor: pointer; color: #666;">Close Window</button>
     </div>
 </div>
@@ -564,7 +428,6 @@
         { id: '6a', name: 'Egg Noodle Soup with Chicken', price: 7.50, cat: 'Soup' },
         { id: '6B', name: 'Egg Noodle Soup with Vegetable', price: 7.50, cat: 'Soup' },
         { id: '7', name: 'Chicken Corn Soup', price: 5.25, cat: 'Soup' },
-
         // --- Appetizers ---
         { id: '10', name: 'Egg Roll', price: 2.20, cat: 'Appetizer' },
         { id: '11', name: 'Delicious Spring Roll', price: 1.95, cat: 'Appetizer' },
@@ -581,10 +444,9 @@
         { id: '19A', name: 'French Fries (Large)', price: 5.95, cat: 'Appetizer' },
         { id: '19B', name: 'Torpedo Shrimp (10)', price: 11.95, cat: 'Appetizer' },
         { id: '19D', name: 'Spicy Peanut Butter Pork Dumpling (8)', price: 8.95, cat: 'Appetizer' },
-        { id: '19E', name: 'Crispy Cheese Wonton (12)', price: 12.95, cat: 'Appetizer', desc: 'Cheese and crab meat' },
+        { id: '19E', name: 'Crispy Cheese Wonton (12)', price: 12.95, cat: 'Appetizer' },
         { id: '19F', name: 'Coconut Butterfly Shrimps (10)', price: 12.95, cat: 'Appetizer' },
         { id: '19G', name: 'Sesame Balls (5)', price: 5.95, cat: 'Appetizer' },
-
         // --- Sweet & Sour ---
         { id: '20', name: 'Sweet and Sour Spareribs', price: 12.50, cat: 'Sweet & Sour' },
         { id: '21', name: 'Sweet and Sour Pork', price: 14.50, cat: 'Sweet & Sour' },
@@ -595,71 +457,64 @@
         { id: '26', name: 'Honey Garlic Chicken Wings', price: 14.95, cat: 'Sweet & Sour' },
         { id: '27', name: 'Sweet and Sour Chicken', price: 14.50, cat: 'Sweet & Sour' },
         { id: '28', name: 'Honey Garlic Chicken', price: 14.50, cat: 'Sweet & Sour' },
-
         // --- Chop Suey ---
-        { id: '30', name: 'Chicken Chop Suey', price: 12.50, cat: 'Chop Suey', desc: 'Bean Sprouts' },
-        { id: '31', name: 'Beef Chop Suey', price: 12.50, cat: 'Chop Suey', desc: 'Bean Sprouts' },
-        { id: '32', name: 'BBQ Pork Chop Suey', price: 12.50, cat: 'Chop Suey', desc: 'Bean Sprouts' },
-        { id: '33', name: 'Shrimp Chop Suey', price: 13.95, cat: 'Chop Suey', desc: 'Bean Sprouts' },
-        { id: '34', name: 'Vegetable Chop Suey', price: 11.95, cat: 'Chop Suey', desc: 'Bean Sprouts' },
-
+        { id: '30', name: 'Chicken Chop Suey', price: 12.50, cat: 'Chop Suey' },
+        { id: '31', name: 'Beef Chop Suey', price: 12.50, cat: 'Chop Suey' },
+        { id: '32', name: 'BBQ Pork Chop Suey', price: 12.50, cat: 'Chop Suey' },
+        { id: '33', name: 'Shrimp Chop Suey', price: 13.95, cat: 'Chop Suey' },
+        { id: '34', name: 'Vegetable Chop Suey', price: 11.95, cat: 'Chop Suey' },
         // --- Curry ---
-        { id: '40', name: 'Curry Chicken', price: 14.50, cat: 'Curry', desc: 'Tender meat in curry sauce with vegetable' },
-        { id: '41', name: 'Curry Beef', price: 14.50, cat: 'Curry', desc: 'Tender meat in curry sauce with vegetable' },
-        { id: '42', name: 'Curry Shrimp', price: 15.50, cat: 'Curry', desc: 'Tender meat in curry sauce with vegetable' },
+        { id: '40', name: 'Curry Chicken', price: 14.50, cat: 'Curry' },
+        { id: '41', name: 'Curry Beef', price: 14.50, cat: 'Curry' },
+        { id: '42', name: 'Curry Shrimp', price: 15.50, cat: 'Curry' },
         { id: '43', name: 'Mixed Vegetables with Curry', price: 12.95, cat: 'Curry' },
-
-        // --- Diced Veg / Cashews ---
+        // --- Diced Veg ---
         { id: '50', name: 'Stir Fried Mixed Vege with Cashew', price: 13.95, cat: 'Diced Veg' },
         { id: '51', name: 'Chicken with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
         { id: '52', name: 'Beef with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
         { id: '53', name: 'Pork with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
         { id: '54', name: 'Shrimp with Diced Vegetables & Cashews', price: 16.50, cat: 'Diced Veg' },
-
-        // --- Noodles (Egg Noodle & Lo Mein) ---
-        { id: '60', name: 'Cantonese Chow Mein', price: 14.95, cat: 'Noodles', desc: 'Soft or crispy noodle with shrimps, chicken, pork, beef & fresh vegetables' },
-        { id: '61', name: 'Szechuan Noodles', price: 13.95, cat: 'Noodles', desc: 'Thick noodle with tender slices of chicken in spicy chili paste' },
-        { id: '62', name: 'Pad Thai', price: 14.95, cat: 'Noodles', desc: 'Chicken, shrimps, peanut, spicy' },
-        { id: '63', name: 'Singapore Rice Noodles', price: 14.95, cat: 'Noodles', desc: 'Rice vermicelli w. Shrimp, Chicken, bean sprouts & Carrots tossed in aromatic curry paste' },
-        { id: '64', name: 'Shanghai Noodles', price: 14.50, cat: 'Noodles', desc: 'Beef & Shrimps tossed cabbage with thick shanghai noodle' },
-        { id: '65', name: 'Chicken or Beef Lo Mein', price: 13.95, cat: 'Noodles', desc: 'Delicious egg Noodle w. Chicken or beef and vegetables' },
-        { id: '66', name: 'Shrimp Lo Mein', price: 15.50, cat: 'Noodles', desc: 'Egg noodles stir fried w. shrimps, broccoli, vegetables' },
+        // --- Noodles ---
+        { id: '60', name: 'Cantonese Chow Mein', price: 14.95, cat: 'Noodles' },
+        { id: '61', name: 'Szechuan Noodles', price: 13.95, cat: 'Noodles' },
+        { id: '62', name: 'Pad Thai', price: 14.95, cat: 'Noodles' },
+        { id: '63', name: 'Singapore Rice Noodles', price: 14.95, cat: 'Noodles' },
+        { id: '64', name: 'Shanghai Noodles', price: 14.50, cat: 'Noodles' },
+        { id: '65', name: 'Chicken or Beef Lo Mein', price: 13.95, cat: 'Noodles' },
+        { id: '66', name: 'Shrimp Lo Mein', price: 15.50, cat: 'Noodles' },
         { id: '67', name: 'Vegetable Lo Mein', price: 12.50, cat: 'Noodles' },
-        { id: '68', name: 'Vegetable Szechuan Noodles', price: 12.50, cat: 'Noodles', desc: 'Spicy' },
+        { id: '68', name: 'Vegetable Szechuan Noodles', price: 12.50, cat: 'Noodles' },
         { id: '69', name: 'Chow Mein with Bean Sprouts', price: 10.95, cat: 'Noodles' },
-        { id: '70', name: 'Beef Ho Fan', price: 15.50, cat: 'Noodles', desc: 'Rice Noodle, Stir Fried, Onion In A Black Bean Garlic Sauce' },
+        { id: '70', name: 'Beef Ho Fan', price: 15.50, cat: 'Noodles' },
         { id: '71', name: 'Beef Ho Fan with Soya', price: 14.95, cat: 'Noodles' },
-        { id: '72', name: 'House Special Noodle', price: 14.95, cat: 'Noodles', desc: 'Thick noodle w. shrimps, chicken, beef, stir fried w. real butter and black pepper' },
-
-        // --- Spicy Szechuan ---
+        { id: '72', name: 'House Special Noodle', price: 14.95, cat: 'Noodles' },
+        // --- Szechuan ---
         { id: '78', name: 'Black Pepper Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '79', name: 'Orange Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '80', name: 'Spicy Peanut Chicken', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '81', name: 'Kung Po Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Diced chicken or beef with vege. Tossed with roasted peanuts. Spicy.' },
-        { id: '82', name: 'General Tao Chicken', price: 14.50, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '83', name: 'Crispy Ginger Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '84', name: 'Crispy Ginger Shrimp', price: 15.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '85', name: 'Chili Chicken', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '86', name: 'Szechuan Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '87', name: 'Sesame Chicken or Beef', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '88', name: 'Mandarin Chicken', price: 14.95, cat: 'Szechuan', desc: 'Spicy' },
-        { id: '89', name: 'Ma-Po Tofu', price: 12.95, cat: 'Szechuan', desc: 'Fresh tofu with pork meat in the special sauce. Spicy.' },
-        
+        { id: '79', name: 'Orange Chicken or Beef', price: 14.95, cat: 'Szechuan' },
+        { id: '80', name: 'Spicy Peanut Chicken', price: 14.95, cat: 'Szechuan' },
+        { id: '81', name: 'Kung Po Chicken or Beef', price: 14.95, cat: 'Szechuan' },
+        { id: '82', name: 'General Tao Chicken', price: 14.50, cat: 'Szechuan' },
+        { id: '83', name: 'Crispy Ginger Chicken or Beef', price: 14.95, cat: 'Szechuan' },
+        { id: '84', name: 'Crispy Ginger Shrimp', price: 15.95, cat: 'Szechuan' },
+        { id: '85', name: 'Chili Chicken', price: 14.95, cat: 'Szechuan' },
+        { id: '86', name: 'Szechuan Chicken or Beef', price: 14.95, cat: 'Szechuan' },
+        { id: '87', name: 'Sesame Chicken or Beef', price: 14.95, cat: 'Szechuan' },
+        { id: '88', name: 'Mandarin Chicken', price: 14.95, cat: 'Szechuan' },
+        { id: '89', name: 'Ma-Po Tofu', price: 12.95, cat: 'Szechuan' },
         // --- Rice ---
-        { id: '119', name: 'House Special Fried Rice', price: 13.95, cat: 'Rice', desc: 'Shrimps, chicken, pork, and beef' },
+        { id: '119', name: 'House Special Fried Rice', price: 13.95, cat: 'Rice' },
         { id: '120', name: 'Chicken Fried Rice', price: 10.95, cat: 'Rice' },
         { id: '121', name: 'Beef Fried Rice', price: 10.95, cat: 'Rice' },
         { id: '122', name: 'BBQ Pork Fried Rice', price: 10.95, cat: 'Rice' },
         { id: '123', name: 'Shrimp Fried Rice', price: 12.95, cat: 'Rice' },
         { id: '124', name: 'Mushroom Fried Rice', price: 10.50, cat: 'Rice' },
-        { id: '125', name: 'Vegetable Fried Rice', price: 10.50, cat: 'Rice', desc: 'Contain egg' },
-        { id: '126', name: 'Plain Fried Rice', price: 9.50, cat: 'Rice', desc: 'With peas and carrot' },
+        { id: '125', name: 'Vegetable Fried Rice', price: 10.50, cat: 'Rice' },
+        { id: '126', name: 'Plain Fried Rice', price: 9.50, cat: 'Rice' },
         { id: '127', name: 'Young Chow Fried Rice', price: 13.95, cat: 'Rice' },
-        { id: '128', name: 'Szechuan Fried Rice', price: 11.50, cat: 'Rice', desc: 'Spicy. Pork/Chicken/Beef. (Shrimp +$2.00)' },
+        { id: '128', name: 'Szechuan Fried Rice', price: 11.50, cat: 'Rice' },
         { id: '129S', name: 'Plain Steamed Rice (Small)', price: 2.95, cat: 'Rice' },
         { id: '129L', name: 'Plain Steamed Rice (Large)', price: 6.95, cat: 'Rice' },
-
-        // --- Chef Specials (Cantonese Best Dishes) ---
+        // --- Chef Specials ---
         { id: '130', name: 'Lemon Chicken', price: 13.95, cat: 'Chef Specials' },
         { id: '131', name: 'Chicken Soo Guy', price: 13.95, cat: 'Chef Specials' },
         { id: '132', name: 'Egg Foo Young (Chicken/Pork/Beef)', price: 15.95, cat: 'Chef Specials' },
@@ -678,21 +533,18 @@
         { id: '144', name: 'Sizzling Satay Beef', price: 14.95, cat: 'Chef Specials' },
         { id: '145', name: 'Deep Fried Spicy Pork Chop', price: 13.50, cat: 'Chef Specials' },
         { id: '146', name: 'Teriyaki Chicken', price: 14.95, cat: 'Chef Specials' },
-
-        // --- Special Combo Meals ---
-        { id: 'A1', name: 'Combo A1', price: 12.50, cat: 'Combos', desc: 'Egg Roll, Chicken Balls (4), Chop Suey, Fried Rice' },
-        { id: 'A2', name: 'Combo A2', price: 12.50, cat: 'Combos', desc: 'Egg Roll, Chicken Wings (4), Chop Suey, Fried Rice' },
-        { id: 'A3', name: 'Combo A3', price: 12.50, cat: 'Combos', desc: 'Egg Roll, Diced Beef Mix Veg, Chop Suey, Fried Rice' },
-
-        // --- Family Dinners ---
-        { id: 'D2', name: 'Dinner for 2', price: 36.95, cat: 'Family Dinner', desc: '2 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Chicken Wings (6pc), Sweet & Sour Chicken Balls (6pc)' },
-        { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner', desc: '3 Egg Rolls, Chicken Chop Suey, Chicken Fried Rice, Beef Mix Vegetables, Chicken Wings (8pc), Sweet & Sour Chicken Balls (8pc)' },
-        { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner', desc: '4 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Chicken Balls' },
-        { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner', desc: '5 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps' },
-        { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner', desc: '6 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps' },
-        { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner', desc: '8 Egg Rolls, Chicken Fried Rice (L), Chicken Chop Suey (L), Beef Mix Vegetables (L), Cantonese Chow Mein (L), Chicken Wings, Sweet & Sour Chicken Balls, Sweet & Sour Breaded Jumbo Shrimps, General Tao Chicken (L), House Special Noodles (L)' },
-
-        // --- Daily Specials ---
+        // --- Combos ---
+        { id: 'A1', name: 'Combo A1', price: 12.50, cat: 'Combos' },
+        { id: 'A2', name: 'Combo A2', price: 12.50, cat: 'Combos' },
+        { id: 'A3', name: 'Combo A3', price: 12.50, cat: 'Combos' },
+        // --- Dinner ---
+        { id: 'D2', name: 'Dinner for 2', price: 36.95, cat: 'Family Dinner' },
+        { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner' },
+        { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner' },
+        { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner' },
+        { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner' },
+        { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner' },
+        // --- Lunch ---
         { id: 'L1', name: 'Chicken/Beef Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
         { id: 'L2', name: 'Tofu Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
         { id: 'L3', name: 'Beef Ho Fan Soya Sauce', price: 11.50, cat: 'Lunch Special' },
@@ -709,37 +561,36 @@
     ];
 
     const menuItems = rawItems.map(item => ({ ...item }));
-
     let cart = {};
 
+    // --- MAIN NAVIGATION ---
     function showPage(pageId) {
         document.querySelectorAll('.page-section').forEach(div => div.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         const bar = document.getElementById('order-bar');
         if(pageId === 'order') bar.style.display = 'flex';
         else bar.style.display = 'none';
+        
+        // If entering Photos page, init gallery if empty
+        if(pageId === 'photos') initPhotos();
+        
         window.scrollTo(0,0);
     }
 
+    // --- ORDER PAGE LOGIC ---
     function renderMenu(itemsToRender = menuItems) {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
-        
-        // Get all unique categories from the menu items (using a Set to remove duplicates)
         const allCategories = [...new Set(menuItems.map(item => item.cat))];
         
-        // Loop through each category and render items if they match the current search/filter
         allCategories.forEach(cat => {
             const catItems = itemsToRender.filter(i => i.cat === cat);
-            
             if(catItems.length > 0) {
-                // Add Category Header (Spans across the middle)
                 const header = document.createElement('div');
                 header.className = 'menu-cat-header';
                 header.innerHTML = `<span>${cat}</span>`;
                 container.appendChild(header);
                 
-                // Add items for this category
                 catItems.forEach(item => {
                     const qty = cart[item.id] || 0;
                     const div = document.createElement('div');
@@ -763,7 +614,6 @@
                 });
             }
         });
-        
         updateTotal();
     }
 
@@ -782,7 +632,6 @@
         cart[id] += delta;
         if (cart[id] < 0) cart[id] = 0;
         if (cart[id] > 50) cart[id] = 50;
-        
         const isSearching = document.getElementById('searchBar').value.length > 0;
         if(isSearching) filterMenu();
         else renderMenu();
@@ -824,167 +673,85 @@
 
     function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
 
+    // --- PHOTO GALLERY LOGIC ---
+    let hasInitPhotos = false;
+    let isPhotoAnimating = false; // Prevents clicking while fading
+    
+    function getPhotoFilename(cat, name) {
+        let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
+        let cleanName = name;
+        cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
+        cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
+        cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
+        if(cleanName.length > 15) cleanName = cleanName.substring(0, 15);
+        return `${cleanCat}_${cleanName}.jpg`;
+    }
+
+    function initPhotos() {
+        if(hasInitPhotos) return;
+        const categories = [...new Set(menuItems.map(item => item.cat))];
+        const nav = document.getElementById('photo-categories');
+        const photoSection = document.getElementById('photos');
+        
+        categories.forEach((cat, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'photo-cat-btn';
+            if(index === 0) btn.classList.add('active');
+            btn.innerText = cat;
+            
+            // CLICK EVENT WITH FADE ANIMATION
+            btn.onclick = () => {
+                // Prevent double clicks during animation
+                if (isPhotoAnimating) return;
+                isPhotoAnimating = true;
+
+                // Update active button immediately
+                document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // 1. FADE OUT (1 second)
+                photoSection.style.opacity = '0';
+                
+                // 2. WAIT (1 second)
+                setTimeout(() => {
+                    // Swap content while invisible
+                    renderPhotoGrid(cat);
+                    
+                    // 3. FADE IN (1 second)
+                    photoSection.style.opacity = '1';
+                    
+                    // Unlock after fade-in completes
+                    setTimeout(() => {
+                        isPhotoAnimating = false;
+                    }, 1000);
+                }, 1000);
+            };
+            nav.appendChild(btn);
+        });
+
+        if(categories.length > 0) renderPhotoGrid(categories[0]);
+        hasInitPhotos = true;
+    }
+
+    function renderPhotoGrid(cat) {
+        const grid = document.getElementById('photo-grid');
+        grid.innerHTML = '';
+        const items = menuItems.filter(i => i.cat === cat);
+        items.forEach(item => {
+            const filename = getPhotoFilename(item.cat, item.name);
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            card.innerHTML = `
+                <img src="${filename}" alt="${item.name}" loading="lazy" onerror="this.src='https://via.placeholder.com/200?text=No+Image'">
+                <span>${item.name}</span>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
     // Init
     renderMenu();
     showPage('home');
-
-    // ===== PHOTO GALLERY SWIPE FUNCTIONALITY =====
-    let currentSlide = 0;
-    let slides = [];
-    let isDown = false;
-    let startX = 0;
-    let startSlideIndex = 0;
-    let autoAdvanceInterval = null;
-    const galleryContainer = document.getElementById('galleryContainer');
-    const galleryDotsContainer = document.getElementById('galleryDots');
-
-    function initGallery() {
-        slides = document.querySelectorAll('.gallery-slide');
-        
-        // Create dots
-        galleryDotsContainer.innerHTML = '';
-        slides.forEach((_, index) => {
-            const dot = document.createElement('span');
-            dot.className = 'gallery-dot';
-            if (index === 0) dot.classList.add('active');
-            dot.onclick = () => goToSlide(index);
-            galleryDotsContainer.appendChild(dot);
-        });
-        
-        updateSlidePosition();
-    }
-
-    function changeSlide(direction) {
-        currentSlide += direction;
-        if (currentSlide < 0) currentSlide = slides.length - 1;
-        if (currentSlide >= slides.length) currentSlide = 0;
-        updateSlidePosition();
-    }
-
-    function goToSlide(index) {
-        currentSlide = index;
-        updateSlidePosition();
-    }
-
-    function updateSlidePosition() {
-        if (!galleryContainer || !slides.length) return;
-        
-        requestAnimationFrame(() => {
-            galleryContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            // Update dots
-            document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
-        });
-    }
-
-    // Mouse drag functionality
-    if (galleryContainer) {
-        galleryContainer.addEventListener('mousedown', (e) => {
-            isDown = true;
-            const rect = galleryContainer.getBoundingClientRect();
-            startX = e.clientX - rect.left;
-            startSlideIndex = currentSlide;
-        });
-
-        galleryContainer.addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        galleryContainer.addEventListener('mouseup', (e) => {
-            if (!isDown) return;
-            isDown = false;
-            const rect = galleryContainer.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const walk = x - startX;
-            
-            // Threshold for swipe (50px)
-            if (walk < -50) {
-                changeSlide(1);
-            } else if (walk > 50) {
-                changeSlide(-1);
-            }
-        });
-
-        galleryContainer.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-        });
-
-        // Touch functionality
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        galleryContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].clientX;
-        });
-
-        galleryContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    changeSlide(1); // Swipe left
-                } else {
-                    changeSlide(-1); // Swipe right
-                }
-            }
-        }
-
-        // Auto-advance slides every 5 seconds
-        function startAutoAdvance() {
-            // Clear any existing interval
-            if (autoAdvanceInterval) {
-                clearInterval(autoAdvanceInterval);
-            }
-            
-            autoAdvanceInterval = setInterval(() => {
-                changeSlide(1);
-            }, 5000);
-        }
-
-        function stopAutoAdvance() {
-            if (autoAdvanceInterval) {
-                clearInterval(autoAdvanceInterval);
-                autoAdvanceInterval = null;
-            }
-        }
-
-        // Start auto-advance initially (home page is active by default)
-        startAutoAdvance();
-
-        // Clean up interval when navigating away from home page
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                const onclickAttr = link.getAttribute('onclick');
-                if (!onclickAttr) return;
-                
-                const match = onclickAttr.match(/'([^']+)'/);
-                if (!match) return;
-                
-                const targetPage = match[1];
-                if (targetPage !== 'home') {
-                    stopAutoAdvance();
-                } else {
-                    startAutoAdvance();
-                }
-            });
-        });
-    }
-
-    // Initialize gallery when page loads
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initGallery);
-    } else {
-        initGallery();
-    }
 </script>
 
 </body>
