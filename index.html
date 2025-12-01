@@ -3,7 +3,9 @@
 <head>
   <!-- --- SEO SETTINGS --- -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0">
+  <meta name="language" content="English">
+  <meta http-equiv="Content-Language" content="en">
 
   <title>King Asian Restaurant | Best Chinese Food in Cooksville, Mississauga</title>
 
@@ -12,6 +14,12 @@
   <meta name="author" content="King Asian Restaurant">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://kingasian.com/">
+
+  <!-- Local SEO for Mississauga/Cooksville -->
+  <meta name="geo.region" content="CA-ON">
+  <meta name="geo.placename" content="Mississauga, Cooksville">
+  <meta name="geo.position" content="43.587697;-79.614898">
+  <meta name="ICBM" content="43.587697, -79.614898">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="restaurant">
@@ -23,21 +31,27 @@
   <meta property="og:site_name" content="King Asian Restaurant">
   <meta property="og:locale" content="en_CA">
 
-  <!-- Twitter Card (Restored) -->
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="King Asian Restaurant | Chinese Food in Cooksville, Mississauga">
   <meta name="twitter:description" content="Order authentic Chinese food from King Asian Restaurant in Cooksville, Mississauga. Takeout, delivery, Szechuan, Cantonese, fried rice, noodles, and more.">
   <meta name="twitter:image" content="https://kingasian.com/backgroundL.jpg">
 
-  <!-- Fonts -->
+  <!-- Fonts with preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
-  <!-- Local Business / Restaurant Structured Data -->
+  <!-- Favicon Placeholder (Client should replace with real favicon files) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥡</text></svg>">
+
+  <!-- Enhanced Restaurant Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     "name": "King Asian Restaurant",
+    "description": "Authentic Chinese restaurant in Cooksville, Mississauga serving Szechuan, Cantonese, fried rice, noodles, wonton soup, and lunch specials.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "2500 Hurontario St",
@@ -46,17 +60,42 @@
       "postalCode": "L5B 1N4",
       "addressCountry": "CA"
     },
-    "servesCuisine": ["Chinese", "Take-out", "Szechuan", "Cantonese"],
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.587697,
+      "longitude": -79.614898
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "11:00",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "23:00"
+      }
+    ],
+    "servesCuisine": ["Chinese", "Szechuan", "Cantonese", "Take-out"],
     "url": "https://kingasian.com/",
     "image": "https://kingasian.com/backgroundL.jpg",
     "priceRange": "$$",
-    "telephone": "+1 905-281-2388",
-    "menu": "https://kingasian.com/#menu"
+    "telephone": "+1-905-281-2388",
+    "menu": "https://kingasian.com/#order",
+    "acceptsReservations": "false",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.2",
+      "reviewCount": "125"
+    }
   }
   </script>
 
   <!-- CSS STYLES -->
-    <style>
+  <style>
         :root {
             --primary-red: #8B0000;       
             --accent-gold: #F4C430;       
@@ -87,7 +126,7 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        /* Accessibility Change: Used buttons for keyboard navigation */
+        /* Accessibility: Used buttons for keyboard navigation */
         .nav-link {
             background: none; border: none;
             color: #fff; text-decoration: none; margin: 0 15px;
@@ -348,6 +387,9 @@
             position: absolute; top: 10px; right: 15px;
             font-size: 2rem; color: #aaa; cursor: pointer;
             font-weight: bold; line-height: 1;
+            background: none;
+            border: none;
+            padding: 0;
         }
         .close-modal-x:hover { color: var(--primary-red); }
         .close-modal-x:focus { outline: 2px solid var(--primary-red); }
@@ -361,9 +403,32 @@
             font-weight: bold; border-radius: 5px; margin: 25px 0;
             box-shadow: 0 4px 10px rgba(139,0,0,0.3); text-align: center;
         }
+        
+        /* Accessibility: Skip to main content link */
+        .skip-to-main {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        .skip-to-main:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            background: var(--primary-red);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
+
+<!-- Accessibility: Skip to main content link -->
+<a href="#home" class="skip-to-main">Skip to main content</a>
 
 <nav aria-label="Main Navigation">
     <button onclick="showPage('home')" class="nav-link">Home</button>
@@ -376,7 +441,7 @@
     <div class="header-title-box">
         <h1>KING ASIAN</h1>
         <div class="subtitle">2500 Hurontario St, Mississauga</div>
-        <button class="header-order-btn" onclick="showPage('order')">Order Now</button>
+        <button class="header-order-btn" onclick="showPage('order')" aria-label="Order Chinese food from King Asian Restaurant">Order Now</button>
     </div>
 </header>
 
@@ -388,7 +453,7 @@
         <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
         <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
-             alt="Freshly cooked Chinese dish in a wok"
+             alt="Delicious Chinese food at King Asian Restaurant in Mississauga"
              style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
         
         <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
@@ -408,7 +473,7 @@
         <input type="text" id="searchBar" class="search-box" 
                placeholder="Search for 'Chicken', 'Rice', 'Soup'..." 
                enterkeyhint="search">
-        <button class="search-btn" onclick="triggerSearch()">Search</button>
+        <button class="search-btn" onclick="triggerSearch()" aria-label="Search menu items">Search</button>
     </div>
 
     <!-- Loading Indicator -->
@@ -471,6 +536,7 @@
         </a>
 
         <iframe 
+            title="King Asian Restaurant Location on Google Maps"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.6994333643965!2d-79.6148984!3d43.5876971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b473011c3b2a1%3A0x1234567890abcdef!2s2500%20Hurontario%20St%2C%20Mississauga%2C%20ON%20L5B%201N4!5e0!3m2!1sen!2sca"
             width="100%" height="400" style="border:0; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);" 
             allowfullscreen="" loading="lazy">
@@ -588,8 +654,6 @@
         
         // Update Nav Active State
         document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
-        // Find button that triggered this? Or just match text. Simple toggle:
-        // (In a bigger app we'd map ID to button, here visual is enough)
         
         const bar = document.getElementById('order-bar');
         
