@@ -68,15 +68,15 @@
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Sunday"],
-        "opens": "13:00",
-        "closes": "1:00"
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "11:00",
+        "closes": "22:00"
       },
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Friday"],
-        "opens": "13:00",
-        "closes": "2:00"
+        "dayOfWeek": ["Saturday", "Sunday"],
+        "opens": "12:00",
+        "closes": "23:00"
       }
     ],
     "servesCuisine": ["Chinese", "Szechuan", "Cantonese", "Take-out"],
@@ -530,6 +530,41 @@
             2500 Hurontario St<br>
             Mississauga, ON L5B 1N4
         </address>
+
+        <!-- Opening Hours -->
+        <div style="margin-bottom: 30px;">
+            <h4 style="color:var(--primary-red); margin-bottom: 15px; font-family: 'Playfair Display', serif; font-size: 1.4rem;">Opening Hours</h4>
+            <table style="margin: 0 auto; border-collapse: collapse; text-align: left; font-size: 1rem;">
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px 20px;">Monday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 1:00 AM</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px 20px;">Tuesday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 1:00 AM</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px 20px;">Wednesday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 1:00 AM</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px 20px;">Thursday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 1:00 AM</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px 20px;">Friday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 2:00 AM</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #eee;">
+                    <td style="padding: 8px 20px;">Saturday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 2:00 AM</td>
+                </tr>
+                <tr>
+                    <td style="padding: 8px 20px;">Sunday</td>
+                    <td style="padding: 8px 20px;">1:00 PM - 1:00 AM</td>
+                </tr>
+            </table>
+        </div>
         
         <a href="tel:+19052812388" class="call-btn" style="max-width: 300px; margin: 0 auto 30px auto;">
             📞 Call To Order: 905-281-2388
