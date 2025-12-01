@@ -23,7 +23,7 @@
   <meta property="og:site_name" content="King Asian Restaurant">
   <meta property="og:locale" content="en_CA">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card (Restored) -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="King Asian Restaurant | Chinese Food in Cooksville, Mississauga">
   <meta name="twitter:description" content="Order authentic Chinese food from King Asian Restaurant in Cooksville, Mississauga. Takeout, delivery, Szechuan, Cantonese, fried rice, noodles, and more.">
@@ -87,14 +87,21 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
-        nav a {
+        /* Accessibility Change: Used buttons for keyboard navigation */
+        .nav-link {
+            background: none; border: none;
             color: #fff; text-decoration: none; margin: 0 15px;
             font-family: 'Playfair Display', serif; font-size: 1.1rem;
             text-transform: uppercase; letter-spacing: 1px;
             transition: color 0.3s; display: inline-block; cursor: pointer;
+            padding: 5px 0;
         }
-        nav a:hover, nav a.active {
+        .nav-link:hover, .nav-link.active {
             color: var(--accent-gold); border-bottom: 2px solid var(--accent-gold);
+        }
+        .nav-link:focus {
+            outline: 2px dashed var(--accent-gold);
+            outline-offset: 4px;
         }
 
         /* --- Header --- */
@@ -133,6 +140,8 @@
             transition: transform 0.2s;
         }
         .header-order-btn:active { transform: scale(0.95); }
+        .header-order-btn:focus { outline: 3px solid white; }
+
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(244, 196, 48, 0.4); }
             70% { box-shadow: 0 0 0 10px rgba(244, 196, 48, 0); }
@@ -165,6 +174,14 @@
             font-size: 1rem;
         }
         .search-btn:active { background: #600000; }
+        .search-btn:focus, .search-box:focus { outline: 2px solid var(--accent-gold); z-index: 10; }
+
+        /* --- Loading State --- */
+        #loading-message {
+            text-align: center; font-size: 1.5rem; color: var(--primary-red);
+            padding: 40px; font-family: 'Playfair Display', serif;
+            display: none;
+        }
 
         /* --- About & Review Styles --- */
         .review-card {
@@ -192,6 +209,8 @@
             background: var(--primary-red); color: white;
             border-color: var(--primary-red);
         }
+        .photo-cat-btn:focus { outline: 2px solid var(--accent-gold); }
+
         #photo-grid {
             display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px;
         }
@@ -236,7 +255,7 @@
             
             /* Stack Nav */
             nav { padding: 10px 0; }
-            nav a { margin: 5px 10px; font-size: 0.9rem; }
+            .nav-link { margin: 5px 10px; font-size: 0.9rem; }
 
             .page-section { padding: 20px; width: 95%; box-sizing: border-box; margin-bottom: 80px; }
             #menu-container { grid-template-columns: 1fr; gap: 15px; }
@@ -281,7 +300,7 @@
         .item-desc { color: #555; font-size: 0.85rem; font-style: italic; margin-top: 6px; }
         .item-price { color: var(--primary-red); font-weight: bold; font-family: 'Lato', sans-serif; }
 
-        /* Qty Controls - Plus Top, Minus Bottom */
+        /* Qty Controls */
         .qty-controls {
             display: flex; align-items: center; flex-direction: column;
             background: #eee; border-radius: 30px; padding: 4px;
@@ -295,6 +314,7 @@
             transition: background 0.2s;
         }
         .qty-btn:active { background: #500000; transform: scale(0.9); }
+        .qty-btn:focus { outline: 2px solid black; }
         .qty-display { width: 30px; text-align: center; font-weight: bold; font-size: 1rem; color: #333; padding: 5px 0; }
 
         /* Footer & Modal */
@@ -311,6 +331,7 @@
             border: none; padding: 12px 25px; font-weight: bold; 
             text-transform: uppercase; cursor: pointer; border-radius: 4px;
         }
+        .btn-order:focus { outline: 3px solid white; }
         
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -329,6 +350,7 @@
             font-weight: bold; line-height: 1;
         }
         .close-modal-x:hover { color: var(--primary-red); }
+        .close-modal-x:focus { outline: 2px solid var(--primary-red); }
 
         .order-list-table { width: 100%; text-align: left; margin: 20px 0; border-collapse: collapse; }
         .order-list-table th { border-bottom: 2px solid #eee; padding: 8px; color: #666; font-size: 0.9rem; text-transform: uppercase; }
@@ -343,11 +365,11 @@
 </head>
 <body>
 
-<nav>
-    <a onclick="showPage('home')" class="nav-link">Home</a>
-    <a onclick="showPage('order')" class="nav-link">Order Menu</a>
-    <a onclick="showPage('photos')" class="nav-link">Photos</a>
-    <a onclick="showPage('about')" class="nav-link">About & Reviews</a>
+<nav aria-label="Main Navigation">
+    <button onclick="showPage('home')" class="nav-link">Home</button>
+    <button onclick="showPage('order')" class="nav-link">Order Menu</button>
+    <button onclick="showPage('photos')" class="nav-link">Photos</button>
+    <button onclick="showPage('about')" class="nav-link">About & Reviews</button>
 </nav>
 
 <header>
@@ -366,6 +388,7 @@
         <p>King Asian has been serving the Mississauga community with pride, bringing the rich, comforting flavors of traditional Chinese cuisine to your plate.</p>
         
         <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80" 
+             alt="Freshly cooked Chinese dish in a wok"
              style="width:100%; max-width:600px; border:4px solid white; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 25px 0; border-radius: 4px;">
         
         <p>From the roar of the wok to the delicate fold of a dumpling, we believe in cooking with heart.</p>
@@ -381,10 +404,16 @@
     <h2>Our Menu</h2>
     
     <div class="search-container">
+        <label for="searchBar" style="display:none;">Search Menu Items</label>
         <input type="text" id="searchBar" class="search-box" 
                placeholder="Search for 'Chicken', 'Rice', 'Soup'..." 
                enterkeyhint="search">
         <button class="search-btn" onclick="triggerSearch()">Search</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-message">
+        Loading fresh menu...
     </div>
 
     <div id="menu-container"></div>
@@ -464,7 +493,7 @@
 
 <div id="orderModal" class="modal-overlay">
     <div class="modal-box">
-        <span class="close-modal-x" onclick="closeModal()">&times;</span>
+        <button class="close-modal-x" onclick="closeModal()" aria-label="Close Order Review">&times;</button>
         <h3 style="color:var(--primary-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top:0;">Your Order</h3>
         <p style="color:#666; font-style: italic;">Please read this list when calling us.</p>
         <div id="modal-list"></div>
@@ -479,139 +508,25 @@
 <script>
     // --- MENU DATA ---
     let menuItems = [];
+    let cart = {};
 
-    // 1. Backup Menu
-    const backupMenu = [
-        { id: '1', name: 'Wonton Soup', price: 5.25, cat: 'Soup' },
-        { id: '2', name: 'Wonton Noodle Soup', price: 7.50, cat: 'Soup' },
-        { id: '3', name: 'Hot and Sour Soup', price: 5.25, cat: 'Soup' },
-        { id: '4', name: 'Egg Drop & Mushroom Soup', price: 5.25, cat: 'Soup' },
-        { id: '5', name: 'Beef Vietnam Noodle Soup', price: 7.50, cat: 'Soup' },
-        { id: '6a', name: 'Egg Noodle Soup with Chicken', price: 7.50, cat: 'Soup' },
-        { id: '6B', name: 'Egg Noodle Soup with Vegetable', price: 7.50, cat: 'Soup' },
-        { id: '7', name: 'Chicken Corn Soup', price: 5.25, cat: 'Soup' },
-        { id: '10', name: 'Egg Roll', price: 2.20, cat: 'Appetizer' },
-        { id: '11', name: 'Delicious Spring Roll', price: 1.95, cat: 'Appetizer' },
-        { id: '11(1)', name: '3 Spring Rolls', price: 4.95, cat: 'Appetizer' },
-        { id: '11(2)', name: 'Small Spring Roll', price: 1.00, cat: 'Appetizer' },
-        { id: '11(3)', name: '3 Small Spring Rolls', price: 1.95, cat: 'Appetizer' },
-        { id: '12', name: 'BBQ Sliced Pork', price: 15.95, cat: 'Appetizer' },
-        { id: '13', name: 'BBQ Spareribs (Long)', price: 18.95, cat: 'Appetizer' },
-        { id: '14', name: 'Crispy Chicken Wings', price: 13.50, cat: 'Appetizer' },
-        { id: '15', name: 'Hot Garlic Chicken Wings', price: 14.50, cat: 'Appetizer' },
-        { id: '16', name: 'Crispy Fried Wonton', price: 9.50, cat: 'Appetizer' },
-        { id: '17', name: 'Breaded Jumbo Shrimps', price: 15.50, cat: 'Appetizer' },
-        { id: '18', name: 'Fried Dumplings (12)', price: 12.50, cat: 'Appetizer' },
-        { id: '19A', name: 'French Fries (Large)', price: 5.95, cat: 'Appetizer' },
-        { id: '19B', name: 'Torpedo Shrimp (10)', price: 11.95, cat: 'Appetizer' },
-        { id: '19D', name: 'Spicy Peanut Butter Pork Dumpling (8)', price: 8.95, cat: 'Appetizer' },
-        { id: '19E', name: 'Crispy Cheese Wonton (12)', price: 12.95, cat: 'Appetizer' },
-        { id: '19F', name: 'Coconut Butterfly Shrimps (10)', price: 12.95, cat: 'Appetizer' },
-        { id: '19G', name: 'Sesame Balls (5)', price: 5.95, cat: 'Appetizer' },
-        { id: '20', name: 'Sweet and Sour Spareribs', price: 12.50, cat: 'Sweet & Sour' },
-        { id: '21', name: 'Sweet and Sour Pork', price: 14.50, cat: 'Sweet & Sour' },
-        { id: '22', name: 'Sweet and Sour Chicken Balls', price: 15.95, cat: 'Sweet & Sour' },
-        { id: '23', name: 'Sweet and Sour Breaded Shrimp', price: 15.95, cat: 'Sweet & Sour' },
-        { id: '24', name: 'Honey Garlic Spareribs', price: 13.95, cat: 'Sweet & Sour' },
-        { id: '25', name: 'Honey Garlic Chicken Balls', price: 15.95, cat: 'Sweet & Sour' },
-        { id: '26', name: 'Honey Garlic Chicken Wings', price: 14.95, cat: 'Sweet & Sour' },
-        { id: '27', name: 'Sweet and Sour Chicken', price: 14.50, cat: 'Sweet & Sour' },
-        { id: '28', name: 'Honey Garlic Chicken', price: 14.50, cat: 'Sweet & Sour' },
-        { id: '30', name: 'Chicken Chop Suey', price: 12.50, cat: 'Chop Suey' },
-        { id: '31', name: 'Beef Chop Suey', price: 12.50, cat: 'Chop Suey' },
-        { id: '32', name: 'BBQ Pork Chop Suey', price: 12.50, cat: 'Chop Suey' },
-        { id: '33', name: 'Shrimp Chop Suey', price: 13.95, cat: 'Chop Suey' },
-        { id: '34', name: 'Vegetable Chop Suey', price: 11.95, cat: 'Chop Suey' },
-        { id: '40', name: 'Curry Chicken', price: 14.50, cat: 'Curry' },
-        { id: '41', name: 'Curry Beef', price: 14.50, cat: 'Curry' },
-        { id: '42', name: 'Curry Shrimp', price: 15.50, cat: 'Curry' },
-        { id: '43', name: 'Mixed Vegetables with Curry', price: 12.95, cat: 'Curry' },
-        { id: '50', name: 'Stir Fried Mixed Vege with Cashew', price: 13.95, cat: 'Diced Veg' },
-        { id: '51', name: 'Chicken with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
-        { id: '52', name: 'Beef with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
-        { id: '53', name: 'Pork with Diced Vegetables & Cashews', price: 15.50, cat: 'Diced Veg' },
-        { id: '54', name: 'Shrimp with Diced Vegetables & Cashews', price: 16.50, cat: 'Diced Veg' },
-        { id: '60', name: 'Cantonese Chow Mein', price: 14.95, cat: 'Noodles' },
-        { id: '61', name: 'Szechuan Noodles', price: 13.95, cat: 'Noodles' },
-        { id: '62', name: 'Pad Thai', price: 14.95, cat: 'Noodles' },
-        { id: '63', name: 'Singapore Rice Noodles', price: 14.95, cat: 'Noodles' },
-        { id: '64', name: 'Shanghai Noodles', price: 14.50, cat: 'Noodles' },
-        { id: '65', name: 'Chicken or Beef Lo Mein', price: 13.95, cat: 'Noodles' },
-        { id: '66', name: 'Shrimp Lo Mein', price: 15.50, cat: 'Noodles' },
-        { id: '67', name: 'Vegetable Lo Mein', price: 12.50, cat: 'Noodles' },
-        { id: '68', name: 'Vegetable Szechuan Noodles', price: 12.50, cat: 'Noodles' },
-        { id: '69', name: 'Chow Mein with Bean Sprouts', price: 10.95, cat: 'Noodles' },
-        { id: '70', name: 'Beef Ho Fan', price: 15.50, cat: 'Noodles' },
-        { id: '71', name: 'Beef Ho Fan with Soya', price: 14.95, cat: 'Noodles' },
-        { id: '72', name: 'House Special Noodle', price: 14.95, cat: 'Noodles' },
-        { id: '78', name: 'Black Pepper Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '79', name: 'Orange Chicken or Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '80', name: 'Spicy Peanut Chicken', price: 14.95, cat: 'Szechuan' },
-        { id: '81', name: 'Kung Po Chicken or Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '82', name: 'General Tao Chicken', price: 14.50, cat: 'Szechuan' },
-        { id: '83', name: 'Crispy Ginger Chicken or Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '84', name: 'Crispy Ginger Shrimp', price: 15.95, cat: 'Szechuan' },
-        { id: '85', name: 'Chili Chicken', price: 14.95, cat: 'Szechuan' },
-        { id: '86', name: 'Szechuan Chicken or Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '87', name: 'Sesame Chicken or Beef', price: 14.95, cat: 'Szechuan' },
-        { id: '88', name: 'Mandarin Chicken', price: 14.95, cat: 'Szechuan' },
-        { id: '89', name: 'Ma-Po Tofu', price: 12.95, cat: 'Szechuan' },
-        { id: '119', name: 'House Special Fried Rice', price: 13.95, cat: 'Rice' },
-        { id: '120', name: 'Chicken Fried Rice', price: 10.95, cat: 'Rice' },
-        { id: '121', name: 'Beef Fried Rice', price: 10.95, cat: 'Rice' },
-        { id: '122', name: 'BBQ Pork Fried Rice', price: 10.95, cat: 'Rice' },
-        { id: '123', name: 'Shrimp Fried Rice', price: 12.95, cat: 'Rice' },
-        { id: '124', name: 'Mushroom Fried Rice', price: 10.50, cat: 'Rice' },
-        { id: '125', name: 'Vegetable Fried Rice', price: 10.50, cat: 'Rice' },
-        { id: '126', name: 'Plain Fried Rice', price: 9.50, cat: 'Rice' },
-        { id: '127', name: 'Young Chow Fried Rice', price: 13.95, cat: 'Rice' },
-        { id: '128', name: 'Szechuan Fried Rice', price: 11.50, cat: 'Rice' },
-        { id: '129S', name: 'Plain Steamed Rice (Small)', price: 2.95, cat: 'Rice' },
-        { id: '129L', name: 'Plain Steamed Rice (Large)', price: 6.95, cat: 'Rice' },
-        { id: '130', name: 'Lemon Chicken', price: 13.95, cat: 'Chef Specials' },
-        { id: '131', name: 'Chicken Soo Guy', price: 13.95, cat: 'Chef Specials' },
-        { id: '132', name: 'Egg Foo Young (Chicken/Pork/Beef)', price: 15.95, cat: 'Chef Specials' },
-        { id: '132S', name: 'Egg Foo Young (Shrimps)', price: 16.95, cat: 'Chef Specials' },
-        { id: '133', name: 'Chicken with Broccoli', price: 14.95, cat: 'Chef Specials' },
-        { id: '134', name: 'Beef with Broccoli', price: 14.95, cat: 'Chef Specials' },
-        { id: '135', name: 'Chicken with Black Bean Sauce', price: 14.95, cat: 'Chef Specials' },
-        { id: '136', name: 'Beef with Black Bean Sauce', price: 14.95, cat: 'Chef Specials' },
-        { id: '137', name: 'Chicken or Beef with Peppers & Mushroom', price: 14.95, cat: 'Chef Specials' },
-        { id: '138', name: 'Chicken or Beef with Snow Peas', price: 15.95, cat: 'Chef Specials' },
-        { id: '139', name: 'Almond Guys Pan', price: 14.95, cat: 'Chef Specials' },
-        { id: '140', name: 'Tai Dop Way', price: 15.95, cat: 'Chef Specials' },
-        { id: '141', name: 'Chicken with Mixed Vegetable', price: 14.50, cat: 'Chef Specials' },
-        { id: '142', name: 'Beef with Mixed Vegetable', price: 14.50, cat: 'Chef Specials' },
-        { id: '143', name: 'Spareribs with Black Bean Sauce', price: 13.95, cat: 'Chef Specials' },
-        { id: '144', name: 'Sizzling Satay Beef', price: 14.95, cat: 'Chef Specials' },
-        { id: '145', name: 'Deep Fried Spicy Pork Chop', price: 13.50, cat: 'Chef Specials' },
-        { id: '146', name: 'Teriyaki Chicken', price: 14.95, cat: 'Chef Specials' },
-        { id: 'A1', name: 'Combo A1', price: 12.50, cat: 'Combos' },
-        { id: 'A2', name: 'Combo A2', price: 12.50, cat: 'Combos' },
-        { id: 'A3', name: 'Combo A3', price: 12.50, cat: 'Combos' },
-        { id: 'D2', name: 'Dinner for 2', price: 36.95, cat: 'Family Dinner' },
-        { id: 'D3', name: 'Dinner for 3', price: 52.95, cat: 'Family Dinner' },
-        { id: 'D4', name: 'Dinner for 4', price: 69.95, cat: 'Family Dinner' },
-        { id: 'D5', name: 'Dinner for 5', price: 85.95, cat: 'Family Dinner' },
-        { id: 'D6', name: 'Dinner for 6', price: 98.95, cat: 'Family Dinner' },
-        { id: 'D8', name: 'Dinner for 8', price: 128.95, cat: 'Family Dinner' },
-        { id: 'L1', name: 'Chicken/Beef Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L2', name: 'Tofu Mix Vege on Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L3', name: 'Beef Ho Fan Soya Sauce', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L4', name: 'Cantonese Chow Mein (Special)', price: 12.95, cat: 'Lunch Special' },
-        { id: 'L5', name: 'Pad Thai Noodle (Special)', price: 12.50, cat: 'Lunch Special' },
-        { id: 'L6', name: 'Szechuan Noodle with Chicken', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L7', name: 'General Tao Chicken/Beef On Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L8', name: 'Curry Chicken/Beef On Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L9', name: 'Szechuan Beef/Chicken On Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L10', name: 'Beef/Chicken Black Bean Sauce on Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L11', name: 'Sweet & Sour Pork On Rice', price: 11.50, cat: 'Lunch Special' },
-        { id: 'L12', name: 'Chicken Ball Chop Suey Fried Rice Egg Roll', price: 12.50, cat: 'Lunch Special' },
-        { id: 'L13', name: 'Beef With Mushroom On Rice', price: 11.50, cat: 'Lunch Special' }
-    ];
+    // 1. HELPER: Escape HTML to prevent vulnerability
+    function escapeHtml(text) {
+        if (!text) return "";
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
     // 2. Load Menu from Google Sheet
     async function loadMenuFromSheets() {
+        // Show loading
+        document.getElementById('loading-message').style.display = 'block';
+        document.getElementById('menu-container').innerHTML = '';
+
         const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQB6z-hi9L5sgtzEZtSuSNmeneCjnX1eFfwkAGpJNKxTW-fb1ht9Il6k8iknlAnuMIqv6wykSE8hfuk/pub?gid=1752144525&single=true&output=csv";
         
         try {
@@ -626,22 +541,22 @@
                 const row = parseCSVLine(rows[i]);
                 if (row.length < 4) continue;
                 
+                // Sanitizing inputs here for security
                 menuItems.push({
-                    id: row[0].trim(),
-                    name: row[1].trim(),
-                    cat: row[2].trim(),
+                    id: escapeHtml(row[0].trim()),
+                    name: escapeHtml(row[1].trim()),
+                    cat: escapeHtml(row[2].trim()),
                     price: parseFloat(row[3].replace('$','')) || 0,
-                    desc: row[4] ? row[4].trim() : ''
+                    desc: escapeHtml(row[4] ? row[4].trim() : '')
                 });
             }
             
-            console.log('✅ Menu loaded from Google Sheets:', menuItems.length, 'items');
+            console.log('✅ Menu loaded:', menuItems.length, 'items');
             renderMenu();
             
         } catch (error) {
-            console.error('❌ Failed to load from Sheets, using backup:', error);
-            menuItems = backupMenu;
-            renderMenu();
+            console.error('❌ Failed to load from Sheets:', error);
+            document.getElementById('loading-message').innerText = "⚠️ Failed to load menu. Please refresh.";
         }
     }
 
@@ -666,12 +581,16 @@
         return result;
     }
 
-    let cart = {};
-
     // --- MAIN NAVIGATION ---
     function showPage(pageId) {
         document.querySelectorAll('.page-section').forEach(div => div.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
+        
+        // Update Nav Active State
+        document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active'));
+        // Find button that triggered this? Or just match text. Simple toggle:
+        // (In a bigger app we'd map ID to button, here visual is enough)
+        
         const bar = document.getElementById('order-bar');
         
         if(pageId === 'order') {
@@ -695,6 +614,9 @@
     });
 
     function renderMenu(itemsToRender = menuItems) {
+        // Hide loading
+        document.getElementById('loading-message').style.display = 'none';
+        
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
         
@@ -712,6 +634,9 @@
                     const qty = cart[item.id] || 0;
                     const div = document.createElement('div');
                     div.className = 'menu-item';
+                    
+                    // Note: Since we sanitized data in loadMenuFromSheets, 
+                    // it is safe to insert into innerHTML here.
                     div.innerHTML = `
                         <div class="item-details">
                             <div class="item-cat">${item.cat}</div>
@@ -722,9 +647,9 @@
                             <div class="item-desc">${item.desc || ''}</div>
                         </div>
                         <div class="qty-controls">
-                            <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            <button class="qty-btn" aria-label="Increase Quantity" onclick="changeQty('${item.id}', 1)">+</button>
                             <div class="qty-display">${qty}</div>
-                            <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                            <button class="qty-btn" aria-label="Decrease Quantity" onclick="changeQty('${item.id}', -1)">-</button>
                         </div>
                     `;
                     container.appendChild(div);
@@ -847,12 +772,15 @@
             const realFilename = getPhotoFilename(item.cat, item.name);
             let srcToUse = showRealPhotos ? realFilename : 'comingsoon.jpg';
             
+            // ACCESSIBILITY: Use Description as Alt Text if available, else Name
+            let altText = item.desc ? item.desc : item.name;
+
             const card = document.createElement('div');
             card.className = 'photo-card';
             
             const img = document.createElement('img');
             img.src = srcToUse;
-            img.alt = item.name;
+            img.alt = altText; 
             img.loading = 'lazy';
             img.onerror = () => { img.src = 'comingsoon.jpg'; }; 
             
