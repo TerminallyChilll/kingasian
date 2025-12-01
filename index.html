@@ -737,72 +737,108 @@
     function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
 
     // --- PHOTO GALLERY LOGIC ---
-    let hasInitPhotos = false;
-    let isPhotoAnimating = false; 
-    // Set this to true when you upload real photos
-    const showRealPhotos = false; 
+let hasInitPhotos = false;
+let isPhotoAnimating = false; 
 
-    function getPhotoFilename(cat, name) {
-        let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
-        let cleanName = name;
-        cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
-        cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
-        cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
-        return `${cleanCat}_${cleanName}.jpg`;
-    }
+// Set this to true when you upload real photos
+const showRealPhotos = false; 
 
-    function initPhotos() {
-        if(hasInitPhotos) return;
-        const categories = [...new Set(menuItems.map(item => item.cat))];
-        const nav = document.getElementById('photo-categories');
-        const photoSection = document.getElementById('photos');
+/* 
+   PHOTO NAMING GUIDE:
+   
+   Your menuItems stay exactly as written. Just name your photo files using this pattern:
+   
+   Menu Item: "Chicken Satay (4)"        → Photo File: Appetizer_ChickenSatay.jpg
+   Menu Item: "Chicken Balls"            → Photo File: Appetizer_ChickenBalls.jpg
+   Menu Item: "Spring Rolls (2)"         → Photo File: Appetizer_SpringRolls.jpg
+   Menu Item: "Beef with Broccoli"       → Photo File: Entree_BeefBroccoli.jpg
+   Menu Item: "Ginger Beef"              → Photo File: Entree_GingerBeef.jpg
+   Menu Item: "Sweet & Sour Chicken"     → Photo File: Entree_SweetSourChicken.jpg
+   Menu Item: "Won Ton Soup"             → Photo File: Soup_WonTonSoup.jpg
+   Menu Item: "Hot & Sour Soup"          → Photo File: Soup_HotSourSoup.jpg
+   
+   Pattern: {Category}_{CleanedName}.jpg
+   - Removes spaces, parentheses, numbers in brackets, and words like "with", "and", "&"
+   - Keep letters and numbers only
+   
+   Steps:
+   1. Rename your photo files using the examples above
+   2. Upload them to your images folder
+   3. Set showRealPhotos = true
+*/
+
+function getPhotoFilename(cat, name) {
+    let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
+    let cleanName = name;
+    cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
+    cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
+    cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
+    return `${cleanCat}_${cleanName}.jpg`;
+}
+
+function initPhotos() {
+    if(hasInitPhotos) return;
+    const categories = [...new Set(menuItems.map(item => item.cat))];
+    const nav = document.getElementById('photo-categories');
+    const photoSection = document.getElementById('photos');
+
+    categories.forEach((cat, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'photo-cat-btn';
+        if(index === 0) btn.classList.add('active');
+        btn.innerText = cat;
+
+        btn.onclick = () => {
+            if (isPhotoAnimating) return;
+            isPhotoAnimating = true;
+            document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            photoSection.style.opacity = '0';
+            setTimeout(() => {
+                renderPhotoGrid(cat);
+                photoSection.style.opacity = '1';
+                setTimeout(() => { isPhotoAnimating = false; }, 1000);
+            }, 400);
+        };
+        nav.appendChild(btn);
+    });
+
+    if(categories.length > 0) renderPhotoGrid(categories[0]);
+    hasInitPhotos = true;
+}
+
+function renderPhotoGrid(cat) {
+    const grid = document.getElementById('photo-grid');
+    grid.innerHTML = '';
+    const items = menuItems.filter(i => i.cat === cat);
+    
+    items.forEach(item => {
+        const realFilename = getPhotoFilename(item.cat, item.name);
+        let srcToUse = showRealPhotos ? realFilename : 'comingsoon.jpg';
         
-        categories.forEach((cat, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'photo-cat-btn';
-            if(index === 0) btn.classList.add('active');
-            btn.innerText = cat;
-            
-            btn.onclick = () => {
-                if (isPhotoAnimating) return;
-                isPhotoAnimating = true;
-                document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                photoSection.style.opacity = '0';
-                setTimeout(() => {
-                    renderPhotoGrid(cat);
-                    photoSection.style.opacity = '1';
-                    setTimeout(() => { isPhotoAnimating = false; }, 1000);
-                }, 400); // Faster fade
-            };
-            nav.appendChild(btn);
-        });
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        
+        const img = document.createElement('img');
+        img.src = srcToUse;
+        img.alt = item.name;
+        img.loading = 'lazy';
+        img.onerror = () => { img.src = 'comingsoon.jpg'; };
+        
+        const span = document.createElement('span');
+        span.textContent = item.name;
+        
+        card.appendChild(img);
+        card.appendChild(span);
+        grid.appendChild(card);
+    });
+}
 
-        if(categories.length > 0) renderPhotoGrid(categories[0]);
-        hasInitPhotos = true;
-    }
+// Init
+renderMenu();
+showPage('home');
 
-    function renderPhotoGrid(cat) {
-        const grid = document.getElementById('photo-grid');
-        grid.innerHTML = '';
-        const items = menuItems.filter(i => i.cat === cat);
-        items.forEach(item => {
-            const realFilename = getPhotoFilename(item.cat, item.name);
-            let srcToUse = showRealPhotos ? realFilename : 'comingsoon.jpg';
-            const card = document.createElement('div');
-            card.className = 'photo-card';
-            card.innerHTML = `
-                <img src="${srcToUse}" alt="${item.name}" loading="lazy" onerror="this.onerror=null; this.src='comingsoon.jpg'">
-                <span>${item.name}</span>
-            `;
-            grid.appendChild(card);
-        });
-    }
-
-    // Init
-    renderMenu();
-    showPage('home');
 </script>
 
 </body>
