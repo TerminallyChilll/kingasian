@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<<head>
+<head>
   <!-- --- SEO SETTINGS --- -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,10 +55,8 @@
   }
   </script>
 
-  <!-- your <style> block continues here -->
-    
+  <!-- CSS STYLES -->
     <style>
-        /* --- CSS STYLES --- */
         :root {
             --primary-red: #8B0000;       
             --accent-gold: #F4C430;       
@@ -356,7 +354,6 @@
     <div class="header-title-box">
         <h1>KING ASIAN</h1>
         <div class="subtitle">2500 Hurontario St, Mississauga</div>
-        <!-- NEW ORDER NOW BUTTON -->
         <button class="header-order-btn" onclick="showPage('order')">Order Now</button>
     </div>
 </header>
@@ -383,7 +380,6 @@
 <div id="order" class="page-section">
     <h2>Our Menu</h2>
     
-    <!-- SEARCH BAR WITH BUTTON -->
     <div class="search-container">
         <input type="text" id="searchBar" class="search-box" 
                placeholder="Search for 'Chicken', 'Rice', 'Soup'..." 
@@ -468,7 +464,7 @@
 
 <div id="orderModal" class="modal-overlay">
     <div class="modal-box">
-        <span class="close-modal-x" onclick="closeModal()">&times;</span> <!-- NEW X BUTTON -->
+        <span class="close-modal-x" onclick="closeModal()">&times;</span>
         <h3 style="color:var(--primary-red); font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-top:0;">Your Order</h3>
         <p style="color:#666; font-style: italic;">Please read this list when calling us.</p>
         <div id="modal-list"></div>
@@ -481,8 +477,11 @@
 </div>
 
 <script>
-    // --- RAW MENU DATA ---
-    const rawItems = [
+    // --- MENU DATA ---
+    let menuItems = [];
+
+    // 1. Backup Menu
+    const backupMenu = [
         { id: '1', name: 'Wonton Soup', price: 5.25, cat: 'Soup' },
         { id: '2', name: 'Wonton Noodle Soup', price: 7.50, cat: 'Soup' },
         { id: '3', name: 'Hot and Sour Soup', price: 5.25, cat: 'Soup' },
@@ -611,7 +610,62 @@
         { id: 'L13', name: 'Beef With Mushroom On Rice', price: 11.50, cat: 'Lunch Special' }
     ];
 
-    const menuItems = rawItems.map(item => ({ ...item }));
+    // 2. Load Menu from Google Sheet
+    async function loadMenuFromSheets() {
+        const url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQB6z-hi9L5sgtzEZtSuSNmeneCjnX1eFfwkAGpJNKxTW-fb1ht9Il6k8iknlAnuMIqv6wykSE8hfuk/pub?gid=1752144525&single=true&output=csv";
+        
+        try {
+            const response = await fetch(url);
+            const text = await response.text();
+            
+            menuItems = [];
+            const rows = text.split('\n');
+            
+            // Start at i = 1 to skip the "Header" row
+            for (let i = 1; i < rows.length; i++) {
+                const row = parseCSVLine(rows[i]);
+                if (row.length < 4) continue;
+                
+                menuItems.push({
+                    id: row[0].trim(),
+                    name: row[1].trim(),
+                    cat: row[2].trim(),
+                    price: parseFloat(row[3].replace('$','')) || 0,
+                    desc: row[4] ? row[4].trim() : ''
+                });
+            }
+            
+            console.log('✅ Menu loaded from Google Sheets:', menuItems.length, 'items');
+            renderMenu();
+            
+        } catch (error) {
+            console.error('❌ Failed to load from Sheets, using backup:', error);
+            menuItems = backupMenu;
+            renderMenu();
+        }
+    }
+
+    // Helper to read CSV lines correctly
+    function parseCSVLine(str) {
+        const result = [];
+        let current = '';
+        let inQuote = false;
+        
+        for (let i = 0; i < str.length; i++) {
+            const char = str[i];
+            if (char === '"') { 
+                inQuote = !inQuote; 
+            } else if (char === ',' && !inQuote) { 
+                result.push(current); 
+                current = ''; 
+            } else { 
+                current += char; 
+            }
+        }
+        result.push(current);
+        return result;
+    }
+
     let cart = {};
 
     // --- MAIN NAVIGATION ---
@@ -619,31 +673,31 @@
         document.querySelectorAll('.page-section').forEach(div => div.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         const bar = document.getElementById('order-bar');
-        if(pageId === 'order') bar.style.display = 'flex'; else bar.style.display = 'none';
+        
+        if(pageId === 'order') {
+            bar.style.display = 'flex';
+        } else {
+            bar.style.display = 'none';
+        }
         
         if(pageId === 'photos') initPhotos();
-        
         window.scrollTo(0,0);
     }
 
     // --- SEARCH & MENU LOGIC ---
-    // Search Logic: Triggered by Button or Enter Key
     function triggerSearch() {
-        // Hide keyboard on mobile
-        document.getElementById('searchBar').blur();
+        document.getElementById('searchBar').blur(); 
         filterMenu();
     }
 
-    // Allow Enter key to trigger search
     document.getElementById('searchBar').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            triggerSearch();
-        }
+        if (e.key === 'Enter') triggerSearch();
     });
 
     function renderMenu(itemsToRender = menuItems) {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
+        
         const allCategories = [...new Set(menuItems.map(item => item.cat))];
         
         allCategories.forEach(cat => {
@@ -658,7 +712,6 @@
                     const qty = cart[item.id] || 0;
                     const div = document.createElement('div');
                     div.className = 'menu-item';
-                    // Plus on Top, Minus on Bottom
                     div.innerHTML = `
                         <div class="item-details">
                             <div class="item-cat">${item.cat}</div>
@@ -695,9 +748,8 @@
         if (!cart[id]) cart[id] = 0;
         cart[id] += delta;
         if (cart[id] < 0) cart[id] = 0;
-        if (cart[id] > 50) cart[id] = 50;
-        // Re-render only if searching, otherwise update numbers? 
-        // Simple re-render is safest for consistency
+        if (cart[id] > 50) cart[id] = 50; 
+        
         const isSearching = document.getElementById('searchBar').value.length > 0;
         if(isSearching) filterMenu(); else renderMenu();
     }
@@ -708,12 +760,14 @@
         document.getElementById('grand-total').innerText = '$' + total.toFixed(2);
     }
 
+    // --- MODAL ---
     function openModal() {
         const listDiv = document.getElementById('modal-list');
         const modalTotal = document.getElementById('modal-total-display');
         let html = '<table class="order-list-table"><tr><th>Code</th><th>Item</th><th>Qty</th><th>Price</th></tr>';
         let total = 0;
         let count = 0;
+        
         menuItems.forEach(item => {
             if(cart[item.id] > 0) {
                 count++;
@@ -729,116 +783,91 @@
         });
         html += '</table>';
         if(count === 0) html = '<p style="padding:20px;">No items selected yet.</p>';
+        
         listDiv.innerHTML = html;
         modalTotal.innerText = '$' + total.toFixed(2);
         document.getElementById('orderModal').style.display = 'flex';
     }
 
-    function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
+    function closeModal() { 
+        document.getElementById('orderModal').style.display = 'none'; 
+    }
 
-    // --- PHOTO GALLERY LOGIC ---
-let hasInitPhotos = false;
-let isPhotoAnimating = false; 
+    // --- PHOTOS ---
+    let hasInitPhotos = false;
+    let isPhotoAnimating = false; 
+    const showRealPhotos = false; 
 
-// Set this to true when you upload real photos
-const showRealPhotos = false; 
+    function getPhotoFilename(cat, name) {
+        let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
+        let cleanName = name.replace(/\s*\(.*?\)/g, '')
+                            .replace(/\b(with|or|and|&)\b/gi, '')
+                            .replace(/[^a-zA-Z0-9]/g, '');
+        return `${cleanCat}_${cleanName}.jpg`;
+    }
 
-/* 
-   PHOTO NAMING GUIDE:
-   
-   Your menuItems stay exactly as written. Just name your photo files using this pattern:
-   
-   Menu Item: "Chicken Satay (4)"        → Photo File: Appetizer_ChickenSatay.jpg
-   Menu Item: "Chicken Balls"            → Photo File: Appetizer_ChickenBalls.jpg
-   Menu Item: "Spring Rolls (2)"         → Photo File: Appetizer_SpringRolls.jpg
-   Menu Item: "Beef with Broccoli"       → Photo File: Entree_BeefBroccoli.jpg
-   Menu Item: "Ginger Beef"              → Photo File: Entree_GingerBeef.jpg
-   Menu Item: "Sweet & Sour Chicken"     → Photo File: Entree_SweetSourChicken.jpg
-   Menu Item: "Won Ton Soup"             → Photo File: Soup_WonTonSoup.jpg
-   Menu Item: "Hot & Sour Soup"          → Photo File: Soup_HotSourSoup.jpg
-   
-   Pattern: {Category}_{CleanedName}.jpg
-   - Removes spaces, parentheses, numbers in brackets, and words like "with", "and", "&"
-   - Keep letters and numbers only
-   
-   Steps:
-   1. Rename your photo files using the examples above
-   2. Upload them to your images folder
-   3. Set showRealPhotos = true
-*/
+    function initPhotos() {
+        if(hasInitPhotos) return;
+        const categories = [...new Set(menuItems.map(item => item.cat))];
+        const nav = document.getElementById('photo-categories');
+        const photoSection = document.getElementById('photos');
 
-function getPhotoFilename(cat, name) {
-    let cleanCat = cat.replace(/[^a-zA-Z0-9]/g, '');
-    let cleanName = name;
-    cleanName = cleanName.replace(/\s*\(.*?\)/g, ''); 
-    cleanName = cleanName.replace(/\b(with|or|and|&)\b/gi, '');
-    cleanName = cleanName.replace(/[^a-zA-Z0-9]/g, '');
-    return `${cleanCat}_${cleanName}.jpg`;
-}
+        categories.forEach((cat, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'photo-cat-btn';
+            if(index === 0) btn.classList.add('active');
+            btn.innerText = cat;
 
-function initPhotos() {
-    if(hasInitPhotos) return;
-    const categories = [...new Set(menuItems.map(item => item.cat))];
-    const nav = document.getElementById('photo-categories');
-    const photoSection = document.getElementById('photos');
+            btn.onclick = () => {
+                if (isPhotoAnimating) return;
+                isPhotoAnimating = true;
+                document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
 
-    categories.forEach((cat, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'photo-cat-btn';
-        if(index === 0) btn.classList.add('active');
-        btn.innerText = cat;
+                photoSection.style.opacity = '0';
+                setTimeout(() => {
+                    renderPhotoGrid(cat);
+                    photoSection.style.opacity = '1';
+                    setTimeout(() => { isPhotoAnimating = false; }, 1000);
+                }, 400);
+            };
+            nav.appendChild(btn);
+        });
 
-        btn.onclick = () => {
-            if (isPhotoAnimating) return;
-            isPhotoAnimating = true;
-            document.querySelectorAll('.photo-cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        if(categories.length > 0) renderPhotoGrid(categories[0]);
+        hasInitPhotos = true;
+    }
 
-            photoSection.style.opacity = '0';
-            setTimeout(() => {
-                renderPhotoGrid(cat);
-                photoSection.style.opacity = '1';
-                setTimeout(() => { isPhotoAnimating = false; }, 1000);
-            }, 400);
-        };
-        nav.appendChild(btn);
-    });
-
-    if(categories.length > 0) renderPhotoGrid(categories[0]);
-    hasInitPhotos = true;
-}
-
-function renderPhotoGrid(cat) {
-    const grid = document.getElementById('photo-grid');
-    grid.innerHTML = '';
-    const items = menuItems.filter(i => i.cat === cat);
-    
-    items.forEach(item => {
-        const realFilename = getPhotoFilename(item.cat, item.name);
-        let srcToUse = showRealPhotos ? realFilename : 'comingsoon.jpg';
+    function renderPhotoGrid(cat) {
+        const grid = document.getElementById('photo-grid');
+        grid.innerHTML = '';
+        const items = menuItems.filter(i => i.cat === cat);
         
-        const card = document.createElement('div');
-        card.className = 'photo-card';
-        
-        const img = document.createElement('img');
-        img.src = srcToUse;
-        img.alt = item.name;
-        img.loading = 'lazy';
-        img.onerror = () => { img.src = 'comingsoon.jpg'; };
-        
-        const span = document.createElement('span');
-        span.textContent = item.name;
-        
-        card.appendChild(img);
-        card.appendChild(span);
-        grid.appendChild(card);
-    });
-}
+        items.forEach(item => {
+            const realFilename = getPhotoFilename(item.cat, item.name);
+            let srcToUse = showRealPhotos ? realFilename : 'comingsoon.jpg';
+            
+            const card = document.createElement('div');
+            card.className = 'photo-card';
+            
+            const img = document.createElement('img');
+            img.src = srcToUse;
+            img.alt = item.name;
+            img.loading = 'lazy';
+            img.onerror = () => { img.src = 'comingsoon.jpg'; }; 
+            
+            const span = document.createElement('span');
+            span.textContent = item.name;
+            
+            card.appendChild(img);
+            card.appendChild(span);
+            grid.appendChild(card);
+        });
+    }
 
-// Init
-renderMenu();
-showPage('home');
-
+    // --- INITIALIZE ---
+    loadMenuFromSheets();
+    showPage('home');
 </script>
 
 </body>
